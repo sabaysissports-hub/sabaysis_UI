@@ -134,7 +134,7 @@ export function NavBar() {
           <img
             src={ajarLogo}
             alt="AJAR"
-            className="h-11 w-auto object-contain lg:h-14"
+            className="h-28 w-auto object-contain lg:h-28"
           />
         </Link>
 
