@@ -1,5 +1,5 @@
 import { useNavigate, Navigate, Outlet, useLocation } from 'react-router-dom';
-import { MessageSquare, LogOut, Package } from 'lucide-react';
+import { MessageSquare, LogOut, Package, LayoutDashboard, Layers } from 'lucide-react';
 
 import {
   Sidebar,
@@ -47,6 +47,16 @@ export function AdminLayout() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
+                isActive={location.pathname === '/admin' || location.pathname === '/admin/dashboard'}
+                onClick={() => navigate('/admin/dashboard')}
+                tooltip="Dashboard"
+              >
+                <LayoutDashboard />
+                <span>Dashboard</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
                 isActive={location.pathname === '/admin/messages'}
                 onClick={() => navigate('/admin/messages')}
                 tooltip="Messages"
@@ -63,6 +73,16 @@ export function AdminLayout() {
               >
                 <Package />
                 <span>Products</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                 isActive={location.pathname === '/admin/services'}
+                 onClick={() => navigate('/admin/services')}
+                 tooltip="Services"
+              >
+                <Layers />
+                <span>Services</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -90,10 +110,10 @@ export function AdminLayout() {
       </Sidebar>
 
       <SidebarInset className="overflow-y-auto">
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-4 sticky top-0 z-10">
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-4 sticky top-0 z-10">
            <SidebarTrigger className="-ml-1" />
            <div className="h-4 w-px bg-slate-200 mx-2" />
-           <h1 className="text-sm font-medium text-slate-500">Dashboard</h1>
+            <h1 className="text-sm font-medium text-slate-500">Dashboard</h1>
         </header>
         <div className="flex-1 p-4 md:p-8 pt-6">
            <Outlet />

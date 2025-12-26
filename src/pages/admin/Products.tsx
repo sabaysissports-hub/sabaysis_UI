@@ -4,20 +4,15 @@ import { Loader2, Trash2, Edit2, Plus, Image as ImageIcon, Search } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet';
+import {Sheet,SheetContent,SheetDescription,SheetHeader,SheetTitle } from '@/components/ui/sheet';
 
 interface Product {
   _id: string;
   slug: string;
   title: string;
   body: string;
-  image?: string;
+  images?: string[];
+  category: string;
   updatedAt: string;
 }
 
@@ -27,10 +22,14 @@ export function Products() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('All');
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (category?: string) => {
     try {
-      const res = await fetch(API_ENDPOINTS.PRODUCTS);
+      const url = category && category !== 'All'
+        ? `${API_ENDPOINTS.PRODUCTS}?category=${encodeURIComponent(category)}`
+        : API_ENDPOINTS.PRODUCTS;
+      const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
         setProducts(data);
@@ -43,8 +42,8 @@ export function Products() {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts(categoryFilter);
+  }, [categoryFilter]);
 
   const handleDelete = async (slug: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
@@ -92,6 +91,20 @@ export function Products() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
+        <select
+          value={categoryFilter}
+          onChange={(e) => { setLoading(true); setCategoryFilter(e.target.value); }}
+          className="px-3 py-2 rounded-md border border-slate-200 bg-white text-sm"
+        >
+          <option value="All">All Categories</option>
+          <option value="Sports Net">Sports Net</option>
+          <option value="Football Turf">Football Turf</option>
+          <option value="Cricket Turf">Cricket Turf</option>
+          <option value="Artificial Grass">Artificial Grass</option>
+          <option value="Landscape Turf">Landscape Turf</option>
+          <option value="Outdoor Gym">Outdoor Gym</option>
+          <option value="Pitch Equipment">Pitch Equipment</option>
+        </select>
       </div>
 
       {loading ? (
@@ -110,12 +123,17 @@ export function Products() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredProducts.map((product) => (
             <div key={product._id} className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-md hover:border-emerald-100">
-              <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
-                 {product.image ? (
-                   <img src={product.image} alt={product.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div className="aspect-4/3 w-full overflow-hidden bg-slate-100 relative">
+                 {product.images && product.images.length > 0 ? (
+                   <img src={product.images[0]} alt={product.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                  ) : (
                    <div className="flex h-full items-center justify-center text-slate-300">
                       <ImageIcon className="h-10 w-10" />
+                   </div>
+                 )}
+                 {product.images && product.images.length > 1 && (
+                   <div className="absolute bottom-2 left-2 bg-black/50 text-white px-2 py-0.5 rounded text-xs">
+                      {product.images.length} images
                    </div>
                  )}
                  <div className="absolute top-2 right-2 opacity-0 transition-opacity group-hover:opacity-100 flex gap-1">
@@ -130,7 +148,7 @@ export function Products() {
               <div className="p-4">
                 <h3 className="font-semibold text-slate-900 truncate" title={product.title}>{product.title}</h3>
                 <code className="mt-1 block text-xs text-slate-500 bg-slate-50 px-1.5 py-0.5 rounded w-fit">{product.slug}</code>
-                <p className="mt-2 text-sm text-slate-600 line-clamp-2 min-h-[2.5rem]">{product.body}</p>
+                <p className="mt-2 text-sm text-slate-600 line-clamp-2 min-h-10">{product.body}</p>
               </div>
             </div>
           ))}
@@ -163,19 +181,20 @@ function ProductFormSheet({ open, onOpenChange, product, onSuccess }: { open: bo
       slug: '',
       title: '',
       body: '',
+      category: '',
   });
-  const [image, setImage] = useState<File | null>(null);
+  const [images, setImages] = useState<File[]>([]);
   const [submitting, setSubmitting] = useState(false);
 
-  // Initialize form when product changes or opens
   useEffect(() => {
     if (open) {
       setFormData({
         slug: product?.slug || '',
         title: product?.title || '',
         body: product?.body || '',
+        category: product?.category || '',
       });
-      setImage(null);
+      setImages([]);
     }
   }, [open, product]);
 
@@ -196,7 +215,12 @@ function ProductFormSheet({ open, onOpenChange, product, onSuccess }: { open: bo
       data.append('slug', formData.slug);
       data.append('title', formData.title);
       data.append('body', formData.body);
-      if (image) data.append('image', image);
+      if (formData.category) data.append('category', formData.category);
+      if (images && images.length > 0) {
+        for (const file of images) {
+          data.append('images', file);
+        }
+      }
 
       try {
           const res = await fetch(API_ENDPOINTS.PRODUCTS, {
@@ -250,6 +274,24 @@ function ProductFormSheet({ open, onOpenChange, product, onSuccess }: { open: bo
                     placeholder="e.g. football-turf"
                 />
             </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Category</label>
+            <select 
+              required
+              value={formData.category}
+              onChange={e => setFormData({ ...formData, category: e.target.value })}
+              className="flex w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600"
+            >
+              <option value="" disabled>Select a category...</option>
+              <option value="Sports Net">Sports Net</option>
+              <option value="Football Turf">Football Turf</option>
+              <option value="Cricket Turf">Cricket Turf</option>
+              <option value="Artificial Grass">Artificial Grass</option>
+              <option value="Landscape Turf">Landscape Turf</option>
+              <option value="Outdoor Gym">Outdoor Gym</option>
+              <option value="Pitch Equipment">Pitch Equipment</option>
+            </select>
+          </div>
              <div className="space-y-2">
                 <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Description</label>
                 <textarea 
@@ -262,12 +304,13 @@ function ProductFormSheet({ open, onOpenChange, product, onSuccess }: { open: bo
                 />
             </div>
              <div className="space-y-2">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Image</label>
+                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Images</label>
                 <div className="flex items-center gap-4">
                   <Input 
                       type="file" 
+                      multiple
                       accept="image/*"
-                      onChange={e => setImage(e.target.files?.[0] || null)}
+                      onChange={e => setImages(e.target.files ? Array.from(e.target.files) : [])}
                       className="cursor-pointer text-slate-500 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
                   />
                 </div>

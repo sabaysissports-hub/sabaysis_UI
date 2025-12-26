@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Twitter, Youtube, Heart } from 'lucide-react';
 import footerLogo from '../../assets/whiteLogo.png';
 
 export function Footer() {
@@ -130,7 +130,8 @@ export function Footer() {
       <div className="border-t border-slate-800">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-4 text-[11px] text-slate-500 sm:flex-row">
           <p>
-            © Copyright 2023 – Sabaysis Sports &amp; Infra | Design and Develop by{' '}
+            © Copyright 2023 – Sabaysis Sports &amp; Infra | Crafted With{' '}
+            <Heart className="inline h-3 w-3 fill-red-500 text-red-500" />{' '}
             <a
               href="https://www.justcharge.in/"
               target="_blank"

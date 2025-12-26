@@ -1,18 +1,67 @@
 import { Link, useParams } from 'react-router-dom';
-import { getServiceBySlug } from '@/data/catalog';
-import { getServiceDetailBySlug } from '@/data/servicesdetail';
+import { API_ENDPOINTS } from '@/config/api';
 import { usePageTitle } from '@/hooks/usePageTitle';
+import { useEffect, useState } from 'react';
+
+type ServiceItem = { slug: string; title: string; body: string };
+type ServiceDetailData = {
+  slug: string;
+  bannerTitle: string;
+  bannerImage?: string;
+  welcomeText: string;
+  servicesTitle: string;
+  servicesDescription: string;
+  features: { title: string; description: string }[];
+  whyChooseTitle: string;
+  whyChooseItems: { title: string; description: string }[];
+  whyChooseOurTitle?: string;
+  whyChooseOurItems?: { title: string; description: string }[];
+  typesTitle?: string;
+  typesItems?: { title: string; description: string }[];
+  companyWhyTitle?: string;
+  companyWhyItems?: { title: string; description: string }[];
+};
 
 export function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const service = slug ? getServiceBySlug(slug) : undefined;
-  const serviceDetail = slug ? getServiceDetailBySlug(slug) : undefined;
+  const [service, setService] = useState<ServiceItem | undefined>(undefined);
+  const [serviceDetail, setServiceDetail] = useState<ServiceDetailData | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!slug) { setLoading(false); return; }
+      try {
+        const [srvRes, detRes] = await Promise.all([
+          fetch(`${API_ENDPOINTS.SERVICES}/${slug}`),
+          fetch(`${API_ENDPOINTS.SERVICES}/${slug}/detail`),
+        ]);
+        setService(srvRes.ok ? await srvRes.json() : undefined);
+        setServiceDetail(detRes.ok ? await detRes.json() : undefined);
+      } catch (e) {
+        console.error('Failed to fetch service', e);
+        setService(undefined);
+        setServiceDetail(undefined);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, [slug]);
 
   usePageTitle(service ? `${service.title} Service` : 'Service not found');
 
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
+      </div>
+    );
+  }
+
   if (!service) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4 py-16">
+      <div className="flex min-h-[60vh] items-center justify-center bg-slate-50">
         <div className="w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
             Service
@@ -27,13 +76,13 @@ export function ServiceDetail() {
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
               to="/"
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500 min-h-[48px] min-w-[160px]"
+              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500 min-h-12 min-w-40"
             >
               Back to Home
             </Link>
             <Link
               to="/#services"
-              className="inline-flex items-center justify-center rounded-full border-2 border-slate-300 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:border-slate-900 hover:bg-slate-50 min-h-[48px] min-w-[160px]"
+              className="inline-flex items-center justify-center rounded-full border-2 border-slate-300 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:border-slate-900 hover:bg-slate-50 min-h-12 min-w-40"
             >
               View Services
             </Link>
@@ -43,7 +92,6 @@ export function ServiceDetail() {
     );
   }
 
-  // Special layout for services with detailed data
   if (serviceDetail) {
     return (
       <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -58,7 +106,7 @@ export function ServiceDetail() {
             />
           )}
           <div className="absolute inset-0 bg-slate-900/70" />
-          <div className="relative z-10 mx-auto flex min-h-[260px] w-full max-w-6xl flex-col justify-center px-4 py-10 text-white md:min-h-[320px] md:py-16 lg:min-h-[380px]">
+          <div className="relative z-10 mx-auto flex min-h-[260px] w-full max-w-6xl flex-col justify-center px-4 py-10 text-white md:min-h-80 md:py-16 lg:min-h-[380px]">
             <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-emerald-300">
               Sabaysis Sports &amp; Infra
             </p>
@@ -88,14 +136,12 @@ export function ServiceDetail() {
             <p className="uppercase tracking-[0.25em] text-emerald-700">Service Detail</p>
           </section>
 
-          {/* Welcome Section */}
           <section className="space-y-4">
             <p className="text-sm leading-relaxed text-slate-600 md:text-base">
               {serviceDetail.welcomeText}
             </p>
           </section>
 
-          {/* Why Choose Our (if exists) */}
           {serviceDetail.whyChooseOurTitle && serviceDetail.whyChooseOurItems && (
             <section className="space-y-6">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
@@ -115,7 +161,6 @@ export function ServiceDetail() {
             </section>
           )}
 
-          {/* Services Features */}
           <section className="space-y-8">
             <div>
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
@@ -141,7 +186,6 @@ export function ServiceDetail() {
             </div>
           </section>
 
-          {/* Types (if exists) */}
           {serviceDetail.typesTitle && serviceDetail.typesItems && (
             <section className="space-y-8">
               <div>
@@ -163,7 +207,6 @@ export function ServiceDetail() {
             </section>
           )}
 
-          {/* Why Choose Sabaysis / Company Why */}
           <section className="grid gap-12 md:grid-cols-[3fr,2fr] md:items-start">
             <div className="space-y-6">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
@@ -204,7 +247,6 @@ export function ServiceDetail() {
     );
   }
 
-  // Default layout for other services
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 md:px-6 py-16 md:py-20">
@@ -223,7 +265,6 @@ export function ServiceDetail() {
           </p>
         </section>
 
-        {/* Details */}
         <section className="grid gap-12 md:grid-cols-[3fr,2fr] md:items-start">
           <div className="space-y-6">
             <h2 className="text-lg font-semibold text-slate-900">
@@ -265,7 +306,7 @@ export function ServiceDetail() {
             </div>
             <Link
               to="/contact-us"
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500 min-h-[48px] min-w-[160px]"
+                className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500 min-h-12 min-w-40"
             >
               Enquire now
             </Link>

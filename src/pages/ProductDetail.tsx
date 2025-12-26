@@ -1,153 +1,207 @@
-import { Link, useParams } from 'react-router-dom';
-import { usePageTitle } from '@/hooks/usePageTitle';
-import { useState, useEffect } from 'react';
-import { API_ENDPOINTS } from '@/config/api';
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react'
+import { API_ENDPOINTS } from '@/config/api'
+import { usePageTitle } from '@/hooks/usePageTitle'
 
 type ProductItem = {
-  slug: string;
-  title: string;
-  body: string;
-};
+  _id: string
+  slug: string
+  title: string
+  body: string
+  category: string
+  images?: string[]
+}
 
 export function ProductDetail() {
-  const { slug } = useParams<{ slug: string }>();
-  const [product, setProduct] = useState<ProductItem | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+  const { slug } = useParams<{ slug: string }>()
+  const [product, setProduct] = useState<ProductItem | undefined>()
+  const [loading, setLoading] = useState(true)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`${API_ENDPOINTS.PRODUCTS}/${slug}`);
+        const res = await fetch(`${API_ENDPOINTS.PRODUCTS}/${slug}`)
         if (res.ok) {
-          const data = await res.json();
-          setProduct(data);
+          const data = await res.json()
+          setProduct(data)
         } else {
-          setProduct(undefined);
+          setProduct(undefined)
         }
-      } catch (error) {
-        console.error("Failed to fetch product", error);
-        setProduct(undefined);
+      } catch {
+        setProduct(undefined)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     }
 
-    if (slug) {
-      fetchProduct();
-    } else {
-      setLoading(false);
-    }
-  }, [slug]);
+    if (slug) fetchProduct()
+    else setLoading(false)
+  }, [slug])
 
-  usePageTitle(product ? `${product.title} Product` : 'Product not found');
+  usePageTitle(product ? product.title : 'Product')
 
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-emerald-600" />
       </div>
-    );
+    )
   }
 
   if (!product) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center px-4 py-16">
-        <div className="max-w-lg text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-700">
-            Product
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-            Product not found
-          </h1>
-          <p className="mt-3 text-sm text-slate-600">
-            We couldn&apos;t find the product you were looking for. Please check the link or browse
-            our full range of sports and infrastructure products.
-          </p>
-          <div className="mt-6 flex justify-center gap-3">
-            <Link
-              to="/"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-slate-800 min-h-[48px] min-w-[160px]"
-            >
-              Back to Home
-            </Link>
-            <Link
-              to="/#products"
-              className="inline-flex items-center justify-center rounded-full border-2 border-slate-300 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:border-slate-900 hover:bg-slate-50 min-h-[48px] min-w-[160px]"
-            >
-              View Products
-            </Link>
-          </div>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <Link to="/products" className="text-emerald-600 font-semibold">
+          Back to products
+        </Link>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 md:px-6 py-16 md:py-20">
-        {/* Hero */}
-        <section className="space-y-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
-            Product
-          </p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
-            {product.title}
-          </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
-            {product.body}{' '}
-            Engineered by Sabaysis Sports &amp; Infra, this product is designed for long-lasting
-            performance, safety, and low maintenance in demanding sports and outdoor environments.
-          </p>
+    <div className="min-h-screen bg-white">
+      <main className="mx-auto max-w-6xl px-4 py-16 space-y-20">
+        <Link
+          to="/products"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Back to Products
+        </Link>
+
+        <section className="grid gap-12 md:grid-cols-2">
+          <div className="space-y-4">
+            <div className="relative aspect-square overflow-hidden rounded-3xl bg-slate-100">
+              {product.images?.length ? (
+                <img
+                  src={product.images[currentImageIndex]}
+                  alt={product.title}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center">
+                  <ImageIcon className="h-8 w-8 text-slate-400" />
+                </div>
+              )}
+
+              {product.images && product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() =>
+                      setCurrentImageIndex((i) =>
+                        i === 0 ? product.images!.length - 1 : i - 1
+                      )
+                    }
+                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      setCurrentImageIndex((i) =>
+                        i === product.images!.length - 1 ? 0 : i + 1
+                      )
+                    }
+                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {product.images && product.images.length > 1 && (
+              <div className="grid grid-cols-4 gap-3">
+                {product.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`aspect-square overflow-hidden rounded-xl border transition ${
+                      index === currentImageIndex
+                        ? 'border-emerald-600 ring-2 ring-emerald-500'
+                        : 'border-slate-200 hover:border-slate-400'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.title} ${index + 1}`}
+                      className="h-full w-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.35em] text-emerald-600 font-semibold">
+              {product.category}
+            </p>
+
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+              {product.title}
+            </h1>
+
+            <p className="max-w-xl text-base leading-relaxed text-slate-600">
+              {product.body}
+            </p>
+          </div>
         </section>
 
-        {/* Details */}
-        <section className="grid gap-12 md:grid-cols-[3fr,2fr] md:items-start">
-          <div className="space-y-6">
-            <h2 className="text-lg font-semibold text-slate-900">Key specifications</h2>
-            <ul className="space-y-3 text-sm leading-relaxed text-slate-700">
-              <li>
-                <span className="font-semibold text-emerald-700">High performance materials:</span>{' '}
-                Manufactured with quality components to withstand intensive use and varying weather
-                conditions.
+        <section className="grid gap-12 md:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 p-8">
+            <h2 className="mb-6 text-xl font-semibold text-slate-900">
+              Key Specifications
+            </h2>
+
+            <ul className="space-y-4 text-sm text-slate-700">
+              <li className="flex gap-3">
+                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
+                High performance materials for long-term durability
               </li>
-              <li>
-                <span className="font-semibold text-emerald-700">Safety and compliance:</span> Meets
-                relevant industry guidelines for player safety, durability, and surface performance.
+              <li className="flex gap-3">
+                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
+                Meets safety and compliance standards
               </li>
-              <li>
-                <span className="font-semibold text-emerald-700">Custom configuration:</span> Can be
-                tailored in size, specification, and design to fit your venue and play requirements.
+              <li className="flex gap-3">
+                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
+                Custom sizing and configuration options
               </li>
-              <li>
-                <span className="font-semibold text-emerald-700">Installation &amp; support:</span>{' '}
-                We offer professional installation and guidance on upkeep to maximise product life.
+              <li className="flex gap-3">
+                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
+                Professional installation and support
               </li>
             </ul>
           </div>
 
-          <aside className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50/80 p-6">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-              Need this product?
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              Share your project details and we&apos;ll help you size and configure{' '}
-              <span className="font-semibold">{product.title}</span> for your facility.
-            </p>
-            <div className="space-y-2 text-sm text-slate-700">
-              <p className="font-semibold text-slate-900">Speak to a specialist</p>
-              <p>Call +91 98970 53591 or send us a message to receive a customised proposal.</p>
+          <div className="flex flex-col justify-between rounded-2xl bg-emerald-600 p-8 text-white">
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.25em]">
+                Interested in this product?
+              </h3>
+
+              <p className="text-sm leading-relaxed">
+                Share your project details and we’ll help you configure{' '}
+                <span className="font-semibold">{product.title}</span>.
+              </p>
+
+              <p className="text-sm">
+                Call <span className="font-semibold">+91 98970 53591</span>
+              </p>
             </div>
+
             <Link
               to={`/contact-us?product=${encodeURIComponent(product.title)}`}
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-8 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500 min-h-[48px] min-w-[180px]"
+              className="mt-6 inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 transition"
             >
-              Request&nbsp;quote
+              Request Quote
             </Link>
-          </aside>
+          </div>
         </section>
       </main>
     </div>
-  );
+  )
 }
-
-

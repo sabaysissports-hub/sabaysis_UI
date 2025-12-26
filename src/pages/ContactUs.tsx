@@ -25,7 +25,6 @@ export function ContactUs() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 md:px-6 py-16 md:py-20">
-        {/* Header */}
         <section className="space-y-4 text-center md:text-left">
           <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
             Contact Us
@@ -39,7 +38,6 @@ export function ContactUs() {
           </p>
         </section>
 
-        {/* Contact Details Section */}
         <section className="rounded-3xl border border-slate-200 bg-slate-50/80 p-6 shadow-sm">
           <h2 className="text-base font-semibold uppercase tracking-[0.25em] text-slate-500">
             Contact Details
@@ -83,8 +81,6 @@ export function ContactUs() {
             </div>
           </dl>
         </section>
-
-        {/* Form and Map - Half Screen Each */}
         <section className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Send us a message form - Left Half */}
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
@@ -96,7 +92,6 @@ export function ContactUs() {
             <ContactForm initialSubject={productName} className="mt-6" />
           </div>
 
-          {/* Map - Right Half */}
           <div className="flex flex-col">
             <h2 className="text-base font-semibold text-slate-900 md:text-lg mb-2">Visit our location</h2>
             <p className="text-sm leading-relaxed text-slate-600 mb-4">
@@ -136,7 +131,6 @@ export function ContactUs() {
                       referrerPolicy="no-referrer-when-downgrade"
                       onLoad={() => setMapError(false)}
                     />
-                    {/* Fallback link overlay for accessibility */}
                     <div className="absolute bottom-4 right-4 z-10">
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=Tiwari+Quarters,+Phase+2,+Kesharganj,+Meerut,+Uttar+Pradesh+250001"

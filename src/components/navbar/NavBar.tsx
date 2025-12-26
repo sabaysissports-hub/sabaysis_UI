@@ -12,12 +12,13 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
-import { services } from '@/data/catalog';
+// Services will be fetched from backend
 
 type NavSubItem = {
   title: string;
   body: string;
   slug: string;
+  category?: string;
 };
 
 type NavItem =
@@ -33,11 +34,7 @@ type NavItem =
     };
 
 
-const serviceNavItems: NavSubItem[] = services.map((s) => ({
-  title: s.title,
-  body: s.body,
-  slug: s.slug,
-}));
+const serviceNavItems: NavSubItem[] = [];
 
 
 const initialNavItems: NavItem[] = [
@@ -70,15 +67,19 @@ export function NavBar() {
         const res = await fetch(API_ENDPOINTS.PRODUCTS);
         if (res.ok) {
           const data = await res.json();
-          const productNavItems: NavSubItem[] = data.map((p: { title: string; body: string; slug: string }) => ({
-            title: p.title,
-            body: p.body,
-            slug: p.slug,
+          
+          const categories = Array.from(new Set(data.map((p: { category: string }) => p.category))) as string[];
+          
+          const categoryNavItems: NavSubItem[] = categories.map((category) => ({
+            title: category,
+            body: `Explore our ${category} collection`,
+            slug: category.toLowerCase().replace(/\s+/g, '-'),
+            category: category,
           }));
 
           setNavItems(prev => prev.map(item => {
             if (item.label === 'Products' && 'items' in item) {
-              return { ...item, items: productNavItems };
+              return { ...item, items: categoryNavItems };
             }
             return item;
           }));
@@ -88,7 +89,30 @@ export function NavBar() {
       }
     };
 
+    const fetchServices = async () => {
+      try {
+        const res = await fetch(API_ENDPOINTS.SERVICES);
+        if (res.ok) {
+          const data = await res.json();
+          const srvNavItems: NavSubItem[] = data.map((s: { title: string; body: string; slug: string }) => ({
+            title: s.title,
+            body: s.body,
+            slug: s.slug,
+          }));
+          setNavItems(prev => prev.map(item => {
+            if (item.label === 'Services' && 'items' in item) {
+              return { ...item, items: srvNavItems };
+            }
+            return item;
+          }));
+        }
+      } catch (error) {
+        console.error('Failed to fetch services for navigation', error);
+      }
+    };
+
     fetchProducts();
+    fetchServices();
   }, []);
 
   const handleMouseEnter = (label: string) => {
@@ -128,7 +152,7 @@ export function NavBar() {
                   onMouseLeave={handleMouseLeave}
                 >
                   <DropdownMenuTrigger asChild>
-                    <button className="group inline-flex items-center gap-2 px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-[44px]">
+                    <button className="group inline-flex items-center gap-2 px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-11">
                       {item.label}
                       <ChevronDown className="h-3.5 w-3.5 transition-transform group-data-[state=open]:rotate-180" />
                     </button>
@@ -153,10 +177,12 @@ export function NavBar() {
 
                   <div className="grid grid-cols-2 gap-3">
                     {item.items.map((subItem) => (
-                      <DropdownMenuItem key={subItem.title} asChild>
+                      <DropdownMenuItem key={subItem.slug} asChild>
                         <Link
-                          to={`${item.basePath}/${subItem.slug}`}
-                          className="group rounded-xl p-5 transition hover:bg-emerald-50 min-h-[80px] flex flex-col justify-center"
+                          to={item.label === 'Products' 
+                            ? `${item.basePath}?category=${encodeURIComponent(subItem.category || subItem.title)}`
+                            : `${item.basePath}/${subItem.slug}`}
+                          className="group rounded-xl p-5 transition hover:bg-emerald-50 min-h-20 flex flex-col justify-center"
                         >
                           <p className="font-heading text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
                             {subItem.title}
@@ -174,7 +200,7 @@ export function NavBar() {
               <Link
                 key={item.label}
                 to={item.href}
-                className="px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-[44px] inline-flex items-center"
+                className="px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-11 inline-flex items-center"
               >
                 {item.label}
               </Link>
@@ -183,14 +209,14 @@ export function NavBar() {
         </nav>
 
         <div className="hidden lg:flex">
-          <button className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-emerald-600 min-h-[44px] min-w-[120px] justify-center">
+          <button className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-emerald-600 min-h-11 min-w-[120px] justify-center">
             <Globe className="h-4 w-4" />
             Global
           </button>
         </div>
 
         <button
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 lg:hidden min-h-[44px] min-w-[44px]"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 lg:hidden min-h-11 min-w-11"
           onClick={() => setIsMobileOpen((p) => !p)}
           aria-label="Toggle menu"
         >
@@ -211,9 +237,9 @@ export function NavBar() {
                     {item.items.map((sub) => (
                       <Link
                         key={sub.slug}
-                        to={`${item.basePath}/${sub.slug}`}
+                        to={item.label === 'Products' ? `${item.basePath}?category=${encodeURIComponent(sub.category || sub.title)}` : `${item.basePath}/${sub.slug}`}
                         onClick={() => setIsMobileOpen(false)}
-                        className="block rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-[44px] flex items-center"
+                        className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-11 items-center"
                       >
                         {sub.title}
                       </Link>
@@ -225,14 +251,14 @@ export function NavBar() {
                   key={item.label}
                   to={item.href}
                   onClick={() => setIsMobileOpen(false)}
-                  className="block rounded-xl px-4 py-3.5 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-[44px] flex items-center"
+                  className="flex rounded-xl px-4 py-3.5 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-11 items-center"
                 >
                   {item.label}
                 </Link>
               )
             )}
 
-            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg min-h-[44px]">
+            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg min-h-11">
               <Globe className="h-4 w-4" />
               Visit Global Site
             </button>

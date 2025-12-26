@@ -14,6 +14,8 @@ import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { Login } from './pages/admin/Login';
 import { Messages } from './pages/admin/Messages';
 import { Products } from './pages/admin/Products';
+import Services from './pages/admin/Services';
+import { Dashboard } from './pages/admin/Dashboard';
 import { AdminLayout, ProtectedRoute } from './components/admin/AdminLayout';
 
 import { ScrollToTop } from './components/layout/ScrollToTop';
@@ -49,9 +51,11 @@ function App() {
         <Route path="/admin/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="messages" replace />} />
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="messages" element={<Messages />} />
             <Route path="products" element={<Products />} />
+            <Route path="services" element={<Services />} />
           </Route>
         </Route>
       </Routes>
