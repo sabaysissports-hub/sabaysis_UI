@@ -3,6 +3,14 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { API_ENDPOINTS } from '@/config/api';
 import { Loader2, ArrowRight, ImageIcon } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
+// Local catalog hero images
+import sportsNetImg from '@/assets/catalog/sportnet.jpg';
+import footballTurfImg from '@/assets/catalog/footballturf.jpg';
+import cricketTurfImg from '@/assets/catalog/cricket-turf.jpg';
+import artificialGrassImg from '@/assets/catalog/artificial-grass.jpg';
+import landscapeTurfImg from '@/assets/catalog/Landscape-Turf.jpg';
+import outdoorGymImg from '@/assets/catalog/Outdoor-Gym.jpg';
+import pitchEquipmentImg from '@/assets/catalog/Pitch-Equipment.jpg';
 
 interface Product {
   _id: string;
@@ -18,43 +26,43 @@ const CATEGORY_CONTENT: Record<string, { title: string; description: string; ima
     title: 'Reliable Netting for Safer Play',
     description:
       'Engineered for training grounds and arenas, our sports netting protects spectators and players while withstanding intensive use across seasons.',
-    image: 'https://source.unsplash.com/featured/1200x600?sports+net',
+    image: sportsNetImg,
   },
   'Football Turf': {
     title: 'Professional-Grade Football Turf',
     description:
       'Designed for consistent ball roll, traction, and shock absorption. Build match-ready fields and durable practice surfaces that perform day after day.',
-    image: 'https://source.unsplash.com/featured/1200x600?football+turf',
+    image: footballTurfImg,
   },
   'Cricket Turf': {
     title: 'High-Performance Cricket Surfaces',
     description:
       'From practice wickets to match-ready strips, our cricket turf delivers reliable pace and bounce with UV-stable fibers and robust base construction.',
-    image: 'https://source.unsplash.com/featured/1200x600?cricket+turf',
+    image: cricketTurfImg,
   },
   'Artificial Grass': {
     title: 'Low-Maintenance Green Spaces',
     description:
       'Create year-round greenery for schools, rooftops, and landscapes. Our artificial grass blends natural look with durability and easy upkeep.',
-    image: 'https://source.unsplash.com/featured/1200x600?artificial+grass',
+    image: artificialGrassImg,
   },
   'Landscape Turf': {
     title: 'Design-Forward Turf for Outdoors',
     description:
       'Transform pathways, courtyards, and feature areas with landscape turf that drains efficiently, resists fading, and elevates the environment.',
-    image: 'https://source.unsplash.com/featured/1200x600?landscape+turf',
+    image: landscapeTurfImg,
   },
   'Outdoor Gym': {
     title: 'Weatherproof Outdoor Fitness',
     description:
       'Build engaging fitness zones with durable surfacing and equipment. Ideal for parks, schools, and communities focused on health and movement.',
-    image: 'https://source.unsplash.com/featured/1200x600?outdoor+gym',
+    image: outdoorGymImg,
   },
   'Pitch Equipment': {
     title: 'Everything You Need for a World-Class Cricketing Experience',
     description:
       "At SABAYSIS Sports & Infra, we go beyond turf. We provide a complete range of cricket pitch equipment designed to enhance practice sessions, competitive games, and ground maintenance. Whether you’re building a new facility or upgrading an existing one, our high-quality gear ensures your cricketing setup is professional, durable, and ready for action.",
-    image: 'https://source.unsplash.com/featured/1200x600?cricket+equipment',
+    image: pitchEquipmentImg,
   },
 };
 
@@ -116,11 +124,11 @@ export function ProductCatalog() {
               </p>
             </div>
             <div className="relative">
-              <div className="relative aspect-video md:aspect-auto md:h-full">
+              <div className="relative h-48 md:h-64 lg:h-80">
                 <img
                   src={hero.image}
                   alt={categoryFilter ? `${categoryFilter} hero` : 'Products hero'}
-                  className="h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
               </div>
@@ -140,17 +148,19 @@ export function ProductCatalog() {
                 to={`/products/${product.slug}`}
                 className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-xl border border-slate-100"
               >
-                <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
+                <div className="relative overflow-hidden bg-slate-100 h-48 md:h-56 lg:h-64">
                   {product.images && product.images.length > 0 ? (
                     <img 
                       src={product.images[0]} 
                       alt={product.title} 
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105" 
+                      className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" 
                     />
                   ) : (
-                    <div className="flex h-full items-center justify-center text-slate-300">
-                      <ImageIcon className="h-12 w-12" />
-                    </div>
+                    <img
+                      src={CATEGORY_CONTENT[product.category]?.image || artificialGrassImg}
+                      alt={`${product.category} default`}
+                      className="absolute inset-0 h-full w-full object-cover opacity-80"
+                    />
                   )}
                   <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 transition group-hover:opacity-100" />
                 </div>
