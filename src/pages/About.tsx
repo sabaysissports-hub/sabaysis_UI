@@ -1,4 +1,5 @@
 import { usePageTitle } from '@/hooks/usePageTitle';
+import ab1 from '@/assets/About/ab1.jpg';
 
 export function About() {
   usePageTitle('About');
@@ -9,8 +10,7 @@ export function About() {
         <div
           className="absolute inset-0 h-full w-full bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=1600&q=80')",
+            backgroundImage: `url(${ab1})`,
           }}
         />
         <div className="absolute inset-0 bg-slate-900/70" />

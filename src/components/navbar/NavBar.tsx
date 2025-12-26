@@ -11,6 +11,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '../ui/accordion';
 
 // Services will be fetched from backend
 
@@ -226,39 +232,43 @@ export function NavBar() {
 
       {isMobileOpen && (
         <div className="border-t border-slate-100 bg-white lg:hidden">
-          <nav className="space-y-6 p-5">
-            {navItems.map((item) =>
-              'items' in item ? (
-                <div key={item.label}>
-                  <p className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-400">
+          <nav className="p-5">
+            <Accordion type="multiple" className="space-y-2">
+              {navItems.map((item) =>
+                'items' in item ? (
+                  <AccordionItem key={item.label} value={item.label} className="border-0">
+                    <AccordionTrigger className="rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 hover:no-underline">
+                      {item.label}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-2">
+                      <div className="space-y-1 rounded-xl bg-slate-50 p-2 mt-2">
+                        {item.items.map((sub) => (
+                          <Link
+                            key={sub.slug}
+                            to={item.label === 'Products' ? `${item.basePath}?category=${encodeURIComponent(sub.category || sub.title)}` : `${item.basePath}/${sub.slug}`}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-11 items-center"
+                          >
+                            {sub.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className="flex rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-11 items-center"
+                  >
                     {item.label}
-                  </p>
-                  <div className="space-y-1 rounded-xl bg-slate-50 p-2">
-                    {item.items.map((sub) => (
-                      <Link
-                        key={sub.slug}
-                        to={item.label === 'Products' ? `${item.basePath}?category=${encodeURIComponent(sub.category || sub.title)}` : `${item.basePath}/${sub.slug}`}
-                        onClick={() => setIsMobileOpen(false)}
-                        className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-11 items-center"
-                      >
-                        {sub.title}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  className="flex rounded-xl px-4 py-3.5 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-11 items-center"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+                  </Link>
+                )
+              )}
+            </Accordion>
 
-            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg min-h-11">
+            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg min-h-11 mt-6">
               <Globe className="h-4 w-4" />
               Visit Global Site
             </button>
