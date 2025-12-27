@@ -1,80 +1,55 @@
-import { useEffect, useState } from 'react';
+import { Sparkles } from 'lucide-react';
+import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
 
 const testimonials = [
   {
     quote:
-      'They delivered our FIFA-size football turf and cricket nets on time and exactly to spec. Maintenance has been effortless since installation.',
-    author: 'Rahul S.',
-    role: 'Owner, Metro Sports Arena',
+      'Sabaysis Sports & Infra exceeded our expectations by delivering impeccable artificial grass. Their commitment to quality products and exceptional service sets them apart. As our top choice for manufacturing, they consistently raise the bar.',
+    name: 'Sakshi Mehra',
+    title: 'Client',
   },
   {
     quote:
-      'From design to handover, the team handled our school running track, basketball court, and landscape grass as a single, well-managed project.',
-    author: 'Priya Menon',
-    role: 'Principal, Greenfield International School',
+      'Our experience with Sabaysis Sports & Infra left us thoroughly impressed! The transformative impact of their top-tier artificial grass on our space is undeniable. With unmatched quality and prompt service, Sabaysis Sports & Infra has become our go-to and preferred manufacturer.',
+    name: 'Vinod Kumar',
+    title: 'Client',
   },
   {
     quote:
-      'Our rooftop football turf and multi-sport area have become a huge hit with members. Play quality is excellent even after heavy weekly usage.',
-    author: 'Imran Khan',
-    role: 'Director, Skyline Fitness & Sports Club',
+      'In the realm of excellence, Sabaysis Sports & Infra stands out. Their top-notch artificial grass not only met but surpassed our standards. The seamless process from initial consultation to flawless installation solidified Sabaysis Sports & Infra as our trusted and preferred manufacturer.',
+    name: 'Rudra',
+    title: 'Client',
   },
 ];
 
 export function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
-    <section className="space-y-10 md:space-y-12">
+    <section className="relative space-y-10 overflow-hidden px-4 pb-16 md:space-y-12 lg:px-8 lg:pb-24">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/4 h-96 w-96 rounded-full bg-emerald-100/30 blur-3xl dark:bg-emerald-900/10" />
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-teal-100/30 blur-3xl dark:bg-teal-900/10" />
+      </div>
+
+      {/* Section Header */}
       <div className="text-center">
-        <p className="text-xs uppercase tracking-[0.6em] text-slate-500">Testimonials</p>
-        <h2 className="mt-3 text-3xl font-semibold text-slate-900">
-          Built for real sports & infrastructure projects.
+        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 dark:bg-emerald-900/20">
+          <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600 dark:text-emerald-400">
+            Testimonials
+          </p>
+        </div>
+        <h2 className="mt-6 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-slate-50">
+          Built for real sports &amp;{' '}
+          <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent dark:from-emerald-400 dark:to-teal-400">
+            infrastructure projects
+          </span>
         </h2>
       </div>
 
-      <div className="relative overflow-hidden">
-        <div
-          className="flex transition-transform duration-700 ease-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {testimonials.map((item) => (
-            <article key={item.author} className="w-full shrink-0 px-0 md:px-4">
-              <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg md:p-10">
-                <p className="text-lg leading-relaxed text-slate-800 md:text-xl">
-                  “{item.quote}”
-                </p>
-                <div className="mt-6">
-                  <p className="text-sm font-semibold text-slate-900">{item.author}</p>
-                  <p className="text-xs uppercase tracking-[0.4em] text-slate-500">
-                    {item.role}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-4 flex justify-center gap-2">
-          {testimonials.map((item, index) => (
-            <button
-              key={item.author}
-              type="button"
-              onClick={() => setCurrentIndex(index)}
-              className={`h-1.5 rounded-full transition-all ${index === currentIndex ? 'w-8 bg-slate-900' : 'w-3 bg-slate-300'
-                }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
+      {/* Infinite Moving Cards */}
+      <div className="relative rounded-lg">
+        <InfiniteMovingCards items={testimonials} direction="right" speed="slow" />
       </div>
     </section>
   );

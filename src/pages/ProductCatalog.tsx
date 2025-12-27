@@ -3,14 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { API_ENDPOINTS } from '@/config/api';
 import { Loader2, ArrowRight, ImageIcon } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
-// Local catalog hero images
-import sportsNetImg from '@/assets/catalog/sportnet.jpg';
-import footballTurfImg from '@/assets/catalog/footballturf.jpg';
-import cricketTurfImg from '@/assets/catalog/cricket-turf.jpg';
-import artificialGrassImg from '@/assets/catalog/artificial-grass.jpg';
-import landscapeTurfImg from '@/assets/catalog/Landscape-Turf.jpg';
-import outdoorGymImg from '@/assets/catalog/Outdoor-Gym.jpg';
-import pitchEquipmentImg from '@/assets/catalog/Pitch-Equipment.jpg';
+import sportsNetImg from '@/assets/Catalog/sportnet.jpg';
+import footballTurfImg from '@/assets/Catalog/footballturf.jpg';
+import cricketTurfImg from '@/assets/Catalog/cricket-turf.jpg';
+import artificialGrassImg from '@/assets/Catalog/artificial-grass.jpg';
+import landscapeTurfImg from '@/assets/Catalog/Landscape-Turf.jpg';
+import outdoorGymImg from '@/assets/Catalog/Outdoor-Gym.jpg';
+import pitchEquipmentImg from '@/assets/Catalog/Pitch-Equipment.jpg';
 
 interface Product {
   _id: string;

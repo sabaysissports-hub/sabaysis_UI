@@ -16,9 +16,7 @@ export function PrimaryCTA() {
             maintenance.
           </p>
         </div>
-
-        {/* Right: quick contact summary + actions */}
-        <div className="flex flex-1 flex-col gap-6 rounded-2xl bg-white/5 p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-1 flex-col gap-6 rounded-2xl bg-white/5 p-6 backdrop-blur-sm">
           <div className="space-y-2 text-sm text-white/80">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300">
               Talk to our team
@@ -29,8 +27,8 @@ export function PrimaryCTA() {
               with tailored proposals and timelines.
             </p>
           </div>
-          <div className="flex flex-col gap-3 sm:max-w-xs">
-            <button className="rounded-full bg-white px-10 py-4 text-xs font-semibold uppercase tracking-[0.35em] text-slate-900 transition-all duration-200 hover:bg-slate-200 active:scale-[0.98] min-h-[48px] min-w-[220px] flex items-center justify-center">
+          <div className="flex flex-col gap-3 w-full">
+            <button className="w-full rounded-full bg-white px-10 py-4 text-xs font-semibold uppercase tracking-[0.35em] text-slate-900 transition-all duration-200 hover:bg-slate-200 active:scale-[0.98] min-h-[48px] flex items-center justify-center">
               Drop Your Enquiry
             </button>
           </div>

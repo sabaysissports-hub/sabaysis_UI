@@ -19,47 +19,52 @@ import { Dashboard } from './pages/admin/Dashboard';
 import { AdminLayout, ProtectedRoute } from './components/admin/AdminLayout';
 
 import { ScrollToTop } from './components/layout/ScrollToTop';
+import { ThemeProvider } from './components/theme-provider';
+import FloatingSocialLinks from './components/layout/FloatingSocialLinks';
 
 function App() {
   useSmoothScroll();
 
   return (
-    <div id="smooth-wrapper" className="min-h-screen bg-white font-sans text-slate-900">
-      <ScrollToTop />
-      <Routes>
-          <Route
-          path="/*"
-          element={
-            <>
-              <NavBar />
-              <div id="smooth-content" className="pt-16 lg:pt-20">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/maintenance" element={<Maintenance />} />
-                  <Route path="/contact-us" element={<ContactUs />} />
-                  <Route path="/services/:slug" element={<ServiceDetail />} />
-                  <Route path="/products" element={<ProductCatalog />} /> 
-                  <Route path="/products/:slug" element={<ProductDetail />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Footer />
-              </div>
-            </>
-          }
-        />
-        <Route path="/admin/login" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="dashboard" replace />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="products" element={<Products />} />
-            <Route path="services" element={<Services />} />
-          </Route>
-        </Route>
-      </Routes>
-    </div>
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <div id="smooth-wrapper" className="min-h-screen bg-white font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-50">
+          <ScrollToTop />
+          <FloatingSocialLinks />
+          <Routes>
+              <Route
+              path="/*"
+              element={
+                <>
+                  <NavBar />
+                  <div id="smooth-content" className="pt-16 lg:pt-20">
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/maintenance" element={<Maintenance />} />
+                      <Route path="/contact-us" element={<ContactUs />} />
+                      <Route path="/services/:slug" element={<ServiceDetail />} />
+                      <Route path="/products" element={<ProductCatalog />} /> 
+                      <Route path="/products/:slug" element={<ProductDetail />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                    <Footer />
+                  </div>
+                </>
+              }
+            />
+            <Route path="/admin/login" element={<Login />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="messages" element={<Messages />} />
+                <Route path="products" element={<Products />} />
+                <Route path="services" element={<Services />} />
+              </Route>
+            </Route>
+          </Routes>
+        </div>
+      </ThemeProvider>
   );
 }
 

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ChevronDown, Globe, Menu, X } from 'lucide-react';
+import { ChevronDown, Send, Menu, X } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ajarLogo from '../../assets/ajarlogo.png';
 import { API_ENDPOINTS } from '@/config/api';
+import { GoogleTranslateSelector } from '@/components/google-translate-selector';
 
 import {
   DropdownMenu,
@@ -42,7 +43,6 @@ type NavItem =
 
 const serviceNavItems: NavSubItem[] = [];
 
-
 const initialNavItems: NavItem[] = [
   { label: 'About', href: '/about' },
   {
@@ -55,7 +55,7 @@ const initialNavItems: NavItem[] = [
     label: 'Products',
     description: 'Turf • Nets • Equipment',
     basePath: '/products',
-    items: [], 
+    items: [],
   },
   { label: 'Maintenance', href: '/maintenance' },
   { label: 'Contact', href: '/contact-us' },
@@ -133,7 +133,7 @@ export function NavBar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-xl shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-xl shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:h-20 lg:px-8">
 
         <Link to="/" className="flex items-center gap-3">
@@ -158,7 +158,7 @@ export function NavBar() {
                   onMouseLeave={handleMouseLeave}
                 >
                   <DropdownMenuTrigger asChild>
-                    <button className="group inline-flex items-center gap-2 px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-11">
+                    <button className="group inline-flex items-center gap-2 px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-11 dark:text-slate-200 dark:hover:text-emerald-400">
                       {item.label}
                       <ChevronDown className="h-3.5 w-3.5 transition-transform group-data-[state=open]:rotate-180" />
                     </button>
@@ -170,10 +170,10 @@ export function NavBar() {
                   sideOffset={8}
                   onMouseEnter={() => handleMouseEnter(item.label)}
                   onMouseLeave={handleMouseLeave}
-                  className="w-[640px] rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl animate-in fade-in zoom-in-95"
+                  className="w-[640px] rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl animate-in fade-in zoom-in-95 dark:border-slate-800 dark:bg-slate-900"
                 >
                   <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
-                    <DropdownMenuLabel className="font-heading text-sm font-bold uppercase tracking-wider text-slate-900">
+                    <DropdownMenuLabel className="font-heading text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                       {item.label}
                     </DropdownMenuLabel>
                     <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -188,12 +188,12 @@ export function NavBar() {
                           to={item.label === 'Products' 
                             ? `${item.basePath}?category=${encodeURIComponent(subItem.category || subItem.title)}`
                             : `${item.basePath}/${subItem.slug}`}
-                          className="group rounded-xl p-5 transition hover:bg-emerald-50 min-h-20 flex flex-col justify-center"
+                          className="group rounded-xl p-5 transition hover:bg-emerald-50 min-h-20 flex flex-col justify-center dark:hover:bg-emerald-950/40"
                         >
-                          <p className="font-heading text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                          <p className="font-heading text-sm font-semibold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">
                             {subItem.title}
                           </p>
-                          <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                          <p className="text-xs text-slate-500 line-clamp-2 mt-1 dark:text-slate-300">
                             {subItem.body}
                           </p>
                         </Link>
@@ -206,7 +206,7 @@ export function NavBar() {
               <Link
                 key={item.label}
                 to={item.href}
-                className="px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-11 inline-flex items-center"
+                className="px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-wide text-slate-700 transition hover:text-emerald-600 min-h-11 inline-flex items-center dark:text-slate-200 dark:hover:text-emerald-400"
               >
                 {item.label}
               </Link>
@@ -214,15 +214,16 @@ export function NavBar() {
           )}
         </nav>
 
-        <div className="hidden lg:flex">
-          <button className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-emerald-600 min-h-11 min-w-[120px] justify-center">
-            <Globe className="h-4 w-4" />
-            Global
-          </button>
+        <div className="hidden lg:flex items-center gap-3">
+          <GoogleTranslateSelector />
+          <Link to="/contact-us" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-emerald-700 min-h-11 min-w-[140px] justify-center dark:bg-emerald-500 dark:hover:bg-emerald-600">
+            <Send className="h-4 w-4" />
+            Get In Touch
+          </Link>
         </div>
 
         <button
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 lg:hidden min-h-11 min-w-11"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 lg:hidden min-h-11 min-w-11 dark:border-slate-700 dark:text-white"
           onClick={() => setIsMobileOpen((p) => !p)}
           aria-label="Toggle menu"
         >
@@ -231,7 +232,7 @@ export function NavBar() {
       </div>
 
       {isMobileOpen && (
-        <div className="border-t border-slate-100 bg-white lg:hidden">
+        <div className="border-t border-slate-100 bg-white lg:hidden dark:border-slate-800 dark:bg-slate-900">
           <nav className="p-5">
             <Accordion type="multiple" className="space-y-2">
               {navItems.map((item) =>
@@ -247,7 +248,7 @@ export function NavBar() {
                             key={sub.slug}
                             to={item.label === 'Products' ? `${item.basePath}?category=${encodeURIComponent(sub.category || sub.title)}` : `${item.basePath}/${sub.slug}`}
                             onClick={() => setIsMobileOpen(false)}
-                            className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-11 items-center"
+                            className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-11 items-center dark:text-slate-100 dark:hover:bg-slate-800"
                           >
                             {sub.title}
                           </Link>
@@ -260,18 +261,20 @@ export function NavBar() {
                     key={item.label}
                     to={item.href}
                     onClick={() => setIsMobileOpen(false)}
-                    className="flex rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-11 items-center"
+                    className="flex rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-11 items-center dark:text-slate-100 dark:hover:bg-slate-800"
                   >
                     {item.label}
                   </Link>
                 )
               )}
             </Accordion>
-
-            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg min-h-11 mt-6">
-              <Globe className="h-4 w-4" />
-              Visit Global Site
-            </button>
+            <div className="mt-6 flex items-center justify-between gap-3">
+              <GoogleTranslateSelector />
+              <Link to="/contact-us" onClick={() => setIsMobileOpen(false)} className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg min-h-11">
+                <Send className="h-4 w-4" />
+                Get In Touch
+              </Link>
+            </div>
           </nav>
         </div>
       )}

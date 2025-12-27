@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { API_ENDPOINTS } from '@/config/api';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useEffect, useState } from 'react';
+import { CheckCircle2, Sparkles, PhoneCall } from 'lucide-react';
 
 type ServiceItem = { slug: string; title: string; body: string };
 type ServiceDetailData = {
@@ -97,6 +98,7 @@ export function ServiceDetail() {
       <div className="min-h-screen bg-slate-50 text-slate-900">
         {/* Top Banner */}
         <section className="relative w-full overflow-hidden bg-slate-900">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.18),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(52,211,153,0.14),transparent_28%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.1),transparent_35%)]" />
           {serviceDetail.bannerImage && (
             <div
               className="absolute inset-0 h-full w-full bg-cover bg-center"
@@ -105,15 +107,15 @@ export function ServiceDetail() {
               }}
             />
           )}
-          <div className="absolute inset-0 bg-slate-900/70" />
-          <div className="relative z-10 mx-auto flex min-h-[260px] w-full max-w-6xl flex-col justify-center px-4 py-10 text-white md:min-h-80 md:py-16 lg:min-h-[380px]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-emerald-300">
-              Sabaysis Sports &amp; Infra
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-950/85 to-black/80" />
+          <div className="relative z-10 mx-auto flex min-h-[260px] w-full max-w-6xl flex-col justify-center px-4 py-12 text-white md:min-h-80 md:py-16 lg:min-h-[400px]">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-emerald-200 backdrop-blur">
+              <Sparkles className="h-4 w-4" /> Sabaysis Sports &amp; Infra
             </p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
               {serviceDetail.bannerTitle}
             </h1>
-            <p className="mt-3 max-w-2xl text-sm text-white/80 md:text-base">
+            <p className="mt-4 max-w-3xl text-sm text-white/85 md:text-base">
               {service.body}
             </p>
           </div>
@@ -151,10 +153,18 @@ export function ServiceDetail() {
                 {serviceDetail.whyChooseOurItems.map((item, index) => (
                   <div
                     key={index}
-                    className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md"
+                    className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md"
                   >
-                    <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+                    <div className="relative z-10 flex items-start gap-3">
+                      <span className="mt-0.5 rounded-full bg-emerald-100 p-2 text-emerald-700">
+                        <CheckCircle2 className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -174,13 +184,20 @@ export function ServiceDetail() {
               {serviceDetail.features.map((feature, index) => (
                 <article
                   key={index}
-                  className={`rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md ${index === serviceDetail.features.length - 1 && serviceDetail.features.length % 2 === 1
+                  className={`group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md ${index === serviceDetail.features.length - 1 && serviceDetail.features.length % 2 === 1
                     ? 'md:col-span-2'
                     : ''
                     }`}
                 >
-                  <h3 className="text-base font-semibold text-slate-900">{feature.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{feature.description}</p>
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 rounded-full bg-emerald-50 p-2 text-emerald-700 ring-1 ring-emerald-100">
+                      <Sparkles className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900">{feature.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-slate-600">{feature.description}</p>
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
@@ -197,10 +214,17 @@ export function ServiceDetail() {
                 {serviceDetail.typesItems.map((type, index) => (
                   <article
                     key={index}
-                    className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md"
+                    className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md"
                   >
-                    <h3 className="text-base font-semibold text-slate-900">{type.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{type.description}</p>
+                    <div className="flex items-start gap-3">
+                      <span className="mt-0.5 rounded-full bg-white p-2 text-emerald-700 ring-1 ring-emerald-100">
+                        <CheckCircle2 className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h3 className="text-base font-semibold text-slate-900">{type.title}</h3>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-600">{type.description}</p>
+                      </div>
+                    </div>
                   </article>
                 ))}
               </div>
@@ -214,32 +238,50 @@ export function ServiceDetail() {
               </h2>
               <div className="space-y-4">
                 {(serviceDetail.companyWhyItems || serviceDetail.whyChooseItems).map((item, index) => (
-                  <div key={index} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                    <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                  <div key={index} className="flex gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-md">
+                    <span className="mt-0.5 rounded-full bg-emerald-50 p-2 text-emerald-700 ring-1 ring-emerald-100">
+                      <CheckCircle2 className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <aside className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-                Work with Sabaysis
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Ready to build or upgrade your <span className="font-semibold">{service.title}</span>{' '}
-                facility? Our experts will help you plan, design, and execute a solution tailored to your requirements.
-              </p>
-              <div className="space-y-2 text-sm text-slate-700">
-                <p className="font-semibold text-slate-900">Talk to our team</p>
-                <p>Call us at +91 98970 53591 or send your project details through our contact form.</p>
+            <aside className="relative space-y-4 overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm ring-1 ring-emerald-100/60">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-transparent to-transparent" />
+              <div className="relative space-y-4">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+                  Work with Sabaysis
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Ready to build or upgrade your <span className="font-semibold">{service.title}</span>{' '}
+                  facility? Our experts will help you plan, design, and execute a solution tailored to your requirements.
+                </p>
+                <div className="space-y-3 text-sm text-slate-700">
+                  <div className="flex items-start gap-3">
+                    <span className="rounded-full bg-emerald-100 p-2 text-emerald-700">
+                      <PhoneCall className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-slate-900">Talk to our team</p>
+                      <p>Call us at +91 98970 53591 or send your project details through our contact form.</p>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-[0.25em] text-slate-700">
+                    Response within 24 hours
+                  </div>
+                </div>
+                <Link
+                  to="/contact-us"
+                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500"
+                >
+                  Enquire now
+                </Link>
               </div>
-              <Link
-                to="/contact-us"
-                className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500"
-              >
-                Enquire now
-              </Link>
             </aside>
           </section>
         </main>
@@ -251,18 +293,22 @@ export function ServiceDetail() {
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 md:px-6 py-16 md:py-20">
         {/* Hero */}
-        <section className="space-y-4 border-b border-slate-200 pb-8">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
-            Service
-          </p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
-            {service.title}
-          </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
-            {service.body}{' '}
-            This service is part of our specialised sports and infrastructure offerings at Sabaysis Sports &amp; Infra,
-            designed to deliver durable, high-performance play areas for schools, clubs, and commercial venues.
-          </p>
+        <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm backdrop-blur">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.12),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(52,211,153,0.12),transparent_28%)]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-white/90 to-emerald-50/50" />
+          <div className="relative space-y-4">
+            <p className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
+              <Sparkles className="h-4 w-4" /> Service
+            </p>
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+              {service.title}
+            </h1>
+            <p className="max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              {service.body}{' '}
+              This service is part of our specialised sports and infrastructure offerings at Sabaysis Sports &amp; Infra,
+              designed to deliver durable, high-performance play areas for schools, clubs, and commercial venues.
+            </p>
+          </div>
         </section>
 
         <section className="grid gap-12 md:grid-cols-[3fr,2fr] md:items-start">
