@@ -30,7 +30,7 @@ export function UnifiedSportsTurf() {
         </h2>
         <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base dark:text-slate-300">
           As a leading enterprise in the industry,{' '}
-          <span className="font-semibold text-slate-900 dark:text-slate-50">Sabaysis Sports &amp; Infra</span> is your go‑to partner for complete
+          <span className="font-semibold text-slate-900 dark:text-slate-50">SABAYSIS SPORTS &amp; INFRA</span> is your go‑to partner for complete
           solutions catering to all sports surface requirements. We design and produce top‑notch artificial turf systems
           tailored for football, hockey, tennis, rugby, and multi‑sport activities.
         </p>
@@ -60,7 +60,7 @@ export function UnifiedSportsTurf() {
                 <div className="flex items-center gap-2">
                   <div className="h-1 w-10 rounded-full bg-emerald-400" />
                   <p className="text-xs font-semibold uppercase tracking-[0.4em] text-emerald-300">
-                    Sabaysis Sports &amp; Infra
+                    SABAYSIS SPORTS &amp; INFRA
                   </p>
                 </div>
                 <h3 className="mt-3 text-xl font-bold tracking-tight text-white sm:text-2xl">

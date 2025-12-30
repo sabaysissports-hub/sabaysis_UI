@@ -4,13 +4,13 @@ import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
 const testimonials = [
   {
     quote:
-      'Sabaysis Sports & Infra exceeded our expectations by delivering impeccable artificial grass. Their commitment to quality products and exceptional service sets them apart. As our top choice for manufacturing, they consistently raise the bar.',
+      'SABAYSIS SPORTS & INFRA exceeded our expectations by delivering impeccable artificial grass. Their commitment to quality products and exceptional service sets them apart. As our top choice for manufacturing, they consistently raise the bar.',
     name: 'Sakshi Mehra',
     title: 'Client',
   },
   {
     quote:
-      'Our experience with Sabaysis Sports & Infra left us thoroughly impressed! The transformative impact of their top-tier artificial grass on our space is undeniable. With unmatched quality and prompt service, Sabaysis Sports & Infra has become our go-to and preferred manufacturer.',
+      'Our experience with SABAYSIS SPORTS & INFRA left us thoroughly impressed! The transformative impact of their top-tier artificial grass on our space is undeniable. With unmatched quality and prompt service, SABAYSIS SPORTS & INFRA has become our go-to and preferred manufacturer.',
     name: 'Vinod Kumar',
     title: 'Client',
   },

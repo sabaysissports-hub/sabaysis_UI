@@ -14,7 +14,7 @@ export function ContactUs() {
     // Set a timeout to detect if map fails to load
     const timer = setTimeout(() => {
       // Check if iframe loaded successfully (this is a fallback check)
-      const iframe = document.querySelector('iframe[title="Sabaysis Sports & Infra Location"]') as HTMLIFrameElement;
+      const iframe = document.querySelector('iframe[title="SABAYSIS SPORTS & INFRA Location"]') as HTMLIFrameElement;
       if (iframe && !iframe.contentWindow) {
         setMapError(true);
       }
@@ -154,7 +154,7 @@ export function ContactUs() {
                 ) : (
                   <>
                     <iframe
-                      title="Sabaysis Sports & Infra Location"
+                      title="SABAYSIS SPORTS & INFRA Location"
                       src="https://maps.google.com/maps?q=Tiwari+Quarters,+Phase+2,+Kesharganj,+Meerut,+Uttar+Pradesh+250001&t=&z=14&ie=UTF8&iwloc=&output=embed"
                       className="h-full w-full"
                       style={{ border: 0 }}

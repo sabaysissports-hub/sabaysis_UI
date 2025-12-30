@@ -16,7 +16,7 @@ export function Maintenance() {
         <div className="absolute inset-0 bg-slate-900/75" />
         <div className="relative z-10 mx-auto flex min-h-[240px] w-full max-w-6xl flex-col justify-center gap-6 px-4 py-12 text-center text-white md:min-h-[320px] md:px-6 md:py-16 md:text-left lg:min-h-[380px]">
           <div className="inline-flex items-center justify-center self-center rounded-full border border-emerald-200/60 bg-emerald-500/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-100 md:self-start">
-            Sabaysis Sports &amp; Infra
+            SABAYSIS SPORTS &amp; INFRA
           </div>
           <div className="grid gap-8 md:grid-cols-[3fr,2fr] md:items-center">
             <div>
@@ -27,7 +27,7 @@ export function Maintenance() {
                 Track &amp; sports facility maintenance.
               </h1>
               <p className="mt-5 text-sm leading-relaxed text-slate-100/90 md:text-base">
-                At Sabaysis Sports &amp; Infra, we keep your multisport tracks, running tracks,
+                At SABAYSIS SPORTS &amp; INFRA, we keep your multisport tracks, running tracks,
                 football turfs, sports courts, landscape turf, and pools performing at their best
                 &mdash; safe, durable, and ready for every game.
               </p>

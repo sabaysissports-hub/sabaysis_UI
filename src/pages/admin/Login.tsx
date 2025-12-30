@@ -104,7 +104,7 @@ export function Login() {
 
           <div className="mt-8 text-center">
             <p className="text-xs text-slate-400">
-              &copy; {new Date().getFullYear()} Sabaysis Sports & Infra.<br/>All rights reserved.
+              &copy; {new Date().getFullYear()} SABAYSIS SPORTS & INFRA.<br/>All rights reserved.
             </p>
           </div>
         </div>

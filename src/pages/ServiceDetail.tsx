@@ -110,7 +110,7 @@ export function ServiceDetail() {
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-950/85 to-black/80" />
           <div className="relative z-10 mx-auto flex min-h-[260px] w-full max-w-6xl flex-col justify-center px-4 py-12 text-white md:min-h-80 md:py-16 lg:min-h-[400px]">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-emerald-200 backdrop-blur">
-              <Sparkles className="h-4 w-4" /> Sabaysis Sports &amp; Infra
+              <Sparkles className="h-4 w-4" /> SABAYSIS SPORTS &amp; INFRA
             </p>
             <h1 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
               {serviceDetail.bannerTitle}
@@ -305,7 +305,7 @@ export function ServiceDetail() {
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
               {service.body}{' '}
-              This service is part of our specialised sports and infrastructure offerings at Sabaysis Sports &amp; Infra,
+              This service is part of our specialised sports and infrastructure offerings at SABAYSIS SPORTS &amp; INFRA,
               designed to deliver durable, high-performance play areas for schools, clubs, and commercial venues.
             </p>
           </div>

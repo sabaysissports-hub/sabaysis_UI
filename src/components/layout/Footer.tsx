@@ -21,15 +21,9 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <img
                 src={footerLogo}
-                alt="Sabaysis Sports & Infra"
-                className="h-14 w-14 object-contain"
+                alt="SABAYSIS SPORTS & INFRA"
+                className="h-28 w-auto object-contain lg:h-28"
               />
-              <div>
-                <h2 className="text-lg font-bold tracking-tight text-white">
-                  Sabaysis
-                </h2>
-                <p className="text-xs text-emerald-400 font-semibold">Sports & Infra</p>
-              </div>
             </div>
             <p className="text-sm leading-relaxed text-slate-300">
               Premium artificial grass, sports infrastructure, and maintenance solutions engineered for performance and safety.
@@ -137,7 +131,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="mt-12 flex flex-col items-center justify-between gap-6 text-xs text-slate-400 sm:flex-row">
           <p className="flex items-center gap-1">
-            © {currentYear} Sabaysis Sports &amp; Infra. Built with{' '}
+            © {currentYear} SABAYSIS SPORTS &amp; INFRA. crafted with{' '}
             <Heart className="h-3 w-3 fill-red-500 text-red-500" />{' '}
             by{' '}
             <a

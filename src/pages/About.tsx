@@ -18,7 +18,7 @@ export function About() {
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-14 md:px-6 md:py-16 lg:py-20">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-100 backdrop-blur">
-              <Sparkles className="h-4 w-4" /> Sabaysis Sports &amp; Infra
+              <Sparkles className="h-4 w-4" /> SABAYSIS SPORTS &amp; INFRA
             </div>
             <div className="flex flex-wrap gap-3 text-xs text-emerald-100/80">
               <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Design</span>
@@ -36,7 +36,7 @@ export function About() {
                 Success • Ignite • Breakthrough
               </h1>
               <p className="text-sm leading-relaxed text-slate-100/90 md:text-base">
-                At <span className="font-semibold">SABAYSIS Sports &amp; Infra</span>, we pioneer artificial grass and sports area solutions—redefining outdoor spaces with technology, aesthetics, durability, and performance at the core.
+                At <span className="font-semibold">SABAYSIS SPORTS &amp; INFRA</span>, we pioneer artificial grass and sports area solutions—redefining outdoor spaces with technology, aesthetics, durability, and performance at the core.
               </p>
               <div className="grid gap-4 sm:grid-cols-3">
                 {[{ label: 'Projects delivered', value: '250+' }, { label: 'Cities served', value: '35+' }, { label: 'Client satisfaction', value: '97%' }].map((item) => (
@@ -83,7 +83,7 @@ export function About() {
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">About Us</h2>
             <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              SABAYSIS Sports &amp; Infra transforms outdoor spaces with high‑performance synthetic surfaces. We go beyond traditional standards to craft environments that feel natural, perform under pressure, and stand the test of time.
+              SABAYSIS SPORTS &amp; INFRA transforms outdoor spaces with high‑performance synthetic surfaces. We go beyond traditional standards to craft environments that feel natural, perform under pressure, and stand the test of time.
             </p>
             <p className="text-sm leading-relaxed text-slate-600 md:text-base">
               Every project reflects our commitment to technology, aesthetic detail, and long‑term reliability. From sports arenas and schools to residential lawns and commercial landscapes, we build for real‑world play and everyday use.
@@ -120,7 +120,7 @@ export function About() {
               Engineered quality in every fibre and finish.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-              At SABAYSIS Sports &amp; Infra, quality is a disciplined process &mdash; from
+              At SABAYSIS SPORTS &amp; INFRA, quality is a disciplined process &mdash; from
               selecting raw materials to on‑ground installation, every step is measured, inspected,
               and improved.
             </p>
@@ -223,7 +223,7 @@ export function About() {
               Creating impact beyond the playing field.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-              SABAYSIS Sports &amp; Infra is committed to responsible growth &mdash; for the
+              SABAYSIS SPORTS &amp; INFRA is committed to responsible growth &mdash; for the
               environment, our people, and the communities we work with every day.
             </p>
           </div>

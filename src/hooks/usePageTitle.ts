@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_NAME = 'Sabaysis Sports & Infra';
+const SITE_NAME = 'SABAYSIS SPORTS & INFRA';
 
 export function usePageTitle(pageTitle: string) {
   useEffect(() => {

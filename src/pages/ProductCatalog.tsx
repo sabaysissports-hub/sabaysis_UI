@@ -60,7 +60,7 @@ const CATEGORY_CONTENT: Record<string, { title: string; description: string; ima
   'Pitch Equipment': {
     title: 'Everything You Need for a World-Class Cricketing Experience',
     description:
-      "At SABAYSIS Sports & Infra, we go beyond turf. We provide a complete range of cricket pitch equipment designed to enhance practice sessions, competitive games, and ground maintenance. Whether you’re building a new facility or upgrading an existing one, our high-quality gear ensures your cricketing setup is professional, durable, and ready for action.",
+      "At SABAYSIS SPORTS & INFRA, we go beyond turf. We provide a complete range of cricket pitch equipment designed to enhance practice sessions, competitive games, and ground maintenance. Whether you’re building a new facility or upgrading an existing one, our high-quality gear ensures your cricketing setup is professional, durable, and ready for action.",
     image: pitchEquipmentImg,
   },
 };

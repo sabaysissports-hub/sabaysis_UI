@@ -11,7 +11,7 @@ export function NotFound() {
       </h1>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-600">
         The page you are looking for doesn&apos;t exist or may have been moved. Use the navigation
-        above or return to the homepage to continue exploring Sabaysis Sports &amp; Infra.
+        above or return to the homepage to continue exploring SABAYSIS SPORTS &amp; INFRA.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         <Link
