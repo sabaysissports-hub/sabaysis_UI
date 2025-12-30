@@ -129,8 +129,8 @@ export function Footer() {
         <div className="border-t border-slate-800"></div>
 
         {/* Bottom Section */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-6 text-xs text-slate-400 sm:flex-row">
-          <p className="flex items-center gap-1">
+        <div className="mt-12 w-full flex flex-col flex-wrap items-center justify-center gap-3 px-4 text-center text-xs text-slate-400 sm:flex-row sm:justify-between sm:text-left">
+          <p className="flex flex-wrap items-center justify-center gap-1 leading-relaxed sm:justify-start">
             © {currentYear} SABAYSIS SPORTS &amp; INFRA. crafted with{' '}
             <Heart className="h-3 w-3 fill-red-500 text-red-500" />{' '}
             by{' '}

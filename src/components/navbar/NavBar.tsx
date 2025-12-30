@@ -136,11 +136,11 @@ export function NavBar() {
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-xl shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:h-20 lg:px-8">
 
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-2 ml-3 lg:ml-5">
           <img
             src={ajarLogo}
             alt="AJAR"
-            className="h-28 w-auto object-contain lg:h-28"
+            className="h-28 w-36 object-contain sm:w-40 lg:h-28 lg:w-44"
           />
         </Link>
 
