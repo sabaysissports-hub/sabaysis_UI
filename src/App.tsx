@@ -6,6 +6,7 @@ import { ContactUs } from './pages/ContactUs';
 import { ServiceDetail } from './pages/ServiceDetail';
 import { ProductDetail } from './pages/ProductDetail';
 import { ProductCatalog } from './pages/ProductCatalog'; 
+import { PadelCourts } from './pages/PadelCourts';
 import { NotFound } from './pages/NotFound';
 import { NavBar } from './components/navbar/NavBar';
 import { Footer } from './components/layout/Footer';
@@ -43,6 +44,7 @@ function App() {
                       <Route path="/about" element={<About />} />
                       <Route path="/maintenance" element={<Maintenance />} />
                       <Route path="/contact-us" element={<ContactUs />} />
+                      <Route path="/padel-courts" element={<PadelCourts />} />
                       <Route path="/services/:slug" element={<ServiceDetail />} />
                       <Route path="/products" element={<ProductCatalog />} /> 
                       <Route path="/products/:slug" element={<ProductDetail />} />

@@ -243,6 +243,8 @@ export function NavBar() {
                           to={
                             item.label === "Products"
                               ? `${item.basePath}?category=${encodeURIComponent(subItem.category || subItem.title)}`
+                              : subItem.slug === "padel-courts"
+                              ? "/padel-courts"
                               : `${item.basePath}/${subItem.slug}`
                           }
                           className="group rounded-xl border border-emerald-200/40 bg-gradient-to-br from-white to-emerald-50/20 p-4 transition-all duration-200 hover:border-emerald-400/60 hover:bg-gradient-to-br hover:from-emerald-50 hover:to-teal-50/30 hover:shadow-lg min-h-[85px] flex flex-col justify-start dark:border-emerald-900/40 dark:bg-gradient-to-br dark:from-slate-800/40 dark:to-emerald-950/20 dark:hover:border-emerald-600/60 dark:hover:bg-gradient-to-br dark:hover:from-emerald-950/40 dark:hover:to-emerald-900/30 cursor-pointer"
@@ -315,6 +317,8 @@ export function NavBar() {
                             to={
                               item.label === "Products"
                                 ? `${item.basePath}?category=${encodeURIComponent(sub.category || sub.title)}`
+                                : sub.slug === "padel-courts"
+                                ? "/padel-courts"
                                 : `${item.basePath}/${sub.slug}`
                             }
                             onClick={() => setIsMobileOpen(false)}
