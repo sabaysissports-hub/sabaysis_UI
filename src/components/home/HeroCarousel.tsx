@@ -24,7 +24,7 @@ const slides = [
     title: 'Professional Running Tracks & Athletics',
     image: heroMain,
     cta: 'View Running Tracks',
-    link: '/services/multisports-track-and-running-tracks',
+    link: '/services/multisport-running-tracks',
     typingTexts: [
       'Professional Running Tracks & Athletics'
     ],
@@ -34,7 +34,7 @@ const slides = [
     title: 'FIFA-Standard Football Turf & Courts',
     image: hero2,
     cta: 'Explore Football Turf',
-    link: '/services/football-court-futsal-court',
+    link: '/services/football-court',
     typingTexts: [
       'FIFA-Standard Football Turf & Courts'
     ],
@@ -44,7 +44,7 @@ const slides = [
     title: 'Premium Running Tracks & Multi-Sport Facilities',
     image: hero3,
     cta: 'View Track Solutions',
-    link: '/services/multisports-track-and-running-tracks',
+    link: '/services/multisport-running-tracks',
     typingTexts: [
       'Premium Running Tracks & Multi-Sport Facilities'
     ],
