@@ -1,5 +1,5 @@
 import { usePageTitle } from '@/hooks/usePageTitle';
-import { Sparkles, CheckCircle2, MapPin, Maximize2, Layers, Zap, Shield } from 'lucide-react';
+import { Sparkles, CheckCircle2, MapPin, Maximize2, Shield } from 'lucide-react';
 import { 
   padelAbout, 
   padelCourtInfo, 
