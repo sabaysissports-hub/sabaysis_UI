@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight, ImageIcon, Sparkles, CheckCircle2, PhoneCall, ArrowRight, Shield, Award, Zap, TrendingUp } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ImageIcon, Sparkles, CheckCircle2, PhoneCall, ArrowRight, Shield, Award, Zap } from 'lucide-react'
 import { API_ENDPOINTS } from '@/config/api'
 import { usePageTitle } from '@/hooks/usePageTitle'
 

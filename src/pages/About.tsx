@@ -65,7 +65,7 @@ export function About() {
                 { label: 'Projects Delivered', value: '250+', icon: Award },
                 { label: 'Cities Served', value: '35+', icon: TrendingUp },
                 { label: 'Client Satisfaction', value: '97%', icon: Heart }
-              ].map((stat, index) => (
+              ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="flex justify-center mb-2">
                     <div className="rounded-full bg-emerald-500/20 p-2">
