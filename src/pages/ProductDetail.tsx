@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ImageIcon, Sparkles, CheckCircle2, PhoneCall, ArrowRight } from 'lucide-react'
 import { API_ENDPOINTS } from '@/config/api'
 import { usePageTitle } from '@/hooks/usePageTitle'
 
@@ -52,28 +52,56 @@ export function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Link to="/products" className="text-emerald-600 font-semibold">
-          Back to products
-        </Link>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+          <p className="text-[11px] font-montreal font-bold uppercase tracking-[0.35em] text-emerald-700">
+            Product
+          </p>
+          <h1 className="mt-3 text-3xl font-montreal font-bold tracking-tight text-slate-900">
+            Product not found
+          </h1>
+          <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+            We couldn&apos;t find the product you were looking for.
+          </p>
+          <Link
+            to="/products"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-emerald-600 px-8 py-4 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-500"
+          >
+            Back to Products
+          </Link>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <main className="mx-auto max-w-6xl px-4 py-16 space-y-20">
-        <Link
-          to="/products"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600"
-        >
-          <ChevronLeft className="h-4 w-4" />
-          Back to Products
-        </Link>
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      {/* Hero Banner */}
+      <section className="relative w-full overflow-hidden bg-slate-900">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(52,211,153,0.12),transparent_30%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-950/75 to-black/70" />
+        <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl flex-col justify-center px-4 py-16 text-white md:min-h-[400px] md:py-20 lg:min-h-[480px]">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-white/60 mb-6">
+            <Link to="/" className="hover:text-white transition-colors font-gotham">Home</Link>
+            <span>/</span>
+            <Link to="/products" className="hover:text-white transition-colors font-gotham">Products</Link>
+            <span>/</span>
+            <span className="text-white font-montreal font-semibold">{product.title}</span>
+          </div>
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-[11px] font-montreal font-bold uppercase tracking-[0.35em] text-emerald-300 backdrop-blur w-fit">
+            <Sparkles className="h-4 w-4" /> {product.category}
+          </p>
+          <h1 className="mt-6 text-4xl font-montreal font-bold tracking-tight md:text-5xl lg:text-6xl">
+            {product.title}
+          </h1>
+        </div>
+      </section>
+
+      <main className="mx-auto flex max-w-7xl flex-col gap-12 px-4 md:px-6 py-12 md:py-16">
 
         <section className="grid gap-12 md:grid-cols-2">
           <div className="space-y-4">
-            <div className="relative aspect-square overflow-hidden rounded-3xl bg-slate-100">
+            <div className="relative aspect-square overflow-hidden rounded-2xl bg-slate-100 shadow-lg">
               {product.images?.length ? (
                 <img
                   src={product.images[currentImageIndex]}
@@ -82,7 +110,7 @@ export function ProductDetail() {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center">
-                  <ImageIcon className="h-8 w-8 text-slate-400" />
+                  <ImageIcon className="h-12 w-12 text-slate-400" />
                 </div>
               )}
 
@@ -94,9 +122,9 @@ export function ProductDetail() {
                         i === 0 ? product.images!.length - 1 : i - 1
                       )
                     }
-                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/95 p-3 shadow-lg hover:bg-white transition"
                   >
-                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronLeft className="h-5 w-5 text-slate-900" />
                   </button>
 
                   <button
@@ -105,9 +133,9 @@ export function ProductDetail() {
                         i === product.images!.length - 1 ? 0 : i + 1
                       )
                     }
-                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/95 p-3 shadow-lg hover:bg-white transition"
                   >
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRight className="h-5 w-5 text-slate-900" />
                   </button>
                 </>
               )}
@@ -119,11 +147,10 @@ export function ProductDetail() {
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`aspect-square overflow-hidden rounded-xl border transition ${
-                      index === currentImageIndex
-                        ? 'border-emerald-600 ring-2 ring-emerald-500'
-                        : 'border-slate-200 hover:border-slate-400'
-                    }`}
+                    className={`aspect-square overflow-hidden rounded-xl border-2 transition ${index === currentImageIndex
+                      ? 'border-emerald-600 ring-2 ring-emerald-500'
+                      : 'border-slate-200 hover:border-emerald-400'
+                      }`}
                   >
                     <img
                       src={image}
@@ -137,69 +164,86 @@ export function ProductDetail() {
           </div>
 
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-emerald-600 font-semibold">
-              {product.category}
-            </p>
-
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900">
-              {product.title}
-            </h1>
-
-            <p className="max-w-xl text-base leading-relaxed text-slate-600">
+            <p className="text-sm font-gotham leading-relaxed text-slate-700 md:text-base">
               {product.body}
             </p>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {[
+                { title: 'Premium Materials', desc: 'High-quality, durable components' },
+                { title: 'Safety Certified', desc: 'Meets all safety standards' },
+                { title: 'Custom Options', desc: 'Tailored to your needs' },
+                { title: 'Expert Support', desc: 'Professional installation' },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="group relative overflow-hidden rounded-xl border border-slate-200 p-5 transition-all hover:-translate-y-0.5 hover:border-emerald-500/50 hover:shadow-md"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-2 text-white shadow-lg">
+                      <CheckCircle2 className="h-4 w-4" />
+                    </span>
+                    <div>
+                      <h3 className="text-sm font-montreal font-bold text-slate-900">{item.title}</h3>
+                      <p className="text-xs font-gotham text-slate-600 mt-1">{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="grid gap-12 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 p-8">
-            <h2 className="mb-6 text-xl font-semibold text-slate-900">
+        <section className="grid gap-8 md:grid-cols-[2fr,1fr] md:items-start">
+          <div className="space-y-6">
+            <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
               Key Specifications
             </h2>
-
-            <ul className="space-y-4 text-sm text-slate-700">
-              <li className="flex gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
-                High performance materials for long-term durability
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
-                Meets safety and compliance standards
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
-                Custom sizing and configuration options
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" />
-                Professional installation and support
-              </li>
-            </ul>
-          </div>
-
-          <div className="flex flex-col justify-between rounded-2xl bg-emerald-600 p-8 text-white">
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.25em]">
-                Interested in this product?
-              </h3>
-
-              <p className="text-sm leading-relaxed">
-                Share your project details and we’ll help you configure{' '}
-                <span className="font-semibold">{product.title}</span>.
-              </p>
-
-              <p className="text-sm">
-                Call <span className="font-semibold">+91 98970 53591</span>
-              </p>
+            <div className="grid gap-4 md:grid-cols-2">
+              {[
+                'High performance materials for long-term durability',
+                'Meets safety and compliance standards',
+                'Custom sizing and configuration options',
+                'Professional installation and support',
+              ].map((spec, index) => (
+                <div key={index} className="flex gap-3 rounded-xl border border-slate-200 p-4 transition-all hover:border-emerald-500/50 hover:shadow-md">
+                  <span className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-1.5 text-white shrink-0 mt-0.5">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </span>
+                  <p className="text-sm font-gotham text-slate-700">{spec}</p>
+                </div>
+              ))}
             </div>
-
-            <Link
-              to={`/contact-us?product=${encodeURIComponent(product.title)}`}
-              className="mt-6 inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 transition"
-            >
-              Request Quote
-            </Link>
           </div>
+
+          <aside className="relative overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-white p-8 shadow-lg">
+            <div className="space-y-6">
+              <h3 className="text-sm font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700">
+                Get Quote
+              </h3>
+              <p className="text-sm font-gotham leading-relaxed text-slate-700">
+                Interested in <span className="font-montreal font-bold text-slate-900">{product.title}</span>?
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <span className="rounded-full bg-emerald-600 p-2 text-white shrink-0">
+                    <PhoneCall className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-montreal font-bold text-slate-900">Contact Us</p>
+                    <p className="text-xs font-gotham text-slate-600 mt-1">+91 98970 53591</p>
+                  </div>
+                </div>
+                <Link
+                  to={`/contact-us?product=${encodeURIComponent(product.title)}`}
+                  className="inline-flex items-center justify-center gap-2 w-full rounded-full bg-emerald-600 px-6 py-3 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-700 shadow-lg hover:shadow-xl"
+                >
+                  Request Quote
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </aside>
         </section>
       </main>
     </div>

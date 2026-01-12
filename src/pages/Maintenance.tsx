@@ -23,13 +23,11 @@ export function Maintenance() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.6em] text-emerald-100">
                 Our Maintenance Service
               </p>
-              <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              <h1 className="mt-4 text-3xl font-montreal font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
                 Track &amp; sports facility maintenance.
               </h1>
-              <p className="mt-5 text-sm leading-relaxed text-slate-100/90 md:text-base">
-                At SABAYSIS SPORTS &amp; INFRA, we keep your multisport tracks, running tracks,
-                football turfs, sports courts, landscape turf, and pools performing at their best
-                &mdash; safe, durable, and ready for every game.
+              <p className="mt-5 text-sm font-gotham leading-relaxed text-slate-100/90 md:text-base">
+                We keep your multisport tracks, running tracks, football turfs, sports courts, landscape turf, and pools performing at their best—safe, durable, and ready for every game.
               </p>
             </div>
             <div className="rounded-3xl border border-white/20 bg-slate-900/40 p-6 shadow-sm backdrop-blur">
@@ -49,13 +47,11 @@ export function Maintenance() {
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 md:px-6 py-16 md:py-20">
         {/* Intro */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+          <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
             Comprehensive care for every surface.
           </h2>
-          <p className="max-w-3xl text-sm leading-relaxed text-slate-600 md:text-base">
-            Maintaining your facilities is crucial for performance, safety, and longevity. Our
-            specialised maintenance programs are tailored for tracks, courts, turfs, landscapes,
-            and aquatic zones to keep them in peak condition all year round.
+          <p className="max-w-3xl text-base font-gotham leading-relaxed text-slate-600 md:text-lg">
+            Maintaining your facilities is crucial for performance, safety, and longevity. Our specialised maintenance programs are tailored for tracks, courts, turfs, landscapes, and aquatic zones.
           </p>
         </section>
 
@@ -67,13 +63,11 @@ export function Maintenance() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Sports Track Maintenance
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Multisport &amp; running track care
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Regular maintenance of multisport and running tracks is essential to ensure a safe,
-                  high-performance surface. Our services include deep cleaning, crack repair,
-                  resurfacing, and precision line marking to keep your tracks competition-ready.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  Regular maintenance ensures a safe, high-performance surface. Our services include deep cleaning, crack repair, resurfacing, and precision line marking.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -84,13 +78,11 @@ export function Maintenance() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Football Turf Maintenance
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Durable, match‑ready turf
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We provide expert maintenance for football turfs including routine cleaning,
-                  grooming / brushing, infill levelling, re‑turfing, and edge repair. This keeps
-                  your surface safe, consistent, and suitable for all levels of play.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  Expert maintenance for football turfs including routine cleaning, grooming, infill levelling, re‑turfing, and edge repair.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -101,13 +93,11 @@ export function Maintenance() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Sports Court Maintenance
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Courts that play like new
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  For basketball, tennis, and multi‑sport courts, we handle surface cleaning, crack
-                  repairs, anti‑skid recoating, and line marking. Our goal is to maintain grip,
-                  safety, and visual clarity on every court.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  For basketball, tennis, and multi‑sport courts, we handle surface cleaning, crack repairs, anti‑skid recoating, and line marking.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -118,13 +108,11 @@ export function Maintenance() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Landscape Turf Care
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Always‑green outdoor spaces
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We keep your landscape turf lush and vibrant with routine cleaning, joint and seam
-                  repairs, infill top‑ups, and UV damage checks, enhancing both aesthetics and
-                  longevity of your artificial grass.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  We keep your landscape turf lush and vibrant with routine cleaning, joint repairs, infill top‑ups, and UV damage checks.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -135,13 +123,11 @@ export function Maintenance() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Swimming Pool Maintenance
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Clean, safe, and swim‑ready
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Our pool maintenance covers routine cleaning, water testing and balancing,
-                  filtration checks, and equipment inspection to keep both residential and
-                  commercial pools safe, hygienic, and fully operational.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  Pool maintenance covers routine cleaning, water testing and balancing, filtration checks, and equipment inspection.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -152,13 +138,11 @@ export function Maintenance() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Inspections &amp; Surface Repairs
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Preventive checks &amp; drainage care
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Preventive maintenance helps you avoid costly failures. We provide annual
-                  facility inspections, drainage system checks, and surface repairs for tracks,
-                  courts, and turfs to prevent water damage and maintain optimal play conditions.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  Preventive maintenance helps avoid costly failures. We provide annual facility inspections, drainage system checks, and surface repairs.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -168,17 +152,16 @@ export function Maintenance() {
 
         {/* CTA */}
         <section className="rounded-3xl border border-slate-200 bg-slate-50/80 p-8 text-center shadow-sm md:p-10">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+          <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
             Need a maintenance plan for your facility?
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600 md:text-base">
-            Share details about your tracks, courts, turfs, or pools and our team will design a
-            tailored maintenance schedule that fits your usage and budget.
+          <p className="mt-3 text-base font-gotham leading-relaxed text-slate-600 md:text-lg">
+            Share details about your tracks, courts, turfs, or pools and our team will design a tailored maintenance schedule.
           </p>
           <div className="mt-6 flex justify-center">
             <a
               href="/contact-us"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-10 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-slate-800 min-h-[48px] min-w-[160px]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-10 py-4 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-white transition hover:bg-emerald-700 shadow-lg hover:shadow-xl min-h-[48px] min-w-[160px]"
             >
               Contact Us
             </a>

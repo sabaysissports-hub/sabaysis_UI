@@ -11,132 +11,128 @@ export function ContactUs() {
   const productName = searchParams.get('product') || '';
 
   useEffect(() => {
-    // Set a timeout to detect if map fails to load
     const timer = setTimeout(() => {
-      // Check if iframe loaded successfully (this is a fallback check)
       const iframe = document.querySelector('iframe[title="SABAYSIS SPORTS & INFRA Location"]') as HTMLIFrameElement;
       if (iframe && !iframe.contentWindow) {
         setMapError(true);
       }
     }, 5000);
-
     return () => clearTimeout(timer);
   }, []);
-  return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50">
-      <main className="mx-auto flex max-w-7xl flex-col gap-16 px-4 md:px-6 py-16 md:py-24">
-        <section className="relative space-y-6 text-center">
-          <div className="flex items-center justify-center gap-2">
-            <Sparkles className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-700 dark:text-emerald-400">
-              Get In Touch
-            </p>
-            <Sparkles className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-200 bg-clip-text text-transparent">
-              We're Here to Help
-            </span>
-          </h1>
-          <p className="mx-auto max-w-3xl text-base md:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Have a question about our sports infrastructure or services? We'd love to hear from you. 
-            Get in touch with our team and let's discuss your project.
-          </p>
-        </section>
 
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      {/* Hero Banner */}
+      <section className="relative w-full overflow-hidden bg-slate-900">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(52,211,153,0.12),transparent_30%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-950/75 to-black/70" />
+        <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl flex-col justify-center px-4 py-16 text-white md:min-h-[400px] md:py-20 lg:min-h-[480px]">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-[11px] font-montreal font-bold uppercase tracking-[0.35em] text-emerald-300 backdrop-blur w-fit mb-6">
+            <Sparkles className="h-4 w-4" /> Get In Touch
+          </p>
+          <h1 className="text-4xl font-montreal font-bold tracking-tight md:text-5xl lg:text-6xl">
+            We're Here to Help
+          </h1>
+          <p className="mt-4 max-w-3xl text-base font-gotham text-white/85 md:text-lg">
+            Have a question about our sports infrastructure? Get in touch with our team.
+          </p>
+        </div>
+      </section>
+
+      <main className="mx-auto flex max-w-7xl flex-col gap-12 px-4 md:px-6 py-12 md:py-16">
         <section className="grid gap-6 md:grid-cols-3">
-          <div className="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <div className="group rounded-2xl border border-slate-200 p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg">
             <div className="flex items-start justify-between mb-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/30 dark:to-emerald-800/20">
-                <MapPin className="h-6 w-6 text-emerald-700 dark:text-emerald-400" />
+              <div className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-3 text-white shadow-lg">
+                <MapPin className="h-6 w-6" />
               </div>
-              <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+              <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h3 className="text-sm font-montreal font-bold uppercase tracking-wider text-slate-900 mb-3">
               Office Address
             </h3>
-            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="text-sm font-gotham leading-relaxed text-slate-600">
               Tiwari Quarters, Phase 2, Kesharganj,
               <br />
               Meerut, Uttar Pradesh 250001
             </p>
           </div>
 
-          <div className="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <div className="group rounded-2xl border border-slate-200 p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg">
             <div className="flex items-start justify-between mb-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/30 dark:to-blue-800/20">
-                <Phone className="h-6 w-6 text-blue-700 dark:text-blue-400" />
+              <div className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-3 text-white shadow-lg">
+                <Phone className="h-6 w-6" />
               </div>
-              <a href="tel:+919897053591" className="text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <a href="tel:+919897053591" className="text-slate-400 group-hover:text-emerald-600 transition-colors">
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h3 className="text-sm font-montreal font-bold uppercase tracking-wider text-slate-900 mb-3">
               Phone Number
             </h3>
-            <a href="tel:+919897053591" className="text-sm font-semibold text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors">
+            <a href="tel:+919897053591" className="text-sm font-montreal font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
               +91 98970 53591
             </a>
           </div>
 
-          <div className="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <div className="group rounded-2xl border border-slate-200 p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg">
             <div className="flex items-start justify-between mb-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-100 to-cyan-50 dark:from-cyan-900/30 dark:to-cyan-800/20">
-                <Mail className="h-6 w-6 text-cyan-700 dark:text-cyan-400" />
+              <div className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-3 text-white shadow-lg">
+                <Mail className="h-6 w-6" />
               </div>
-              <a href="mailto:ajarenterprisesmeerut@gmail.com" className="text-slate-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              <a href="mailto:ajarenterprisesmeerut@gmail.com" className="text-slate-400 group-hover:text-emerald-600 transition-colors">
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h3 className="text-sm font-montreal font-bold uppercase tracking-wider text-slate-900 mb-3">
               Email Address
             </h3>
             <a
               href="mailto:ajarenterprisesmeerut@gmail.com"
-              className="text-sm font-semibold text-cyan-700 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-300 transition-colors break-all"
+              className="text-sm font-montreal font-bold text-emerald-700 hover:text-emerald-800 transition-colors break-all"
             >
               ajarenterprisesmeerut@gmail.com
             </a>
           </div>
         </section>
+
         <section className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-8 md:p-10 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 md:p-10 shadow-sm">
             <div className="flex items-start gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/30">
-                <Clock className="h-5 w-5 text-emerald-700 dark:text-emerald-400" />
+              <div className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-2 text-white shadow-lg">
+                <Clock className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">Send us a message</h2>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                <h2 className="text-lg md:text-xl font-montreal font-bold text-slate-900">Send us a message</h2>
+                <p className="mt-1 text-sm font-gotham text-slate-600">
                   We typically respond within 24 hours
                 </p>
               </div>
             </div>
-
             <ContactForm initialSubject={productName} className="mt-8" />
           </div>
 
           <div className="flex flex-col">
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
-                <MapPin className="h-5 w-5 text-blue-700 dark:text-blue-400" />
+              <div className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-2 text-white shadow-lg">
+                <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">Visit our location</h2>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                <h2 className="text-lg md:text-xl font-montreal font-bold text-slate-900">Visit our location</h2>
+                <p className="mt-1 text-sm font-gotham text-slate-600">
                   Based in Meerut, Uttar Pradesh
                 </p>
               </div>
             </div>
-            <div className="flex-1 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shadow-sm mt-4">
+            <div className="flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm mt-4">
               <div className="relative h-full min-h-[400px] w-full md:min-h-[500px]">
                 {mapError ? (
-                  <div className="flex h-full w-full flex-col items-center justify-center bg-slate-50 dark:bg-slate-900 p-8 text-center">
-                    <div className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
+                  <div className="flex h-full w-full flex-col items-center justify-center bg-slate-50 p-8 text-center">
+                    <div className="p-4 rounded-full bg-slate-100 mb-4">
                       <MapPin className="h-8 w-8 text-slate-400" />
                     </div>
-                    <p className="text-base font-semibold text-slate-700 dark:text-slate-200 mb-2">Map unavailable</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 max-w-xs">
+                    <p className="text-base font-montreal font-bold text-slate-700 mb-2">Map unavailable</p>
+                    <p className="text-sm font-gotham text-slate-600 mb-6 max-w-xs">
                       Tiwari Quarters, Phase 2, Kesharganj,
                       <br />
                       Meerut, Uttar Pradesh 250001
@@ -145,7 +141,7 @@ export function ContactUs() {
                       href="https://www.google.com/maps/search/?api=1&query=Tiwari+Quarters,+Phase+2,+Kesharganj,+Meerut,+Uttar+Pradesh+250001"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 dark:from-emerald-500 dark:to-teal-500 px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-200 hover:shadow-lg active:scale-[0.98] min-h-[48px]"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 px-8 py-4 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-white transition-all duration-200 hover:shadow-lg active:scale-[0.98] min-h-[48px]"
                     >
                       <MapPin className="h-4 w-4" />
                       Open in Maps
@@ -168,9 +164,9 @@ export function ContactUs() {
                         href="https://www.google.com/maps/search/?api=1&query=Tiwari+Quarters,+Phase+2,+Kesharganj,+Meerut,+Uttar+Pradesh+250001"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-white/95 dark:bg-slate-900/95 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-slate-900 dark:text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:bg-white dark:hover:bg-slate-800 active:scale-[0.98] backdrop-blur-sm min-h-[44px]"
+                        className="inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-slate-900 shadow-lg hover:shadow-xl transition-all duration-200 hover:bg-white active:scale-[0.98] backdrop-blur-sm min-h-[44px]"
                       >
-                        <MapPin className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                        <MapPin className="h-3.5 w-3.5 text-emerald-600" />
                         View Map
                       </a>
                     </div>
@@ -184,5 +180,3 @@ export function ContactUs() {
     </div>
   );
 }
-
-

@@ -42,9 +42,32 @@ export default function Services() {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const res = await fetch(API_ENDPOINTS.SERVICES);
-      const data = await res.json();
-      setServices(data);
+      console.log('Fetching services from:', API_ENDPOINTS.SERVICES);
+      const res = await fetch(API_ENDPOINTS.SERVICES, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log('Services API response status:', res.status, res.statusText);
+
+      if (res.ok) {
+        const data = await res.json();
+        console.log('Services data received:', data);
+        setServices(Array.isArray(data) ? data : []);
+        setMessage('');
+      } else {
+        console.error('Failed to fetch services:', res.status, res.statusText);
+        const errorData = await res.json().catch(() => ({}));
+        console.error('Error details:', errorData);
+        setServices([]);
+        setMessage(`Failed to load services: ${res.status} ${res.statusText}`);
+      }
+    } catch (error) {
+      console.error('Failed to fetch services', error);
+      setServices([]);
+      setMessage(`Network error: ${error instanceof Error ? error.message : 'Unable to fetch services'}`);
     } finally {
       setLoading(false);
     }
@@ -109,7 +132,7 @@ export default function Services() {
 
       setMessage('Service saved');
       await fetchServices();
-      
+
       if (selected) {
         await loadService(selected.slug);
       } else {
@@ -178,24 +201,35 @@ export default function Services() {
           />
         </div>
 
-        <ul className="divide-y">
-          {filtered.map((s) => (
-            <li
-              key={s.slug}
-              className={`p-3 cursor-pointer hover:bg-slate-50 ${
-                selected?.slug === s.slug ? 'bg-slate-100' : ''
-              }`}
-              onClick={() => loadService(s.slug)}
-            >
-              <p className="font-medium">{s.title}</p>
-              <p className="text-xs text-slate-500">{s.slug}</p>
-            </li>
-          ))}
-        </ul>
+        {loading ? (
+          <div className="p-4 text-center text-slate-400">
+            <p>Loading services...</p>
+          </div>
+        ) : filtered.length === 0 && services.length === 0 ? (
+          <div className="p-8 text-center text-slate-500">
+            <p className="font-medium mb-2">No services found</p>
+            <p className="text-xs text-slate-400">Check the browser console for API errors.</p>
+            <p className="text-xs text-slate-400 mt-1">API URL: {API_ENDPOINTS.SERVICES}</p>
+          </div>
+        ) : (
+          <ul className="divide-y">
+            {filtered.map((s) => (
+              <li
+                key={s.slug}
+                className={`p-3 cursor-pointer hover:bg-slate-50 ${selected?.slug === s.slug ? 'bg-slate-100' : ''
+                  }`}
+                onClick={() => loadService(s.slug)}
+              >
+                <p className="font-medium">{s.title}</p>
+                <p className="text-xs text-slate-500">{s.slug}</p>
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className="p-3 border-t">
           <button
-            className="w-full rounded bg-slate-900 text-white py-2 text-sm"
+            className="w-full rounded bg-slate-900 text-white py-2 text-sm hover:bg-slate-800 transition-colors"
             onClick={() => {
               setSelected(null);
               setServiceForm({});
@@ -227,11 +261,10 @@ export default function Services() {
             <button
               key={t}
               onClick={() => setActiveTab(t === 'meta' ? 'meta' : 'detail')}
-              className={`px-4 py-2 text-sm font-medium ${
-                activeTab === t
-                  ? 'border-b-2 border-slate-900'
-                  : 'text-slate-500'
-              }`}
+              className={`px-4 py-2 text-sm font-medium ${activeTab === t
+                ? 'border-b-2 border-slate-900'
+                : 'text-slate-500'
+                }`}
             >
               {t === 'meta' ? 'Basic Info' : 'Detail'}
             </button>

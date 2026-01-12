@@ -32,11 +32,11 @@ export function About() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.6em] text-emerald-100/80">
                 The future-forged path to
               </p>
-              <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-montreal font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
                 Success • Ignite • Breakthrough
               </h1>
-              <p className="text-sm leading-relaxed text-slate-100/90 md:text-base">
-                At <span className="font-semibold">SABAYSIS SPORTS &amp; INFRA</span>, we pioneer artificial grass and sports area solutions—redefining outdoor spaces with technology, aesthetics, durability, and performance at the core.
+              <p className="text-sm font-gotham leading-relaxed text-slate-100/90 md:text-base">
+                At <span className="font-montreal font-bold">SABAYSIS SPORTS &amp; INFRA</span>, we pioneer artificial grass and sports area solutions—redefining outdoor spaces with technology, aesthetics, durability, and performance at the core.
               </p>
               <div className="grid gap-4 sm:grid-cols-3">
                 {[{ label: 'Projects delivered', value: '250+' }, { label: 'Cities served', value: '35+' }, { label: 'Client satisfaction', value: '97%' }].map((item) => (
@@ -81,31 +81,28 @@ export function About() {
         {/* About Us */}
         <section className="grid gap-12 md:grid-cols-[3fr,2fr] md:items-start">
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">About Us</h2>
-            <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              SABAYSIS SPORTS &amp; INFRA transforms outdoor spaces with high‑performance synthetic surfaces. We go beyond traditional standards to craft environments that feel natural, perform under pressure, and stand the test of time.
-            </p>
-            <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              Every project reflects our commitment to technology, aesthetic detail, and long‑term reliability. From sports arenas and schools to residential lawns and commercial landscapes, we build for real‑world play and everyday use.
+            <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">About Us</h2>
+            <p className="text-base font-gotham leading-relaxed text-slate-600 md:text-lg">
+              SABAYSIS SPORTS &amp; INFRA transforms outdoor spaces with high‑performance synthetic surfaces. We craft environments that feel natural, perform under pressure, and stand the test of time.
             </p>
             <div className="grid gap-4 sm:grid-cols-3">
               {[{ icon: <ShieldCheck className="h-5 w-5" />, title: 'Quality-first' }, { icon: <Leaf className="h-5 w-5" />, title: 'Sustainable' }, { icon: <Users className="h-5 w-5" />, title: 'People-centric' }].map((item) => (
-                <div key={item.title} className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm">
-                  <span className="rounded-full bg-emerald-50 p-2 text-emerald-700 ring-1 ring-emerald-100">{item.icon}</span>
+                <div key={item.title} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-montreal font-bold text-slate-900 shadow-sm">
+                  <span className="rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 p-2 text-white shadow-lg">{item.icon}</span>
                   {item.title}
                 </div>
               ))}
             </div>
           </div>
           <div className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+            <h3 className="text-sm font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700">
               Why clients choose us
             </h3>
-            <ul className="space-y-3 text-sm text-slate-700">
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Deep domain expertise in sports infrastructure and synthetic turf.</li>
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Reliable timelines with professional project management.</li>
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Surfaces engineered for safety, comfort, and performance.</li>
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Long‑term partnership mindset with maintenance support.</li>
+            <ul className="space-y-3 text-sm font-gotham text-slate-700">
+              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Deep domain expertise in sports infrastructure.</li>
+              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Reliable timelines with professional management.</li>
+              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Surfaces engineered for safety and performance.</li>
+              <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />Long‑term partnership with maintenance support.</li>
             </ul>
           </div>
         </section>
@@ -116,13 +113,11 @@ export function About() {
             <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
               Quality Control
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+            <h2 className="mt-3 text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
               Engineered quality in every fibre and finish.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-              At SABAYSIS SPORTS &amp; INFRA, quality is a disciplined process &mdash; from
-              selecting raw materials to on‑ground installation, every step is measured, inspected,
-              and improved.
+            <p className="mt-4 text-base font-gotham leading-relaxed text-slate-600 md:text-lg">
+              Quality is a disciplined process—from selecting raw materials to installation, every step is measured, inspected, and improved.
             </p>
           </div>
           <div className="grid gap-6 md:gap-8 md:grid-cols-2">
@@ -132,13 +127,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   01
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Stringent material selection
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We rigorously evaluate every component for durability, eco‑friendliness, UV
-                  resistance, and player safety. Only materials that meet our benchmarks are
-                  approved for production.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  We evaluate every component for durability, eco‑friendliness, UV resistance, and player safety.
                 </p>
               </div>
             </article>
@@ -148,12 +141,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   02
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Precision manufacturing
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  State‑of‑the‑art machinery and strict process controls ensure consistent tufting,
-                  backing, and finishing so every roll of turf performs exactly as designed.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  State‑of‑the‑art machinery and strict process controls ensure consistent tufting, backing, and finishing.
                 </p>
               </div>
             </article>
@@ -163,13 +155,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   03
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Comprehensive final inspections
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Each batch is inspected for colour consistency, pile height, tuft bind, and
-                  overall finish before it leaves our facilities, ensuring reliable performance on
-                  the field.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  Each batch is inspected for colour consistency, pile height, tuft bind, and overall finish.
                 </p>
               </div>
             </article>
@@ -179,12 +169,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   04
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Continuous improvement
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We invest in R&amp;D and feedback from live projects, constantly refining our
-                  systems and products in line with global standards and new technologies.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  We invest in R&amp;D and feedback from live projects, constantly refining our systems and products.
                 </p>
               </div>
             </article>
@@ -197,18 +186,18 @@ export function About() {
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-700">
               <Sparkles className="h-4 w-4" /> Our Mission
             </div>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Transform every outdoor space</h2>
-            <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              We revolutionize outdoor spaces globally with premium artificial grass and sports solutions that exceed expectations. We set new benchmarks for innovation, sustainability, and customer satisfaction—creating spaces that inspire healthy, active communities.
+            <h2 className="text-2xl font-montreal font-bold tracking-tight text-slate-900">Transform every outdoor space</h2>
+            <p className="text-sm font-gotham leading-relaxed text-slate-600 md:text-base">
+              We revolutionize outdoor spaces globally with premium artificial grass and sports solutions that exceed expectations.
             </p>
           </article>
           <article className="space-y-3 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-700">
               <ShieldCheck className="h-4 w-4" /> Our Vision
             </div>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Lead with impact and trust</h2>
-            <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              We aim to be the global leader in sports and landscape infrastructure—known for manufacturing excellence and positive change—so every outdoor space is functional, beautiful, and in harmony with nature.
+            <h2 className="text-2xl font-montreal font-bold tracking-tight text-slate-900">Lead with impact and trust</h2>
+            <p className="text-sm font-gotham leading-relaxed text-slate-600 md:text-base">
+              We aim to be the global leader in sports and landscape infrastructure—known for manufacturing excellence and positive change.
             </p>
           </article>
         </section>
@@ -219,12 +208,11 @@ export function About() {
             <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-emerald-700">
               Social Responsibility
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+            <h2 className="mt-3 text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
               Creating impact beyond the playing field.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-              SABAYSIS SPORTS &amp; INFRA is committed to responsible growth &mdash; for the
-              environment, our people, and the communities we work with every day.
+            <p className="mt-4 text-base font-gotham leading-relaxed text-slate-600 md:text-lg">
+              SABAYSIS SPORTS &amp; INFRA is committed to responsible growth—for the environment, our people, and the communities we work with.
             </p>
           </div>
           <div className="grid gap-6 md:gap-8 md:grid-cols-2">
@@ -233,12 +221,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Environmental stewardship
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Designing greener futures
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We prioritise eco‑friendly materials, energy‑efficient manufacturing, and
-                  responsible waste management to reduce our overall ecological footprint.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  We prioritise eco‑friendly materials, energy‑efficient manufacturing, and responsible waste management.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -248,12 +235,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Employee welfare
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   People at the centre
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Our teams are our greatest asset. We foster a safe, inclusive, and growth‑oriented
-                  workplace with training, recognition, and a healthy work‑life balance.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  Our teams are our greatest asset. We foster a safe, inclusive, and growth‑oriented workplace.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -263,12 +249,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Transparency &amp; ethics
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Built on trust
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We operate with integrity and clear communication, ensuring accountability in our
-                  decisions and long‑term trust with clients, partners, and suppliers.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  We operate with integrity and clear communication, ensuring accountability and long‑term trust.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
@@ -278,13 +263,11 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
                   Community engagement
                 </p>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">
+                <h3 className="mt-2 text-base font-montreal font-bold text-slate-900">
                   Uplifting local communities
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  We support initiatives around education, health, and sports infrastructure,
-                  helping create safe, inspiring spaces that benefit neighbourhoods for years to
-                  come.
+                <p className="mt-3 text-sm font-gotham leading-relaxed text-slate-600">
+                  We support initiatives around education, health, and sports infrastructure, helping create safe, inspiring spaces.
                 </p>
               </div>
               <div className="mt-4 h-px w-10 bg-emerald-500 transition group-hover:w-16" />
