@@ -41,7 +41,7 @@ const initialNavItems: NavItem[] = [
   {
     label: "Services",
     description: "Sports • Infrastructure",
-    basePath: "/",
+    basePath: "/services",
     items: serviceNavItems,
   },
   {
