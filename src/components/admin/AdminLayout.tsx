@@ -1,5 +1,5 @@
 import { useNavigate, Navigate, Outlet, useLocation } from 'react-router-dom';
-import { MessageSquare, LogOut, Package, LayoutDashboard, Layers } from 'lucide-react';
+import { MessageSquare, LogOut, Package, LayoutDashboard, Layers, Star } from 'lucide-react';
 
 import {
   Sidebar,
@@ -83,6 +83,16 @@ export function AdminLayout() {
               >
                 <Layers />
                 <span>Services</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                 isActive={location.pathname === '/admin/testimonials'}
+                 onClick={() => navigate('/admin/testimonials')}
+                 tooltip="Testimonials"
+              >
+                <Star />
+                <span>Testimonials</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

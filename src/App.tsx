@@ -15,6 +15,7 @@ import { Login } from './pages/admin/Login';
 import { Messages } from './pages/admin/Messages';
 import { Products } from './pages/admin/Products';
 import Services from './pages/admin/Services';
+import { Testimonials } from './pages/admin/Testimonials';
 import { Dashboard } from './pages/admin/Dashboard';
 import { AdminLayout, ProtectedRoute } from './components/admin/AdminLayout';
 
@@ -60,6 +61,7 @@ function App() {
                 <Route path="messages" element={<Messages />} />
                 <Route path="products" element={<Products />} />
                 <Route path="services" element={<Services />} />
+                <Route path="testimonials" element={<Testimonials />} />
               </Route>
             </Route>
           </Routes>
