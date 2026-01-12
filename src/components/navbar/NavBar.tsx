@@ -66,6 +66,46 @@ export function NavBar() {
   const [navItems, setNavItems] = useState<NavItem[]>(initialNavItems);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Prevent body scroll when dropdown is open, but allow dropdown content to scroll
+  useEffect(() => {
+    if (activeMenu) {
+      // Prevent body scroll
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Restore body scroll
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+    };
+  }, [activeMenu]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileOpen]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -179,13 +219,22 @@ export function NavBar() {
                   sideOffset={8}
                   onMouseEnter={() => handleMouseEnter(item.label)}
                   onMouseLeave={handleMouseLeave}
-                  className="w-[640px] rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl animate-in fade-in zoom-in-95 dark:border-slate-800 dark:bg-slate-900 font-[var(--font-gotham)]"
+                  onWheel={(e) => {
+                    // Stop scroll event from propagating to body
+                    e.stopPropagation();
+                  }}
+                  onScroll={(e) => {
+                    // Stop scroll event from propagating
+                    e.stopPropagation();
+                  }}
+                  className="w-[680px] max-h-[60vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl animate-in fade-in zoom-in-95 dark:border-slate-800 dark:bg-slate-900 font-[var(--font-gotham)] scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent"
+                  style={{ overscrollBehavior: 'contain' }}
                 >
-                  <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="mb-4 flex items-center justify-between border-b border-slate-200 pb-3">
                     <DropdownMenuLabel className="font-[var(--font-montreal)] text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                       {item.label}
                     </DropdownMenuLabel>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <span className="text-xs font-montreal font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                       {item.description}
                     </span>
                   </div>
@@ -201,12 +250,12 @@ export function NavBar() {
                               )}`
                               : `${item.basePath}/${subItem.slug}`
                           }
-                          className="group rounded-xl p-5 transition hover:bg-emerald-50 min-h-20 flex flex-col justify-center dark:hover:bg-emerald-950/40"
+                          className="group rounded-xl border border-slate-100 p-4 transition-all duration-200 hover:border-emerald-200 hover:bg-emerald-50/50 hover:shadow-md min-h-[80px] flex flex-col justify-start dark:border-slate-800 dark:hover:border-emerald-800 dark:hover:bg-emerald-950/40"
                         >
-                          <p className="font-[var(--font-montreal)] text-sm font-semibold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">
+                          <p className="font-[var(--font-montreal)] text-sm font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300 mb-1.5">
                             {subItem.title}
                           </p>
-                          <p className="text-xs text-slate-500 line-clamp-2 mt-1 dark:text-slate-300">
+                          <p className="text-xs font-gotham text-slate-600 line-clamp-2 leading-relaxed dark:text-slate-400">
                             {subItem.body}
                           </p>
                         </Link>

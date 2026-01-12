@@ -27,8 +27,8 @@
 @layer base {
   :root {
     --font-orbitron: "Orbitron", sans-serif;
-    --font-montreal: "Neue Montreal", sans-serif;
-    --font-gotham: "Gotham Book", sans-serif;
+    --font-montreal: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+    --font-gotham: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 
     --font-heading: var(--font-montreal);
     --font-body: var(--font-gotham);
@@ -43,6 +43,11 @@
   h5,
   h6 {
     font-family: var(--font-heading);
+  }
+  
+  /* Ensure body and text elements support Hindi and other Indic scripts */
+  body, p, span, div, a, li, td, th {
+    font-family: var(--font-body), "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
   }
 
   body {
@@ -102,10 +107,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: "Gotham Book", sans-serif;
-  --font-heading: "Neue Montreal", sans-serif;
-  --font-montreal: "Neue Montreal", sans-serif;
-  --font-gotham: "Gotham Book", sans-serif;
+  --font-sans: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  --font-heading: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  --font-montreal: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  --font-gotham: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 
   --animate-scroll: scroll var(--animation-duration, 40s)
     var(--animation-direction, forwards) linear infinite;
@@ -203,6 +208,31 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Custom scrollbar for dropdowns */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(203 213 225);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(148 163 184);
+  }
+  .scrollbar-thumb-slate-300::-webkit-scrollbar-thumb {
+    background-color: rgb(203 213 225);
+  }
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
   }
 
   /* Fast transitions for immediate feedback */
@@ -394,10 +424,10 @@
 
 /* Montreal Font Utility Classes */
 .font-montreal {
-  font-family: "Neue Montreal", sans-serif;
+  font-family: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 }
 
 /* Gotham Book Font Utility Classes */
 .font-gotham {
-  font-family: "Gotham Book", sans-serif;
+  font-family: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 }
