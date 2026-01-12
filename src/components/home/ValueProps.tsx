@@ -118,9 +118,6 @@ export function ValueProps() {
                       loading="lazy"
                     />
 
-                    {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-t ${service.hoverGradient} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
-
                     {/* Icon Badge */}
                     <div className="absolute top-4 right-4">
                       <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.gradient} shadow-2xl backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>

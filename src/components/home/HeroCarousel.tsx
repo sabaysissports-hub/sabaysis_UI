@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import TextType from '@/components/TextType';
 
 import heroMain from '@/assets/Hero/hero.jpg';
 import hero1 from '@/assets/Hero/hero (1).jpg';
@@ -15,7 +14,7 @@ const slides = [
     title: 'Swimming Pool Construction & Design',
     image: hero1,
     cta: 'Explore Swimming Pools',
-    link: '/services/swimming-pool-construction',
+    link: '/services/swimming-pool',
     typingTexts: [
       'Swimming Pool Construction & Design'
     ],
@@ -146,35 +145,21 @@ export function HeroCarousel() {
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Main Title - Static before '&', typed after '&' for each slide */}
-            {(() => {
-              const parts = currentSlide.title.split('&');
-              const before = parts[0]?.trim() ?? '';
-              const after = parts[1]?.trim() ?? '';
-
-              return (
-                <h1 className="font-montreal mb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-                  <span className="block bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent">
-                    {before}
-                    {after && ' &'}
-                    {after && (
-                      <span className="ml-2 inline-block">
-                        <TextType
-                          key={currentSlide.id}
-                          text={[after]}
-                          typingSpeed={65}
-                          pauseDuration={1200}
-                          showCursor={true}
-                          cursorCharacter="|"
-                          loop={false}
-                          startOnVisible={false}
-                        />
+            {/* Main Title - Bold and Prominent with Orbitron Font */}
+            <h1 className="orbitron text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+              <span className="block bg-gradient-to-r from-white via-emerald-50 to-teal-50 bg-clip-text text-transparent">
+                {currentSlide.title.split('&').map((part, index, array) => (
+                  <span key={index}>
+                    {part.trim()}
+                    {index < array.length - 1 && (
+                      <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                        {' & '}
                       </span>
                     )}
                   </span>
-                </h1>
-              );
-            })()}
+                ))}
+              </span>
+            </h1>
 
             {/* CTA Button - Prominent with Text Reveal */}
             <div className={`flex justify-center gap-4 transition-all duration-1000 ease-out ${showCTA

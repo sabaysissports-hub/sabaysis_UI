@@ -29,11 +29,18 @@
     --font-orbitron: "Orbitron", sans-serif;
     --font-montreal: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
     --font-gotham: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+    --font-anton: "Anton", sans-serif;
 
     --font-heading: var(--font-montreal);
     --font-body: var(--font-gotham);
 
     font-family: var(--font-body);
+  }
+
+  .anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 
   h1,

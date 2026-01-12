@@ -38,22 +38,19 @@ export function FeaturedServices() {
           {/* Left: Visual Content */}
           <div className="relative">
             {/* Scrolling Image Carousel */}
-            <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 p-1 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-emerald-500/50">
-              <div className="relative h-[500px] overflow-hidden rounded-3xl">
+            <div className="group relative overflow-hidden transition-all duration-500 hover:scale-[1.02]">
+              <div className="relative w-full aspect-[640/800] max-w-[640px] mx-auto overflow-hidden rounded-3xl flex items-center justify-center">
                 {/* Image Carousel */}
                 {featureImages.map((image, index) => (
                   <div
                     key={index}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
                       }`}
                   >
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="h-full w-full object-cover transition-transform duration-[12000ms] ease-out"
-                      style={{
-                        transform: index === currentIndex ? 'scale(1.05)' : 'scale(1.15)',
-                      }}
+                      className="w-full h-full object-contain border-4 border-emerald-500 rounded-3xl transition-transform duration-[12000ms] ease-out"
                     />
                   </div>
                 ))}
