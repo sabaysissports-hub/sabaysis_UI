@@ -1,3 +1,13 @@
+// Import padel court images
+import padelHero from '@/assets/pedel/padelHero.jpg';
+import padelAboutImg from '@/assets/pedel/padelAbout.jpg';
+import padelCourtInfoImg from '@/assets/pedel/padelCourtInfo.jpg';
+import padelClassicImg from '@/assets/pedel/padel-classic.jpg';
+import padelScenicImg from '@/assets/pedel/padel-scenic.jpg';
+import padelScenicProImg from '@/assets/pedel/padel-scenic-pro.jpg';
+import padelSuperScenicImg from '@/assets/pedel/padel-super-scenic.jpg';
+import padelKidsScenicImg from '@/assets/pedel/padel-kids-scenic.jpg';
+
 export interface PadelCourtModel {
   id: string;
   name: string;
@@ -22,7 +32,7 @@ export interface WindPressureData {
 }
 
 export const padelHeroImage = {
-  image: "", 
+  image: padelHero, 
   alt: "Sabaysis Padel Courts"
 };
 
@@ -31,7 +41,7 @@ export const padelAbout = {
   description: `Sabaysis is an Indian manufacturer of premium padel courts, delivering turnkey padel court solutions across India and internationally. Sabaysis follows International Padel Federation (FIP) regulations and globally accepted standards in design, engineering, and manufacturing.
 
 With a dedicated in-house design and engineering team, Sabaysis provides end-to-end solutions including 3D court designs, architectural renderings, manufacturing, installation, and logistics. All raw materials and finished products are certified and tested according to international norms. The brand philosophy focuses on quality, durability, innovation, and long-term performance, ensuring excellence in manufacturing and after-sales support.`,
-  image: "", // Add your about section image path here
+  image: padelAboutImg,
   imageAlt: "Sabaysis Padel Manufacturing"
 };
 
@@ -40,7 +50,7 @@ export const padelCourtInfo = {
   description: `Padel is a fast-paced racket sport combining elements of tennis, squash, and badminton, played on an enclosed court with walls. Sabaysis padel courts are manufactured according to international standards followed by the World Padel Tour and International Padel Federation.
 
 Sabaysis offers padel courts suitable for sports clubs, academies, rooftops, hills, waterfronts, and floating installations, delivering customized solutions for every location.`,
-  image: "", // Add your padel game/court image path here
+  image: padelCourtInfoImg,
   imageAlt: "Padel Court Game"
 };
 
@@ -63,7 +73,7 @@ export const padelCourtModels: PadelCourtModel[] = [
       "Schools & universities",
       "Corporate events and team-building activities"
     ],
-    image: "", // Add your Padel Classic court image here
+    image: padelClassicImg,
     imageAlt: "Sabaysis Padel Classic Court"
   },
   {
@@ -84,7 +94,7 @@ export const padelCourtModels: PadelCourtModel[] = [
       "Residential communities",
       "Waterfront projects and urban parks"
     ],
-    image: "", // Add your Padel Scenic court image here
+    image: padelScenicImg,
     imageAlt: "Sabaysis Padel Scenic Court"
   },
   {
@@ -105,7 +115,7 @@ export const padelCourtModels: PadelCourtModel[] = [
       "Corporate events",
       "Private properties"
     ],
-    image: "", // Add your Padel Scenic Pro court image here
+    image: padelScenicProImg,
     imageAlt: "Sabaysis Padel Scenic Pro Court"
   },
   {
@@ -126,7 +136,7 @@ export const padelCourtModels: PadelCourtModel[] = [
       "Waterfront developments",
       "Urban parks"
     ],
-    image: "", // Add your Padel Super Scenic court image here
+    image: padelSuperScenicImg,
     imageAlt: "Sabaysis Padel Super Scenic Court"
   },
   {
@@ -146,7 +156,7 @@ export const padelCourtModels: PadelCourtModel[] = [
       "Sports training academies",
       "Residential societies"
     ],
-    image: "", // Add your Padel Kid's Scenic court image here
+    image: padelKidsScenicImg,
     imageAlt: "Sabaysis Padel Kid's Scenic Court"
   }
 ];

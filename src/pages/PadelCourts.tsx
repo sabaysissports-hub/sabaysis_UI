@@ -6,7 +6,8 @@ import {
   padelCourtModels, 
   windPressureValues, 
   windPressureInfo,
-  padelFeatures 
+  padelFeatures,
+  padelHeroImage
 } from '@/data/paddleball';
 
 export function PadelCourts() {
@@ -16,6 +17,15 @@ export function PadelCourts() {
     <div className="min-h-screen bg-white dark:bg-slate-950">
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 -mt-16 lg:-mt-20">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={padelHeroImage.image} 
+            alt={padelHeroImage.alt}
+            className="h-full w-full object-cover opacity-40"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-emerald-950/80" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.15),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(52,211,153,0.12),transparent_50%)]" />
         
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 md:py-28 lg:py-32">
@@ -74,13 +84,12 @@ export function PadelCourts() {
             </div>
 
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/20 dark:to-teal-900/20 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Layers className="h-20 w-20 text-emerald-600 dark:text-emerald-400 mx-auto mb-4" />
-                  <p className="text-sm text-slate-600 dark:text-slate-400 font-semibold">
-                    Padel Court Image Placeholder
-                  </p>
-                </div>
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/10">
+                <img 
+                  src={padelAbout.image} 
+                  alt={padelAbout.imageAlt}
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -92,13 +101,12 @@ export function PadelCourts() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 lg:order-1">
-              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Zap className="h-20 w-20 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-                  <p className="text-sm text-slate-600 dark:text-slate-400 font-semibold">
-                    Padel Game Image Placeholder
-                  </p>
-                </div>
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/20">
+                <img 
+                  src={padelCourtInfo.image} 
+                  alt={padelCourtInfo.imageAlt}
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
 
@@ -230,13 +238,12 @@ export function PadelCourts() {
 
                 {/* Image */}
                 <div className={`relative ${index % 2 === 0 ? '' : 'lg:col-start-1 lg:row-start-1'}`}>
-                  <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center overflow-hidden">
-                    <div className="text-center p-8">
-                      <Layers className="h-16 w-16 text-slate-400 dark:text-slate-600 mx-auto mb-3" />
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-semibold">
-                        {court.name} Court Image
-                      </p>
-                    </div>
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700">
+                    <img 
+                      src={court.image} 
+                      alt={court.imageAlt}
+                      className="h-full w-full object-cover hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
                 </div>
               </div>
