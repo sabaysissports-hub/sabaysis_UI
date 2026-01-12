@@ -24,22 +24,17 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="relative space-y-10 overflow-hidden px-4 pb-16 md:space-y-12 lg:px-8 lg:pb-24">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/4 h-96 w-96 rounded-full bg-emerald-100/30 blur-3xl dark:bg-emerald-900/10" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-teal-100/30 blur-3xl dark:bg-teal-900/10" />
-      </div>
+    <section className="relative space-y-6 overflow-visible md:space-y-8">
 
       {/* Section Header */}
       <div className="text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 dark:bg-emerald-900/20">
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2">
           <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600 dark:text-emerald-400">
             Testimonials
           </p>
         </div>
-        <h2 className="mt-6 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-slate-50">
+        <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-slate-50">
           Built for real sports &amp;{' '}
           <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent dark:from-emerald-400 dark:to-teal-400">
             infrastructure projects

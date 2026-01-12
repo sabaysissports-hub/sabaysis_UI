@@ -5,29 +5,33 @@
 
 @font-face {
   font-family: "Neue Montreal";
-  src: url('./assets/fonts/montreal/Montreal-Regular.ttf') format('truetype');
+  src: url("./assets/fonts/montreal/Montreal-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Neue Montreal";
-  src: url('./assets/fonts/montreal/Montreal-Bold.ttf') format('truetype');
+  src: url("./assets/fonts/montreal/Montreal-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham Book";
-  src: url('./assets/fonts/Gotham Book/Gotham Book.otf') format('opentype');
+  src: url("./assets/fonts/Gotham Book/Gotham Book.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 
 @layer base {
   :root {
-    --font-heading: "Neue Montreal", sans-serif;
-    --font-body: "Gotham Book", sans-serif;
+    --font-orbitron: "Orbitron", sans-serif;
+    --font-montreal: "Neue Montreal", sans-serif;
+    --font-gotham: "Gotham Book", sans-serif;
+
+    --font-heading: var(--font-montreal);
+    --font-body: var(--font-gotham);
 
     font-family: var(--font-body);
   }
@@ -43,6 +47,17 @@
 
   body {
     @apply min-h-screen bg-white text-slate-900 antialiased;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  * {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 
   #root {
@@ -89,8 +104,11 @@
 
   --font-sans: "Gotham Book", sans-serif;
   --font-heading: "Neue Montreal", sans-serif;
+  --font-montreal: "Neue Montreal", sans-serif;
+  --font-gotham: "Gotham Book", sans-serif;
 
-  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+  --animate-scroll: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
 
   @keyframes scroll {
     to {
@@ -218,4 +236,168 @@
     transform: none !important;
     will-change: auto;
   }
+}
+
+/* Google Fonts CSS Classes */
+
+/* Montserrat - Variable style */
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Roboto - Variable style */
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+/* Open Sans - Variable style */
+.open-sans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+/* Poppins - All weight classes */
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.poppins-extralight {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.poppins-black {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.poppins-thin-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.poppins-extralight-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.poppins-light-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.poppins-medium-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.poppins-semibold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.poppins-bold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.poppins-extrabold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.poppins-black-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Goldman */
+.goldman-regular {
+  font-family: "Goldman", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.goldman-bold {
+  font-family: "Goldman", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Orbitron - Variable style */
+.orbitron {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Montreal Font Utility Classes */
+.font-montreal {
+  font-family: "Neue Montreal", sans-serif;
+}
+
+/* Gotham Book Font Utility Classes */
+.font-gotham {
+  font-family: "Gotham Book", sans-serif;
 }

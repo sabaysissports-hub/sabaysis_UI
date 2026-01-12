@@ -13,37 +13,44 @@ export function Home() {
     <div className="min-h-screen bg-white font-sans text-slate-900">
       <HeroCarousel />
       <main className="flex flex-col">
-        <section className="bg-white py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
+        {/* Featured Services */}
+        <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FeaturedServices />
           </div>
         </section>
 
-        <section className="bg-slate-50 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
+        {/* Value Props / Services */}
+        <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <ValueProps />
           </div>
         </section>
 
-        <section className="bg-white py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
+        {/* Unified Sports Turf */}
+        <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <UnifiedSportsTurf />
           </div>
         </section>
 
-        <section className="bg-slate-50 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
+        {/* Testimonials */}
+        <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Testimonials />
           </div>
         </section>
-        <section className="bg-white py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
+
+        {/* Questions / FAQ */}
+        <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Questions />
           </div>
         </section>
 
-        <section className="bg-slate-50 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
+        {/* Primary CTA - Final section */}
+        <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <PrimaryCTA />
           </div>
         </section>
