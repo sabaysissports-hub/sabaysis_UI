@@ -41,7 +41,7 @@ const initialNavItems: NavItem[] = [
   {
     label: "Services",
     description: "Sports • Infrastructure",
-    basePath: "/services",
+    basePath: "/",
     items: serviceNavItems,
   },
   {
@@ -175,14 +175,13 @@ export function NavBar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200/60 bg-white/98 backdrop-blur-md shadow-sm font-[var(--font-gotham)] dark:border-slate-800/80 dark:bg-slate-950/98 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-emerald-200/40 bg-white/95 backdrop-blur-xl shadow-sm font-[var(--font-gotham)] dark:border-emerald-900/40 dark:bg-slate-950/95 transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo Section - Improved logo styling with better scale handling */}
         <Link to="/" className="flex items-center shrink-0 group transition-all duration-300">
           <img
             src={ajarLogo || "/placeholder.svg"}
             alt="Sabaysis Sports & Infrastructure"
-            className="h-12 w-40 object-contain sm:h-14 sm:w-56 md:h-14 md:w-60 lg:h-14 lg:w-64 transition-all duration-300 group-hover:scale-105"
+            className="h-14 w-40 object-contain sm:h-14 sm:w-40 md:h-14 md:w-32 lg:h-14 lg:w-40 transition-all duration-300 group-hover:scale-105"
             style={{
               filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.08))",
             }}
@@ -202,14 +201,14 @@ export function NavBar() {
                 <div onMouseEnter={() => handleMouseEnter(item.label)} onMouseLeave={handleMouseLeave}>
                   <DropdownMenuTrigger asChild>
                     <button
-                      className={`group inline-flex items-center gap-1 px-3 py-2 font-[var(--font-montreal)] text-xs font-semibold uppercase tracking-wider rounded-lg min-h-10 transition-all duration-200 relative
+                      className={`group inline-flex items-center gap-1.5 px-3.5 py-2.5 font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 transition-all duration-200 relative
                         ${isDropdownActive(item)
-                          ? "bg-emerald-600/10 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-300"
-                          : "text-slate-700 hover:bg-emerald-600/10 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-emerald-600/20 dark:hover:text-emerald-300"
+                          ? "bg-gradient-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-gradient-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
+                          : "text-slate-700 hover:bg-gradient-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-gradient-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
                         }`}
                     >
                       {item.label}
-                      <ChevronDown className="h-3 w-3 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                     </button>
                   </DropdownMenuTrigger>
                 </div>
@@ -225,14 +224,14 @@ export function NavBar() {
                   onScroll={(e) => {
                     e.stopPropagation()
                   }}
-                  className="w-[700px] max-h-[65vh] overflow-y-auto rounded-xl border border-slate-200/80 bg-white/99 p-6 shadow-xl animate-in fade-in zoom-in-95 dark:border-slate-800/80 dark:bg-slate-900/99 font-[var(--font-gotham)] scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent"
+                  className="w-[700px] max-h-[65vh] overflow-y-auto rounded-2xl border border-emerald-200/50 bg-white p-6 shadow-2xl animate-in fade-in zoom-in-95 dark:border-emerald-900/50 dark:bg-slate-900 font-[var(--font-gotham)] scrollbar-thin scrollbar-thumb-emerald-300 scrollbar-track-transparent"
                   style={{ overscrollBehavior: "contain" }}
                 >
-                  <div className="mb-5 flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
+                  <div className="mb-5 flex items-center justify-between border-b border-emerald-200/40 dark:border-emerald-900/40 pb-4">
                     <DropdownMenuLabel className="font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                       {item.label}
                     </DropdownMenuLabel>
-                    <span className="text-xs font-montreal font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-600/10 dark:bg-emerald-600/20 px-3 py-1.5 rounded-full">
+                    <span className="text-xs font-montreal font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-600/30 dark:to-teal-600/30 px-3 py-1.5 rounded-full">
                       {item.description}
                     </span>
                   </div>
@@ -246,7 +245,7 @@ export function NavBar() {
                               ? `${item.basePath}?category=${encodeURIComponent(subItem.category || subItem.title)}`
                               : `${item.basePath}/${subItem.slug}`
                           }
-                          className="group rounded-lg border border-slate-200/60 p-4 transition-all duration-200 hover:border-emerald-400/60 hover:bg-emerald-50 hover:shadow-md min-h-[85px] flex flex-col justify-start dark:border-slate-800/60 dark:hover:border-emerald-600/60 dark:hover:bg-emerald-950/30 cursor-pointer"
+                          className="group rounded-xl border border-emerald-200/40 bg-gradient-to-br from-white to-emerald-50/20 p-4 transition-all duration-200 hover:border-emerald-400/60 hover:bg-gradient-to-br hover:from-emerald-50 hover:to-teal-50/30 hover:shadow-lg min-h-[85px] flex flex-col justify-start dark:border-emerald-900/40 dark:bg-gradient-to-br dark:from-slate-800/40 dark:to-emerald-950/20 dark:hover:border-emerald-600/60 dark:hover:bg-gradient-to-br dark:hover:from-emerald-950/40 dark:hover:to-emerald-900/30 cursor-pointer"
                         >
                           <p className="font-[var(--font-montreal)] text-xs font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300 mb-2 transition-colors duration-200">
                             {subItem.title}
@@ -264,9 +263,9 @@ export function NavBar() {
               <Link
                 key={item.label}
                 to={item.href}
-                className={`px-3 py-2 font-[var(--font-montreal)] text-xs font-semibold uppercase tracking-wider rounded-lg min-h-10 inline-flex items-center transition-all duration-200 ${isLinkActive(item.href)
-                  ? "bg-emerald-600/10 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-300"
-                  : "text-slate-700 hover:bg-emerald-600/10 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-emerald-600/20 dark:hover:text-emerald-300"
+                className={`px-3.5 py-2.5 font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 inline-flex items-center transition-all duration-200 ${isLinkActive(item.href)
+                  ? "bg-gradient-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-gradient-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
+                  : "text-slate-700 hover:bg-gradient-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-gradient-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
                   }`}
               >
                 {item.label}
@@ -280,7 +279,7 @@ export function NavBar() {
           <GoogleTranslateSelector />
           <Link
             to="/contact-us"
-            className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:bg-emerald-700 hover:shadow-lg shadow-md min-h-10 whitespace-nowrap dark:bg-emerald-600 dark:hover:bg-emerald-700 font-[var(--font-montreal)]"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg shadow-md min-h-10 whitespace-nowrap dark:bg-gradient-to-r dark:from-emerald-600 dark:to-teal-600 dark:hover:from-emerald-700 dark:hover:to-teal-700 font-[var(--font-montreal)]"
           >
             <Send className="h-4 w-4" />
             Get In Touch
@@ -299,7 +298,7 @@ export function NavBar() {
 
       {/* Mobile Menu - Improved mobile menu styling with better visual separation */}
       {isMobileOpen && (
-        <div className="border-t border-slate-200/60 bg-white/98 lg:hidden dark:border-slate-800/80 dark:bg-slate-900/98 font-[var(--font-gotham)]">
+        <div className="border-t border-emerald-200/40 bg-gradient-to-b from-white to-emerald-50/30 lg:hidden dark:border-emerald-900/40 dark:bg-gradient-to-b dark:from-slate-950 dark:to-slate-900/95 font-[var(--font-gotham)]">
           <nav className="p-5 space-y-2">
             <Accordion type="multiple" className="space-y-1">
               {navItems.map((item) =>

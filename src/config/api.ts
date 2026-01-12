@@ -1,9 +1,7 @@
-// Remove trailing slash if present and ensure /api is included
 const getBaseUrl = () => {
   const envUrl = import.meta.env.VITE_API_URL;
   if (envUrl) {
-    const cleanUrl = envUrl.replace(/\/$/, '');
-    return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+    return envUrl.replace(/\/$/, '');
   }
   return 'https://sabaysis-backend.vercel.app/api';
 };
@@ -16,4 +14,5 @@ export const API_ENDPOINTS = {
   SEND_EMAIL: `${API_BASE_URL}/send-email`,
   AUTH_LOGIN: `${API_BASE_URL}/auth/login`,
   MESSAGES: `${API_BASE_URL}/messages`,
+  TESTIMONIALS: `${API_BASE_URL}/testimonials`,
 } as const;

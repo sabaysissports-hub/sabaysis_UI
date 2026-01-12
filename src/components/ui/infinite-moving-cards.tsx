@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
+import { Star } from "lucide-react";
 
 export const InfiniteMovingCards = ({
   items,
@@ -14,6 +15,10 @@ export const InfiniteMovingCards = ({
     quote: string;
     name: string;
     title: string;
+    company?: string;
+    rating?: number;
+    location?: string;
+    projectType?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -80,33 +85,57 @@ export const InfiniteMovingCards = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
+          "flex w-max min-w-full shrink-0 flex-nowrap gap-6 py-4",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)] px-8 py-6 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
-            key={item.name}
+            className="relative w-[350px] max-w-full shrink-0 overflow-hidden rounded-2xl border border-emerald-200/40 bg-gradient-to-br from-white to-emerald-50/30 p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-emerald-300/60 dark:border-emerald-900/40 dark:bg-gradient-to-br dark:from-slate-900 dark:to-emerald-950/20 md:w-[420px]"
+            key={`${item.name}-${index}`}
           >
             <blockquote>
               <div
                 aria-hidden="true"
                 className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <span className="relative z-20 text-sm leading-[1.6] font-normal text-neutral-800 dark:text-gray-100">
-                {item.quote}
+              
+              {/* Rating Stars */}
+              {item.rating && (
+                <div className="relative z-20 mb-3 flex gap-1">
+                  {Array.from({ length: item.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                </div>
+              )}
+
+              <span className="relative z-20 text-sm leading-[1.6] font-normal text-slate-700 dark:text-gray-200 line-clamp-4">
+                "{item.quote}"
               </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
+
+              <div className="relative z-20 mt-4 flex flex-col gap-2 border-t border-emerald-200/40 pt-4 dark:border-emerald-900/40">
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm font-montreal font-semibold text-slate-900 dark:text-white">
                     {item.name}
                   </span>
-                  <span className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
+                  <span className="text-xs font-gotham text-emerald-600 dark:text-emerald-400">
                     {item.title}
                   </span>
-                </span>
+                  {item.company && (
+                    <span className="text-xs font-gotham text-slate-500 dark:text-slate-400">
+                      {item.company}
+                    </span>
+                  )}
+                  {item.projectType && (
+                    <span className="mt-1 inline-flex w-fit rounded-full bg-emerald-100/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                      {item.projectType}
+                    </span>
+                  )}
+                </div>
               </div>
             </blockquote>
           </li>

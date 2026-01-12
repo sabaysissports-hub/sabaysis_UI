@@ -46,7 +46,7 @@ export function Footer() {
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span>About Us</span>
               </Link>
-              <Link to="/services" className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors group text-sm">
+              <Link to="/" className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors group text-sm">
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span>Services</span>
               </Link>

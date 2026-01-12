@@ -6,6 +6,7 @@ import { Testimonials } from '@/components/home/Testimonials';
 import { ValueProps } from '@/components/home/ValueProps';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { Questions } from '@/components/home/question';
+import { LatestProducts } from '@/components/home/LatestProducts';
 
 export function Home() {
   usePageTitle('Home');
@@ -17,6 +18,13 @@ export function Home() {
         <section className="relative bg-slate-50 py-8 md:py-10 lg:py-12">
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FeaturedServices />
+          </div>
+        </section>
+
+        {/* Latest Products */}
+        <section className="relative bg-white py-8 md:py-10 lg:py-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <LatestProducts />
           </div>
         </section>
 

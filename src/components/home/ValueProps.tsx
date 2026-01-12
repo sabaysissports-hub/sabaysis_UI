@@ -1,4 +1,4 @@
-import { ArrowUpRight, Target, Leaf, Trophy, Waves, Timer } from 'lucide-react';
+import { ArrowUpRight, Target, Leaf, Trophy, Waves, Timer, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import sportsNetImg from '@/assets/HomeImages/Sports-Net.jpg';
 import footballTurfImg from '@/assets/HomeImages/steptodown.com652452.jpg';
@@ -10,6 +10,7 @@ import multisportTrackImg from '@/assets/HomeImages/running.png';
 type ServiceItem = {
   title: string;
   shortDesc: string;
+  fullDesc: string;
   imageUrl: string;
   imageAlt: string;
   icon: typeof Target;
@@ -20,7 +21,8 @@ type ServiceItem = {
 const services: ServiceItem[] = [
   {
     title: 'Sports Net Installation',
-    shortDesc: 'Professional safety nets for all sports',
+    shortDesc: 'Professional safety nets',
+    fullDesc: 'Engineered safety netting for training grounds, arenas, and sporting venues',
     imageUrl: sportsNetImg,
     imageAlt: 'Sports net on a court under stadium lights',
     icon: Target,
@@ -29,7 +31,8 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Football Turf Solutions',
-    shortDesc: 'FIFA-standard synthetic football fields',
+    shortDesc: 'FIFA-standard fields',
+    fullDesc: 'Premium synthetic football turfs designed for consistent play and durability',
     imageUrl: footballTurfImg,
     imageAlt: 'Football turf field under bright lights',
     icon: Trophy,
@@ -38,7 +41,8 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Landscape Grass',
-    shortDesc: 'Premium synthetic grass for landscaping',
+    shortDesc: 'Premium synthetic grass',
+    fullDesc: 'Beautiful and low-maintenance synthetic grass for landscaping and outdoor spaces',
     imageUrl: landscapeGrassImg,
     imageAlt: 'Lush green landscaped garden with synthetic grass',
     icon: Leaf,
@@ -47,7 +51,8 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Cricket Turf',
-    shortDesc: 'Professional cricket pitch construction',
+    shortDesc: 'Professional pitch construction',
+    fullDesc: 'Match-ready cricket pitches with precise specifications and durability',
     imageUrl: cricketTurfImg,
     imageAlt: 'Cricket pitch with stumps on synthetic turf',
     icon: Target,
@@ -56,7 +61,8 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Swimming Pools',
-    shortDesc: 'Complete pool design & construction',
+    shortDesc: 'Complete pool solutions',
+    fullDesc: 'Custom pool design, construction, and maintenance for all facility types',
     imageUrl: swimmingPoolImg,
     imageAlt: 'Modern swimming pool with clear blue water',
     icon: Waves,
@@ -65,7 +71,8 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Running Tracks',
-    shortDesc: 'Olympic-standard athletic tracks',
+    shortDesc: 'Olympic-standard tracks',
+    fullDesc: 'Professional athletic tracks engineered for performance and longevity',
     imageUrl: multisportTrackImg,
     imageAlt: 'Running track in a stadium at sunset',
     icon: Timer,
@@ -76,80 +83,89 @@ const services: ServiceItem[] = [
 
 export function ValueProps() {
   return (
-    <section className="relative overflow-visible">
-
+    <section className="relative overflow-visible py-4">
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header - Minimal */}
-        <div className="text-center mb-10">
+        {/* Header - Enhanced */}
+        <div className="text-center mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-5 py-2.5 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700">
+            <Sparkles className="h-4 w-4" /> What We Offer
+          </div>
           <h2 className="font-montreal text-4xl font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
-            Our{' '}
-            <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-              Services
+            Comprehensive{' '}
+            <span className="block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              Sports Services
             </span>
           </h2>
-          <p className="font-gotham mt-3 text-lg text-slate-600 max-w-2xl mx-auto">
-            Complete sports infrastructure solutions
+          <p className="font-gotham text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            From swimming pools to running tracks, we provide end-to-end solutions for every type of sports infrastructure
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid gap-5 md:gap-6 md:grid-cols-2 xl:grid-cols-3 pb-4">
+        {/* Services Grid - 3 Columns */}
+        <div className="grid gap-6 md:gap-7 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => {
             const Icon = service.icon;
 
             return (
               <Link
                 key={service.title}
-                to="/services"
-                className="group relative flex flex-col overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+                to="/"
+                className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg border border-slate-200 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-emerald-100"
               >
-                {/* Gradient Border Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl p-[2px]`}>
-                  <div className="h-full w-full rounded-3xl bg-white" />
-                </div>
+                {/* Image Section */}
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.imageAlt}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
 
-                <div className="relative z-10">
-                  {/* Image Section */}
-                  <div className="relative h-64 w-full overflow-hidden">
-                    <img
-                      src={service.imageUrl}
-                      alt={service.imageAlt}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
-                      loading="lazy"
-                    />
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                    {/* Icon Badge */}
-                    <div className="absolute top-4 right-4">
-                      <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.gradient} shadow-2xl backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
-                        <Icon className="h-7 w-7 text-white" />
-                      </div>
-                    </div>
-
-                    {/* Title Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="font-montreal text-2xl font-bold text-white drop-shadow-lg">
-                        {service.title}
-                      </h3>
-                      <p className="font-gotham mt-1 text-sm text-white/90">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* CTA Section */}
-                  <div className="p-6">
-                    <div className={`group/btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${service.gradient} px-6 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105`}>
-                      <span className="font-montreal">View More</span>
-                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                  {/* Icon Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.gradient} shadow-2xl backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6`}>
+                      <Icon className="h-7 w-7 text-white" />
                     </div>
                   </div>
                 </div>
 
-                {/* Decorative Glow Effect */}
-                <div className={`absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-500`} />
+                {/* Content Section */}
+                <div className="flex flex-1 flex-col p-6 space-y-4">
+                  <div className="space-y-2">
+                    <h3 className="font-montreal text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="font-gotham text-sm text-slate-600">
+                      {service.fullDesc}
+                    </p>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="flex items-center gap-2 text-sm font-montreal font-bold uppercase tracking-wider text-emerald-600 group-hover:text-emerald-700 transition-colors pt-2">
+                    <span>Explore Service</span>
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </div>
+                </div>
+
+                {/* Bottom Gradient Line */}
+                <div className={`h-1 w-0 bg-gradient-to-r ${service.gradient} transition-all duration-300 group-hover:w-full`} />
               </Link>
             );
           })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 text-center">
+          <Link
+            to="/"
+            className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-10 py-5 text-base font-montreal font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-100"
+          >
+            <span>View All Services</span>
+            <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </Link>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useState, useEffect } from 'react';
 import { ContactForm } from '@/components/ContactForm';
 import { useSearchParams } from 'react-router-dom';
+import contactImg from '@/assets/contact.jpg';
 
 export function ContactUs() {
   usePageTitle('Contact Us');
@@ -24,6 +25,14 @@ export function ContactUs() {
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Hero Banner */}
       <section className="relative w-full overflow-hidden bg-slate-900">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={contactImg} 
+            alt="Contact Us"
+            className="h-full w-full object-cover"
+          />
+        </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(52,211,153,0.12),transparent_30%)]" />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-950/75 to-black/70" />
         <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl flex-col justify-center px-4 py-16 text-white md:min-h-[400px] md:py-20 lg:min-h-[480px]">
