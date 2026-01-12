@@ -431,3 +431,40 @@
 .font-gotham {
   font-family: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 }
+
+/* Google Translate Styling */
+.google-translate-wrapper {
+  position: absolute !important;
+  left: -9999px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide Google Translate banner */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* Hide the default Google Translate dropdown but keep it functional */
+.goog-te-combo {
+  position: absolute !important;
+  left: -9999px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide Google Translate UI elements */
+.goog-te-gadget,
+.goog-te-gadget-simple {
+  display: none !important;
+}

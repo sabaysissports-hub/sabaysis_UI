@@ -1,28 +1,64 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TextType from '@/components/TextType';
+
+import heroMain from '@/assets/Hero/hero.jpg';
+import hero1 from '@/assets/Hero/hero (1).jpg';
+import hero2 from '@/assets/Hero/hero (2).jpg';
+import hero3 from '@/assets/Hero/hero (3).jpg';
+import hero4 from '@/assets/Hero/hero (4).jpg';
 
 const slides = [
   {
     id: 1,
-    title: 'FIFA-Standard Turf',
-    gradient: 'from-emerald-600/90 via-teal-600/80 to-cyan-600/70',
-    image: 'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=2000&q=80',
-    cta: 'Explore Products',
+    title: 'Swimming Pool Construction & Design',
+    image: hero1,
+    cta: 'Explore Swimming Pools',
+    link: '/services/swimming-pool-construction',
+    typingTexts: [
+      'Swimming Pool Construction & Design'
+    ],
   },
   {
     id: 2,
-    title: 'Sports Infrastructure',
-    gradient: 'from-blue-600/90 via-indigo-600/80 to-purple-600/70',
-    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=2000&q=80',
-    cta: 'View Services',
+    title: 'Professional Running Tracks & Athletics',
+    image: heroMain,
+    cta: 'View Running Tracks',
+    link: '/services/multisports-track-and-running-tracks',
+    typingTexts: [
+      'Professional Running Tracks & Athletics'
+    ],
   },
   {
     id: 3,
-    title: 'Premium Solutions',
-    gradient: 'from-orange-600/90 via-red-600/80 to-pink-600/70',
-    image: 'https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=2000&q=80',
-    cta: 'Get Started',
+    title: 'FIFA-Standard Football Turf & Courts',
+    image: hero2,
+    cta: 'Explore Football Turf',
+    link: '/services/football-court-futsal-court',
+    typingTexts: [
+      'FIFA-Standard Football Turf & Courts'
+    ],
+  },
+  {
+    id: 4,
+    title: 'Premium Running Tracks & Multi-Sport Facilities',
+    image: hero3,
+    cta: 'View Track Solutions',
+    link: '/services/multisports-track-and-running-tracks',
+    typingTexts: [
+      'Premium Running Tracks & Multi-Sport Facilities'
+    ],
+  },
+  {
+    id: 5,
+    title: 'Complete Sports &  Infrastructure Solutions',
+    image: hero4,
+    cta: 'Contact Us',
+    link: '/contact-us',
+    typingTexts: [
+      'Complete Sports &  Infrastructure Solutions'
+    ],
   },
 ];
 
@@ -30,6 +66,7 @@ export function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showThumbnails, setShowThumbnails] = useState(false);
+  const [showCTA, setShowCTA] = useState(false);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % slides.length);
@@ -43,39 +80,44 @@ export function HeroCarousel() {
 
   useEffect(() => {
     let startTime = Date.now();
-    const duration = 8000;
+    const duration = 15000; //15 seconds per slide
 
     setProgress(0);
+    setShowCTA(false);
     startTime = Date.now();
+
+    // Show CTA after ~1s so it feels natural
+    const ctaTimeout = setTimeout(() => {
+      setShowCTA(true);
+    }, 1000);
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const newProgress = Math.min((elapsed / duration) * 100, 100);
       setProgress(newProgress);
 
-      const showThumbnailStart = 1500;
-      const showThumbnailEnd = duration - 1500;
-      const shouldShow = elapsed < showThumbnailStart || elapsed > showThumbnailEnd;
+      // Show thumbnails only in first 2s and last 2s of the 15s cycle
+      const previewWindow = 1500;
+      const shouldShow =
+        elapsed < previewWindow || elapsed > duration - previewWindow;
       setShowThumbnails(shouldShow);
+    }, 100); // smooth enough, less CPU
 
-      if (elapsed >= duration) {
-        handleNext();
-        startTime = Date.now();
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(ctaTimeout);
+    };
   }, [activeIndex]);
 
   const currentSlide = slides[activeIndex];
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Background Slides with Gradient Overlays */}
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] pt-16 lg:pt-20">
+      {/* Background Slides - Clean images, no color gradients */}
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ease-in-out ${index === activeIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+          className={`absolute inset-0 h-full w-full transition-opacity duration-[2000ms] ease-in-out ${index === activeIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
             }`}
         >
           {/* Background Image */}
@@ -83,23 +125,20 @@ export function HeroCarousel() {
             <img
               src={slide.image}
               alt={slide.title}
-              className="h-full w-full object-cover transition-transform duration-[12000ms] ease-out"
+              className="h-full w-full object-cover transition-transform duration-[20000ms] ease-out"
               style={{
                 transform: index === activeIndex ? 'scale(1.05)' : 'scale(1.15)',
               }}
             />
           </div>
 
-          {/* Dynamic Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`} />
-
           {/* Additional Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-transparent" />
 
-          {/* Animated Gradient Orbs */}
-          <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-teal-500/20 blur-3xl animate-pulse delay-1000" />
+          {/* Soft Glow Orbs (no pulse to reduce GPU work) */}
+          <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-emerald-500/15 blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-teal-500/15 blur-3xl" />
         </div>
       ))}
 
@@ -107,83 +146,124 @@ export function HeroCarousel() {
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Main Title - Large and Bold */}
-            <h1 className="font-montreal mb-8 text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl drop-shadow-2xl">
-              <span className="block">
-                {currentSlide.title.split(' ').map((word, index, array) => {
-                  const isLastWord = index === array.length - 1;
-                  return (
-                    <span
-                      key={index}
-                      className={isLastWord
-                        ? 'bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent'
-                        : 'bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent'
-                      }
-                    >
-                      {word}
-                      {index < array.length - 1 && ' '}
-                    </span>
-                  );
-                })}
-              </span>
-            </h1>
+            {/* Main Title - Static before '&', typed after '&' for each slide */}
+            {(() => {
+              const parts = currentSlide.title.split('&');
+              const before = parts[0]?.trim() ?? '';
+              const after = parts[1]?.trim() ?? '';
 
-            {/* CTA Button - Prominent */}
-            <div className="flex justify-center gap-4">
+              return (
+                <h1 className="font-montreal mb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+                  <span className="block bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent">
+                    {before}
+                    {after && ' &'}
+                    {after && (
+                      <span className="ml-2 inline-block">
+                        <TextType
+                          key={currentSlide.id}
+                          text={[after]}
+                          typingSpeed={65}
+                          pauseDuration={1200}
+                          showCursor={true}
+                          cursorCharacter="|"
+                          loop={false}
+                          startOnVisible={false}
+                        />
+                      </span>
+                    )}
+                  </span>
+                </h1>
+              );
+            })()}
+
+            {/* CTA Button - Prominent with Text Reveal */}
+            <div className={`flex justify-center gap-4 transition-all duration-1000 ease-out ${showCTA
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+              }`}>
               <Link
-                to="/products"
+                to={currentSlide.link || '/products'}
                 className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-white/10 backdrop-blur-md border-2 border-white/30 px-10 py-5 text-base font-bold uppercase tracking-wider text-white shadow-2xl transition-all duration-300 hover:bg-white hover:text-slate-900 hover:scale-110 hover:border-white active:scale-105"
               >
-                <span className="relative z-10 font-montreal">{currentSlide.cta}</span>
-                <ArrowRight className="relative z-10 h-6 w-6 transition-transform duration-300 group-hover:translate-x-2" />
+                <span className="relative z-10 font-montreal overflow-hidden">
+                  <span className="inline-block transition-transform duration-700 ease-out" style={{
+                    transform: showCTA ? 'translateY(0)' : 'translateY(100%)',
+                    transitionDelay: showCTA ? '200ms' : '0ms'
+                  }}>
+                    {currentSlide.cta}
+                  </span>
+                </span>
+                <ArrowRight className={`relative z-10 h-6 w-6 transition-all duration-700 ease-out group-hover:translate-x-2 ${showCTA ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                  }`} style={{
+                    transitionDelay: showCTA ? '400ms' : '0ms'
+                  }} />
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Link>
 
-              <button className="group inline-flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border-2 border-white/30 p-5 text-white shadow-2xl transition-all duration-300 hover:bg-white hover:text-slate-900 hover:scale-110 hover:border-white active:scale-105">
+              <Link
+                to="/contact-us"
+                className={`group inline-flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border-2 border-white/30 p-5 text-white shadow-2xl transition-all duration-300 hover:bg-white hover:text-slate-900 hover:scale-110 hover:border-white active:scale-105 ${showCTA ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+                  }`}
+                style={{
+                  transitionDelay: showCTA ? '600ms' : '0ms'
+                }}
+              >
                 <Play className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Thumbnails - Right Side - More Visual */}
+      {/* Thumbnails - Right Side - Only Current & Next Image */}
       <div
         className={`absolute bottom-24 right-8 z-20 hidden items-end gap-4 transition-opacity duration-500 lg:flex ${showThumbnails ? 'opacity-100' : 'opacity-0'}`}
       >
-        {slides.map((slide, index) => (
-          <button
-            key={slide.id}
-            onClick={() => {
-              setActiveIndex(index);
-              setProgress(0);
-            }}
-            className={`group relative h-64 w-40 overflow-hidden rounded-xl border-2 transition-all duration-500 hover:w-52 ${activeIndex === index
-              ? 'border-white opacity-100 scale-100 ring-4 ring-emerald-400/50 shadow-2xl shadow-emerald-500/30'
-              : 'border-white/30 opacity-60 hover:opacity-100 hover:border-white/60'
-              }`}
-          >
-            <img
-              src={slide.image}
-              alt=""
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
-            />
-            <div className={`absolute inset-0 transition-all duration-300 ${activeIndex === index
-              ? `bg-gradient-to-t ${slide.gradient} opacity-40`
-              : 'bg-black/60 group-hover:bg-black/40'
-              }`} />
-            {activeIndex === index && (
-              <div className="absolute bottom-3 left-3 right-3">
-                <div className="h-1.5 w-full rounded-full bg-white/40 overflow-hidden backdrop-blur-sm">
-                  <div
-                    className="h-full bg-white transition-all duration-75 ease-linear rounded-full"
-                    style={{ width: `${progress}%` }}
-                  />
+        {(() => {
+          // Show only current slide and next slide
+          const currentSlideIndex = activeIndex;
+          const nextSlideIndex = (activeIndex + 1) % slides.length;
+          const visibleSlides = [
+            { slide: slides[currentSlideIndex], index: currentSlideIndex },
+            { slide: slides[nextSlideIndex], index: nextSlideIndex }
+          ];
+
+          return visibleSlides.map(({ slide, index }) => (
+            <button
+              key={slide.id}
+              onClick={() => {
+                setActiveIndex(index);
+                setProgress(0);
+              }}
+              className={`group relative h-40 w-28 overflow-hidden rounded-xl border-2 transition-all duration-500 hover:w-36 ${activeIndex === index
+                ? 'border-white opacity-100 scale-100 ring-4 ring-emerald-400/50 shadow-2xl shadow-emerald-500/30'
+                : 'border-white/30 opacity-60 hover:opacity-100 hover:border-white/60'
+                }`}
+            >
+              <img
+                src={slide.image}
+                alt=""
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
+              />
+              <div
+                className={`absolute inset-0 transition-all duration-300 ${activeIndex === index
+                  ? 'bg-black/50'
+                  : 'bg-black/60 group-hover:bg-black/40'
+                  }`}
+              />
+              {activeIndex === index && (
+                <div className="absolute bottom-3 left-3 right-3">
+                  <div className="h-1.5 w-full rounded-full bg-white/40 overflow-hidden backdrop-blur-sm">
+                    <div
+                      className="h-full bg-white transition-all duration-75 ease-linear rounded-full"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-          </button>
-        ))}
+              )}
+            </button>
+          ));
+        })()}
       </div>
 
       {/* Navigation Controls - Bottom Right - Enhanced */}

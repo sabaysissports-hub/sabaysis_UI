@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Send, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import ajarLogo from "../../assets/ajarlogo.png";
@@ -61,6 +61,7 @@ const initialNavItems: NavItem[] = [
 ];
 
 export function NavBar() {
+  const location = useLocation();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [navItems, setNavItems] = useState<NavItem[]>(initialNavItems);
@@ -179,8 +180,19 @@ export function NavBar() {
     }, 120);
   };
 
+  const currentPath = location.pathname;
+
+  const isLinkActive = (href: string) => {
+    if (href === "/") return currentPath === "/";
+    return currentPath.startsWith(href);
+  };
+
+  const isDropdownActive = (item: Extract<NavItem, { basePath: string }>) => {
+    return currentPath.startsWith(item.basePath);
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-xl shadow-sm dark:border-slate-800 dark:bg-slate-900/80 font-[var(--font-gotham)]">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-sm font-[var(--font-gotham)] dark:border-slate-800 dark:bg-slate-950/95">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:h-20 lg:px-8">
         <Link to="/" className="flex items-center gap-2 ml-3 lg:ml-5">
           <img
@@ -207,7 +219,13 @@ export function NavBar() {
                   onMouseLeave={handleMouseLeave}
                 >
                   <DropdownMenuTrigger asChild>
-                    <button className="group inline-flex items-center gap-2 px-5 py-3 font-[var(--font-montreal)] text-[13px] font-semibold uppercase tracking-wide text-slate-800 transition-all duration-200 hover:text-emerald-600 hover:bg-emerald-50/50 rounded-lg min-h-11 dark:text-slate-200 dark:hover:text-emerald-400 dark:hover:bg-emerald-950/30">
+                    <button
+                      className={`group inline-flex items-center gap-2 px-5 py-3 font-[var(--font-montreal)] text-[13px] font-semibold uppercase tracking-wide rounded-lg min-h-11 transition-all duration-200
+                        ${isDropdownActive(item)
+                          ? "bg-emerald-600 text-white shadow-md dark:bg-emerald-500 dark:text-white"
+                          : "text-slate-800 hover:bg-emerald-600 hover:text-white dark:text-slate-200 dark:hover:bg-emerald-600 dark:hover:text-white"
+                        }`}
+                    >
                       {item.label}
                       <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                     </button>
@@ -250,7 +268,7 @@ export function NavBar() {
                               )}`
                               : `${item.basePath}/${subItem.slug}`
                           }
-                          className="group rounded-xl border border-slate-100 p-4 transition-all duration-200 hover:border-emerald-200 hover:bg-emerald-50/50 hover:shadow-md min-h-[80px] flex flex-col justify-start dark:border-slate-800 dark:hover:border-emerald-800 dark:hover:bg-emerald-950/40"
+                          className="group rounded-xl border border-slate-100 p-4 transition-all duration-200 hover:border-emerald-200 hover:bg-emerald-50 hover:shadow-md min-h-[80px] flex flex-col justify-start dark:border-slate-800 dark:hover:border-emerald-800 dark:hover:bg-emerald-950/40"
                         >
                           <p className="font-[var(--font-montreal)] text-sm font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300 mb-1.5">
                             {subItem.title}
@@ -268,7 +286,10 @@ export function NavBar() {
               <Link
                 key={item.label}
                 to={item.href}
-                className="px-5 py-3 font-[var(--font-montreal)] text-[13px] font-semibold uppercase tracking-wide text-slate-800 transition-all duration-200 hover:text-emerald-600 hover:bg-emerald-50/50 rounded-lg min-h-11 inline-flex items-center dark:text-slate-200 dark:hover:text-emerald-400 dark:hover:bg-emerald-950/30"
+                className={`px-5 py-3 font-[var(--font-montreal)] text-[13px] font-semibold uppercase tracking-wide rounded-lg min-h-11 inline-flex items-center transition-all duration-200 ${isLinkActive(item.href)
+                  ? "bg-emerald-600 text-white shadow-md dark:bg-emerald-500 dark:text-white"
+                  : "text-slate-800 hover:bg-emerald-600 hover:text-white dark:text-slate-200 dark:hover:bg-emerald-600 dark:hover:text-white"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -311,7 +332,7 @@ export function NavBar() {
                     value={item.label}
                     className="border-0"
                   >
-                    <AccordionTrigger className="rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 hover:no-underline">
+                    <AccordionTrigger className="rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-emerald-600 hover:text-white hover:no-underline dark:text-slate-100 dark:hover:bg-emerald-600">
                       {item.label}
                     </AccordionTrigger>
                     <AccordionContent className="pb-2">
@@ -328,7 +349,7 @@ export function NavBar() {
                                 : `${item.basePath}/${sub.slug}`
                             }
                             onClick={() => setIsMobileOpen(false)}
-                            className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white min-h-11 items-center dark:text-slate-100 dark:hover:bg-slate-800"
+                            className="flex rounded-lg px-4 py-3.5 text-sm font-semibold text-slate-900 hover:bg-emerald-600 hover:text-white min-h-11 items-center dark:text-slate-100 dark:hover:bg-emerald-600"
                           >
                             {sub.title}
                           </Link>
@@ -341,7 +362,7 @@ export function NavBar() {
                     key={item.label}
                     to={item.href}
                     onClick={() => setIsMobileOpen(false)}
-                    className="flex rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-slate-50 min-h-11 items-center dark:text-slate-100 dark:hover:bg-slate-800"
+                    className="flex rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 hover:bg-emerald-600 hover:text-white min-h-11 items-center dark:text-slate-100 dark:hover:bg-emerald-600"
                   >
                     {item.label}
                   </Link>
