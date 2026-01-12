@@ -145,8 +145,8 @@ export function HeroCarousel() {
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Main Title - Bold and Prominent with Orbitron Font */}
-            <h1 className="orbitron text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+            {/* Main Title - Bold and Prominent with  Font */}
+            <h1 className="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
               <span className="block bg-gradient-to-r from-white via-emerald-50 to-teal-50 bg-clip-text text-transparent">
                 {currentSlide.title.split('&').map((part, index, array) => (
                   <span key={index}>

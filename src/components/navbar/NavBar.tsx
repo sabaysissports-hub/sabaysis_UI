@@ -182,7 +182,7 @@ export function NavBar() {
           <img
             src={ajarLogo || "/placeholder.svg"}
             alt="Sabaysis Sports & Infrastructure"
-            className="h-12 w-40 object-contain sm:h-16 sm:w-72 lg:h-16 lg:w-80 transition-all duration-300 group-hover:scale-105"
+            className="h-12 w-40 object-contain sm:h-14 sm:w-56 md:h-14 md:w-60 lg:h-14 lg:w-64 transition-all duration-300 group-hover:scale-105"
             style={{
               filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.08))",
             }}
