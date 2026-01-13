@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '@/hooks/usePageTitle';
-import { Sparkles, ShieldCheck, Leaf, Users, ArrowRight, Target, Award, TrendingUp, Heart } from 'lucide-react';
+import { Sparkles, ShieldCheck, Leaf, Users, ArrowRight, Target, Award, Heart } from 'lucide-react';
 
 export function About() {
   usePageTitle('About');
