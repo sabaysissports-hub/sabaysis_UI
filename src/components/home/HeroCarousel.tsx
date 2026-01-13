@@ -125,6 +125,7 @@ export function HeroCarousel() {
               src={slide.image}
               alt={slide.title}
               className="h-full w-full object-cover transition-transform duration-[20000ms] ease-out"
+              loading={index === 0 ? 'eager' : 'lazy'}
               style={{
                 transform: index === activeIndex ? 'scale(1.05)' : 'scale(1.15)',
               }}
@@ -162,7 +163,7 @@ export function HeroCarousel() {
             </h1>
 
             {/* CTA Button - Prominent with Text Reveal */}
-            <div className={`flex justify-center gap-4 transition-all duration-1000 ease-out ${showCTA
+            <div className={`flex justify-center gap-4 mt-8 md:mt-10 transition-all duration-1000 ease-out ${showCTA
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
               }`}>
@@ -229,6 +230,7 @@ export function HeroCarousel() {
                 src={slide.image}
                 alt=""
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
+                loading="lazy"
               />
               <div
                 className={`absolute inset-0 transition-all duration-300 ${activeIndex === index
