@@ -1,4 +1,4 @@
-import { ArrowUpRight, Target, Leaf, Trophy, Waves, Timer, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import footballTurfImg from '@/assets/HomeImages/steptodown.com652452.jpg';
