@@ -1,66 +1,89 @@
 import { Link, useParams } from 'react-router-dom';
-import { API_ENDPOINTS } from '@/config/api';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useEffect, useState } from 'react';
-import { CheckCircle2, Sparkles, PhoneCall, ArrowRight, Zap, Shield, Award, TrendingUp } from 'lucide-react';
+import { Sparkles, PhoneCall, ArrowRight, TrendingUp, Loader2 } from 'lucide-react';
+import type { ServiceTemplateData, ServiceBasic } from '@/types/service';
+import { ServiceTemplate } from '@/components/services/ServiceTemplate';
 
-type ServiceItem = { slug: string; title: string; body: string };
-type ServiceDetailData = {
-  slug: string;
-  bannerTitle: string;
-  bannerImage?: string;
-  welcomeText: string;
-  servicesTitle: string;
-  servicesDescription: string;
-  features: { title: string; description: string }[];
-  whyChooseTitle: string;
-  whyChooseItems: { title: string; description: string }[];
-  whyChooseOurTitle?: string;
-  whyChooseOurItems?: { title: string; description: string }[];
-  typesTitle?: string;
-  typesItems?: { title: string; description: string }[];
-  companyWhyTitle?: string;
-  companyWhyItems?: { title: string; description: string }[];
+import { footballCourtData } from '@/data/services/football';
+import { cricketData } from '@/data/services/box-cricket';
+import { pickleballData } from '@/data/services/pickleball-court';
+import { swimmingPoolData } from '@/data/services/swimming-pool';
+import { runningTracksData } from '@/data/services/multisport-running-tracks';
+import { padelData } from '@/data/services/padel-court';
+import { badmintonData } from '@/data/services/badminton-court';
+import { basketballData } from '@/data/services/basketball-court';
+import { tennisData } from '@/data/services/tennis-court';
+import { volleyballData } from '@/data/services/volleyball-court';
+
+const staticServiceData: Record<string, ServiceTemplateData> = {
+  'football-court': footballCourtData,
+  'box-cricket': cricketData,
+  'pickleball-court': pickleballData,
+  'swimming-pool': swimmingPoolData,
+  'multisport-running-tracks': runningTracksData,
+  'padel-courts': padelData,
+  'badminton-court': badmintonData,
+  'basketball-court': basketballData,
+  'tennis-court': tennisData,
+  'volleyball-court': volleyballData,
 };
 
 export function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const [service, setService] = useState<ServiceItem | undefined>(undefined);
-  const [serviceDetail, setServiceDetail] = useState<ServiceDetailData | undefined>(undefined);
+  const [service, setService] = useState<ServiceBasic | null>(null);
+  const [templateData, setTemplateData] = useState<ServiceTemplateData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      if (!slug) { setLoading(false); return; }
-      try {
-        const [srvRes, detRes] = await Promise.all([
-          fetch(`${API_ENDPOINTS.SERVICES}/${slug}`),
-          fetch(`${API_ENDPOINTS.SERVICES}/${slug}/detail`),
-        ]);
-        setService(srvRes.ok ? await srvRes.json() : undefined);
-        setServiceDetail(detRes.ok ? await detRes.json() : undefined);
-      } catch (e) {
-        console.error('Failed to fetch service', e);
-        setService(undefined);
-        setServiceDetail(undefined);
-      } finally {
-        setLoading(false);
-      }
+    setLoading(true);
+    
+    if (!slug) {
+      setService(null);
+      setTemplateData(null);
+      setLoading(false);
+      return;
     }
-    fetchData();
+
+    const staticData = staticServiceData[slug];
+    
+    if (staticData) {
+      setTemplateData(staticData);
+      setService({
+        slug: staticData.slug,
+        title: staticData.hero.title,
+        body: staticData.hero.description
+      });
+    } else {
+      setService(null);
+      setTemplateData(null);
+    }
+
+    setLoading(false);
   }, [slug]);
 
-  usePageTitle(service ? `${service.title} Service` : 'Service not found');
+  usePageTitle(
+    loading 
+      ? 'Loading...' 
+      : service 
+        ? `${service.title} - Sabaysis Sports & Infrastructure` 
+        : 'Service Not Found'
+  );
 
+  // Loading State
   if (loading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50/30 to-blue-50/20">
+        <div className="text-center">
+          <Loader2 className="inline-block h-12 w-12 animate-spin text-emerald-600" />
+          <p className="mt-4 text-sm font-gotham text-slate-600">Loading service details...</p>
+        </div>
       </div>
     );
   }
 
-  if (!service) {
+  // Service Not Found
+  if (!slug || !service) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50/30 to-blue-50/20">
         <div className="w-full max-w-xl rounded-3xl border border-emerald-200 bg-gradient-to-br from-white to-emerald-50/40 p-8 text-center shadow-md">
@@ -96,254 +119,12 @@ export function ServiceDetail() {
     );
   }
 
-  if (serviceDetail) {
-    return (
-      <div className="min-h-screen bg-slate-50 text-slate-900">
-        {/* Top Banner */}
-        <section className="relative w-full overflow-hidden bg-slate-900">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(52,211,153,0.12),transparent_30%)]" />
-          {serviceDetail.bannerImage && (
-            <div
-              className="absolute inset-0 h-full w-full bg-cover bg-center"
-              style={{
-                backgroundImage: `url('${serviceDetail.bannerImage}')`,
-              }}
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-950/75 to-black/70" />
-          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl flex-col justify-center px-4 py-16 text-white md:min-h-[400px] md:py-20 lg:min-h-[480px]">
-            <div className="flex flex-wrap items-center gap-2 text-xs text-white/60 mb-6">
-              <Link to="/" className="hover:text-white transition-colors font-gotham">Home</Link>
-              <span>/</span>
-              <Link to="/#services" className="hover:text-white transition-colors font-gotham">Services</Link>
-              <span>/</span>
-              <span className="text-white font-montreal font-semibold">{service.title}</span>
-            </div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-[11px] font-montreal font-bold uppercase tracking-[0.35em] text-emerald-300 backdrop-blur w-fit">
-              <Sparkles className="h-4 w-4" /> SABAYSIS SPORTS &amp; INFRA
-            </p>
-            <h1 className="mt-6 text-4xl font-montreal font-bold tracking-tight md:text-5xl lg:text-6xl">
-              {serviceDetail.bannerTitle}
-            </h1>
-          </div>
-        </section>
-
-        <main className="mx-auto flex max-w-7xl flex-col gap-12 px-4 md:px-6 py-12 md:py-16">
-          {serviceDetail.welcomeText && (
-            <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-50 via-white to-blue-50 border border-emerald-200/50 p-8 md:p-12 text-center">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-300/20 to-transparent rounded-full blur-3xl -z-0" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-300/10 to-transparent rounded-full blur-3xl -z-0" />
-              <div className="relative z-10 max-w-3xl mx-auto">
-                <p className="text-base font-gotham leading-relaxed text-slate-700 md:text-lg">
-                  {serviceDetail.welcomeText}
-                </p>
-              </div>
-            </section>
-          )}
-
-          {serviceDetail.whyChooseOurTitle && serviceDetail.whyChooseOurItems && serviceDetail.whyChooseOurItems.length > 0 && (
-            <section className="space-y-8">
-              <div className="text-center space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-blue-700">
-                  <Zap className="h-4 w-4" /> Why Choose Us
-                </div>
-                <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
-                  {serviceDetail.whyChooseOurTitle}
-                </h2>
-              </div>
-              <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {serviceDetail.whyChooseOurItems.map((item, index) => {
-                  const colorSchemes = [
-                    { bg: 'from-emerald-50 to-teal-50', border: 'border-emerald-200', icon: 'from-emerald-500 to-teal-600', hover: 'hover:border-emerald-500/50' },
-                    { bg: 'from-blue-50 to-cyan-50', border: 'border-blue-200', icon: 'from-blue-500 to-cyan-600', hover: 'hover:border-blue-500/50' },
-                    { bg: 'from-orange-50 to-amber-50', border: 'border-orange-200', icon: 'from-orange-500 to-amber-600', hover: 'hover:border-orange-500/50' },
-                  ];
-                  const scheme = colorSchemes[index % colorSchemes.length];
-                  return (
-                    <div
-                      key={index}
-                      className={`group relative overflow-hidden rounded-2xl border ${scheme.border} bg-gradient-to-br ${scheme.bg} p-8 transition-all hover:-translate-y-1 ${scheme.hover} hover:shadow-lg`}
-                    >
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-white/40 rounded-full blur-2xl -z-0" />
-                      <div className="relative z-10 flex flex-col items-start gap-4">
-                        <span className={`rounded-full bg-gradient-to-br ${scheme.icon} p-3 text-white shadow-lg`}>
-                          <CheckCircle2 className="h-6 w-6" />
-                        </span>
-                        <div>
-                          <h3 className="text-lg font-montreal font-bold text-slate-900 mb-2">{item.title}</h3>
-                          <p className="text-sm font-gotham leading-relaxed text-slate-600 line-clamp-3">{item.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {serviceDetail.features && serviceDetail.features.length > 0 && (
-            <section className="space-y-8">
-              {serviceDetail.servicesTitle && (
-                <div className="text-center space-y-3">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-emerald-700">
-                    <Sparkles className="h-4 w-4" /> Features
-                  </div>
-                  <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl mb-3">
-                    {serviceDetail.servicesTitle}
-                  </h2>
-                  {serviceDetail.servicesDescription && (
-                    <p className="text-sm font-gotham text-slate-600 max-w-2xl mx-auto">
-                      {serviceDetail.servicesDescription}
-                    </p>
-                  )}
-                </div>
-              )}
-              <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {serviceDetail.features.map((feature, index) => {
-                  const colorSchemes = [
-                    { bg: 'from-emerald-50 to-teal-50', border: 'border-emerald-200', icon: 'from-emerald-500 to-teal-600', hover: 'hover:border-emerald-500/50' },
-                    { bg: 'from-blue-50 to-cyan-50', border: 'border-blue-200', icon: 'from-blue-500 to-cyan-600', hover: 'hover:border-blue-500/50' },
-                    { bg: 'from-orange-50 to-amber-50', border: 'border-orange-200', icon: 'from-orange-500 to-amber-600', hover: 'hover:border-orange-500/50' },
-                  ];
-                  const scheme = colorSchemes[index % colorSchemes.length];
-                  return (
-                    <article
-                      key={index}
-                      className={`group relative overflow-hidden rounded-2xl border ${scheme.border} bg-gradient-to-br ${scheme.bg} p-8 transition-all hover:-translate-y-1 ${scheme.hover} hover:shadow-lg`}
-                    >
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-white/40 rounded-full blur-2xl -z-0" />
-                      <div className="relative z-10 flex flex-col items-start gap-4">
-                        <span className={`rounded-full bg-gradient-to-br ${scheme.icon} p-3 text-white shadow-lg`}>
-                          <Sparkles className="h-6 w-6" />
-                        </span>
-                        <div>
-                          <h3 className="text-lg font-montreal font-bold text-slate-900 mb-2">{feature.title}</h3>
-                          <p className="text-sm font-gotham leading-relaxed text-slate-600 line-clamp-3">{feature.description}</p>
-                        </div>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {serviceDetail.typesTitle && serviceDetail.typesItems && serviceDetail.typesItems.length > 0 && (
-            <section className="space-y-8">
-              <div className="text-center space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-orange-700">
-                  <Award className="h-4 w-4" /> Types
-                </div>
-                <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
-                  {serviceDetail.typesTitle}
-                </h2>
-              </div>
-              <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {serviceDetail.typesItems.map((type, index) => {
-                  const colorSchemes = [
-                    { bg: 'from-emerald-50 to-teal-50', border: 'border-emerald-200', icon: 'from-emerald-500 to-teal-600', hover: 'hover:border-emerald-500/50' },
-                    { bg: 'from-blue-50 to-cyan-50', border: 'border-blue-200', icon: 'from-blue-500 to-cyan-600', hover: 'hover:border-blue-500/50' },
-                    { bg: 'from-orange-50 to-amber-50', border: 'border-orange-200', icon: 'from-orange-500 to-amber-600', hover: 'hover:border-orange-500/50' },
-                  ];
-                  const scheme = colorSchemes[index % colorSchemes.length];
-                  return (
-                    <article
-                      key={index}
-                      className={`group relative overflow-hidden rounded-2xl border ${scheme.border} bg-gradient-to-br ${scheme.bg} p-8 transition-all hover:-translate-y-1 ${scheme.hover} hover:shadow-lg`}
-                    >
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-white/40 rounded-full blur-2xl -z-0" />
-                      <div className="relative z-10 flex flex-col items-start gap-4">
-                        <span className={`rounded-full bg-gradient-to-br ${scheme.icon} p-3 text-white shadow-lg`}>
-                          <CheckCircle2 className="h-6 w-6" />
-                        </span>
-                        <div>
-                          <h3 className="text-lg font-montreal font-bold text-slate-900 mb-2">{type.title}</h3>
-                          <p className="text-sm font-gotham leading-relaxed text-slate-600 line-clamp-3">{type.description}</p>
-                        </div>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {(serviceDetail.companyWhyTitle || serviceDetail.whyChooseTitle) && (serviceDetail.companyWhyItems || serviceDetail.whyChooseItems) && (
-            <section className="grid gap-8 md:grid-cols-[2fr,1fr] md:items-start">
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-100 to-blue-100 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-teal-700">
-                    <Shield className="h-4 w-4" /> Benefits
-                  </div>
-                  <h2 className="text-3xl font-montreal font-bold tracking-tight text-slate-900 md:text-4xl">
-                    {serviceDetail.companyWhyTitle || serviceDetail.whyChooseTitle}
-                  </h2>
-                </div>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {(serviceDetail.companyWhyItems || serviceDetail.whyChooseItems).map((item, index) => {
-                    const colorSchemes = [
-                      { bg: 'from-emerald-50 to-teal-50', border: 'border-emerald-200', icon: 'from-emerald-500 to-teal-600', hover: 'hover:border-emerald-500/50' },
-                      { bg: 'from-blue-50 to-cyan-50', border: 'border-blue-200', icon: 'from-blue-500 to-cyan-600', hover: 'hover:border-blue-500/50' },
-                      { bg: 'from-orange-50 to-amber-50', border: 'border-orange-200', icon: 'from-orange-500 to-amber-600', hover: 'hover:border-orange-500/50' },
-                    ];
-                    const scheme = colorSchemes[index % colorSchemes.length];
-                    return (
-                      <div
-                        key={index}
-                        className={`flex gap-4 rounded-xl border ${scheme.border} bg-gradient-to-br ${scheme.bg} p-5 transition-all hover:-translate-y-0.5 ${scheme.hover} hover:shadow-md`}
-                      >
-                        <span className={`rounded-full bg-gradient-to-br ${scheme.icon} p-2 text-white flex-shrink-0`}>
-                          <CheckCircle2 className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <h3 className="text-base font-montreal font-bold text-slate-900 mb-1">{item.title}</h3>
-                          <p className="text-sm font-gotham leading-relaxed text-slate-600 line-clamp-2">{item.description}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <aside className="relative overflow-hidden rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-50 via-white to-teal-50/40 p-8 shadow-lg">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-300/20 rounded-full blur-3xl -z-0" />
-                <div className="relative z-10 space-y-6">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-200 to-teal-200 px-3 py-1.5 text-[11px] font-montreal font-bold uppercase tracking-[0.25em] text-emerald-800">
-                    <Sparkles className="h-3.5 w-3.5" /> Get Started
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-montreal font-bold text-slate-900 mb-2">Ready to Get Started?</h3>
-                    <p className="text-sm font-gotham leading-relaxed text-slate-700">
-                      Build your <span className="font-montreal font-bold text-emerald-700">{service.title}</span> facility with Sabaysis today.
-                    </p>
-                  </div>
-                  <div className="space-y-4 pt-4 border-t border-emerald-200/50">
-                    <div className="flex items-start gap-3">
-                      <span className="rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 p-2.5 text-white flex-shrink-0">
-                        <PhoneCall className="h-5 w-5" />
-                      </span>
-                      <div>
-                        <p className="text-sm font-montreal font-bold text-slate-900">Contact Us</p>
-                        <p className="text-xs font-gotham text-slate-600 mt-1">+91 98970 53591</p>
-                      </div>
-                    </div>
-                    <Link
-                      to="/contact-us"
-                      className="inline-flex items-center justify-center gap-2 w-full rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3 text-xs font-montreal font-bold uppercase tracking-[0.3em] text-white transition hover:from-emerald-700 hover:to-teal-700 shadow-lg hover:shadow-xl"
-                    >
-                      Enquire Now
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </aside>
-            </section>
-          )}
-        </main>
-      </div>
-    );
+  // Template Data Available
+  if (templateData) {
+    return <ServiceTemplate data={templateData} />;
   }
 
+  // Fallback: Basic Service Display
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Hero Banner */}
@@ -445,4 +226,3 @@ export function ServiceDetail() {
     </div>
   );
 }
-

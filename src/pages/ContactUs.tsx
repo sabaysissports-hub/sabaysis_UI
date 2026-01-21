@@ -9,7 +9,7 @@ export function ContactUs() {
   usePageTitle('Contact Us');
   const [mapError, setMapError] = useState(false);
   const [searchParams] = useSearchParams();
-  const productName = searchParams.get('product') || '';
+  const productName = searchParams.get('product') || searchParams.get('service') || '';
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -51,7 +51,7 @@ const initialNavItems: NavItem[] = [
     items: [],
   },
   { label: "Maintenance", href: "/maintenance" },
-  { label: "Contact", href: "/contact-us" },
+  { label: "Contact Us", href: "/contact-us" },
 ]
 
 export function NavBar() {
@@ -63,25 +63,11 @@ export function NavBar() {
 
   useEffect(() => {
     if (activeMenu) {
-      const scrollY = window.scrollY
-      document.body.style.position = "fixed"
-      document.body.style.top = `-${scrollY}px`
-      document.body.style.width = "100%"
       document.body.style.overflow = "hidden"
     } else {
-      const scrollY = document.body.style.top
-      document.body.style.position = ""
-      document.body.style.top = ""
-      document.body.style.width = ""
       document.body.style.overflow = ""
-      if (scrollY) {
-        window.scrollTo(0, Number.parseInt(scrollY || "0") * -1)
-      }
     }
     return () => {
-      document.body.style.position = ""
-      document.body.style.top = ""
-      document.body.style.width = ""
       document.body.style.overflow = ""
     }
   }, [activeMenu])
@@ -188,7 +174,6 @@ export function NavBar() {
           />
         </Link>
 
-        {/* Desktop Navigation - Improved spacing and visual hierarchy */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2 flex-1 justify-center px-6">
           {navItems.map((item) =>
             "items" in item ? (
@@ -276,7 +261,6 @@ export function NavBar() {
           )}
         </nav>
 
-        {/* Right Side Actions - Refined button and action styling */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <GoogleTranslateSelector />
           <Link
@@ -288,7 +272,6 @@ export function NavBar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200/80 bg-white hover:bg-slate-50 lg:hidden shrink-0 transition-colors duration-200 dark:border-slate-800/80 dark:bg-slate-900 dark:hover:bg-slate-800 dark:text-white"
           onClick={() => setIsMobileOpen((p) => !p)}
@@ -298,7 +281,6 @@ export function NavBar() {
         </button>
       </div>
 
-      {/* Mobile Menu - Improved mobile menu styling with better visual separation */}
       {isMobileOpen && (
         <div className="border-t border-emerald-200/40 bg-gradient-to-b from-white to-emerald-50/30 lg:hidden dark:border-emerald-900/40 dark:bg-gradient-to-b dark:from-slate-950 dark:to-slate-900/95 font-[var(--font-gotham)]">
           <nav className="p-5 space-y-2">

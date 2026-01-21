@@ -4,13 +4,45 @@ import { Link } from 'react-router-dom';
 
 import heroMain from '@/assets/Hero/hero.jpg';
 import hero1 from '@/assets/Hero/hero (1).jpg';
-import hero2 from '@/assets/Hero/hero (2).jpg';
 import hero3 from '@/assets/Hero/hero (3).jpg';
 import hero4 from '@/assets/Hero/hero (4).jpg';
+import cricketImg from '@/assets/HomeImages/cricket.jpg';
+import padelImg from '@/assets/pedel/padelHero.jpg';
+import pickleballImg from '@/assets/Hero/Pickleball.jpg';
 
 const slides = [
   {
     id: 1,
+    title: 'Professional Cricket Box & Turf Solutions',
+    image: cricketImg,
+    cta: 'Explore Cricket Facilities',
+    link: '/products/cricket-turf',
+    typingTexts: [
+      'Professional Cricket Box & Turf Solutions'
+    ],
+  },
+  {
+    id: 2,
+    title: 'Premium Pickleball Courts & Facilities',
+    image: pickleballImg,
+    cta: 'View Pickleball Courts',
+    link: '/products',
+    typingTexts: [
+      'Premium Pickleball Courts & Facilities'
+    ],
+  },
+  {
+    id: 3,
+    title: 'World-Class Padel Court Construction',
+    image: padelImg,
+    cta: 'Explore Padel Courts',
+    link: '/padel-courts',
+    typingTexts: [
+      'World-Class Padel Court Construction'
+    ],
+  },
+  {
+    id: 4,
     title: 'Swimming Pool Construction & Design',
     image: hero1,
     cta: 'Explore Swimming Pools',
@@ -20,7 +52,7 @@ const slides = [
     ],
   },
   {
-    id: 2,
+    id: 5,
     title: 'Professional Running Tracks & Athletics',
     image: heroMain,
     cta: 'View Running Tracks',
@@ -30,9 +62,9 @@ const slides = [
     ],
   },
   {
-    id: 3,
+    id: 6,
     title: 'FIFA-Standard Football Turf & Courts',
-    image: hero2,
+    image: hero3,
     cta: 'Explore Football Turf',
     link: '/services/football-court',
     typingTexts: [
@@ -40,23 +72,13 @@ const slides = [
     ],
   },
   {
-    id: 4,
-    title: 'Premium Running Tracks & Multi-Sport Facilities',
-    image: hero3,
-    cta: 'View Track Solutions',
-    link: '/services/multisport-running-tracks',
-    typingTexts: [
-      'Premium Running Tracks & Multi-Sport Facilities'
-    ],
-  },
-  {
-    id: 5,
-    title: 'Complete Sports &  Infrastructure Solutions',
+    id: 7,
+    title: 'Complete Sports & Infrastructure Solutions',
     image: hero4,
     cta: 'Contact Us',
     link: '/contact-us',
     typingTexts: [
-      'Complete Sports &  Infrastructure Solutions'
+      'Complete Sports & Infrastructure Solutions'
     ],
   },
 ];
@@ -79,7 +101,7 @@ export function HeroCarousel() {
 
   useEffect(() => {
     let startTime = Date.now();
-    const duration = 15000; //15 seconds per slide
+    const duration = 7000; //7 seconds per slide
 
     setProgress(0);
     setShowCTA(false);

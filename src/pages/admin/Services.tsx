@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { API_ENDPOINTS } from '@/config/api';
+import type { ServiceTemplateData } from '@/types/service';
 
 type Service = {
   slug: string;
@@ -23,10 +24,11 @@ export default function Services() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const [activeTab, setActiveTab] = useState<'meta' | 'detail'>('meta');
+  const [activeTab, setActiveTab] = useState<'meta' | 'detail' | 'template'>('meta');
 
   const [serviceForm, setServiceForm] = useState<Partial<Service>>({});
   const [detailForm, setDetailForm] = useState<ServiceDetailForm>({});
+  const [templateForm, setTemplateForm] = useState<Partial<ServiceTemplateData>>({});
   const [bannerFile, setBannerFile] = useState<File | null>(null);
 
 
@@ -257,16 +259,16 @@ export default function Services() {
         </div>
 
         <div className="flex border-b mb-6">
-          {['meta', 'detail'].map((t) => (
+          {['meta', 'detail', 'template'].map((t) => (
             <button
               key={t}
-              onClick={() => setActiveTab(t === 'meta' ? 'meta' : 'detail')}
+              onClick={() => setActiveTab(t as 'meta' | 'detail' | 'template')}
               className={`px-4 py-2 text-sm font-medium ${activeTab === t
                 ? 'border-b-2 border-slate-900'
                 : 'text-slate-500'
                 }`}
             >
-              {t === 'meta' ? 'Basic Info' : 'Detail'}
+              {t === 'meta' ? 'Basic Info' : t === 'detail' ? 'Detail' : 'Template'}
             </button>
           ))}
         </div>
@@ -398,6 +400,77 @@ export default function Services() {
                 <p className="text-sm text-slate-600 mt-2 line-clamp-2">
                   {detailForm.welcomeText || 'Welcome text preview...'}
                 </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'template' && (
+          <div className="space-y-6">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <p className="text-sm text-blue-800">
+                <strong>Template Layout:</strong> Use this to create a Padel Courts-style service page with hero, about, models, and technical sections.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg border-b pb-2">Hero Section</h3>
+              
+              <div>
+                <label className="text-sm font-medium">Hero Title</label>
+                <input
+                  className="mt-1 w-full rounded border px-3 py-2"
+                  placeholder="e.g., Sabaysis Padel"
+                  value={templateForm.hero?.title || ''}
+                  onChange={(e) =>
+                    setTemplateForm((f) => ({
+                      ...f,
+                      hero: { ...f.hero, title: e.target.value } as any
+                    }))
+                  }
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-medium">Hero Subtitle</label>
+                <input
+                  className="mt-1 w-full rounded border px-3 py-2"
+                  placeholder="e.g., World-Class Courts"
+                  value={templateForm.hero?.subtitle || ''}
+                  onChange={(e) =>
+                    setTemplateForm((f) => ({
+                      ...f,
+                      hero: { ...f.hero, subtitle: e.target.value } as any
+                    }))
+                  }
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-medium">Hero Description</label>
+                <textarea
+                  className="mt-1 w-full rounded border px-3 py-2 h-20"
+                  placeholder="e.g., International Padel Federation compliant courts"
+                  value={templateForm.hero?.description || ''}
+                  onChange={(e) =>
+                    setTemplateForm((f) => ({
+                      ...f,
+                      hero: { ...f.hero, description: e.target.value } as any
+                    }))
+                  }
+                />
+              </div>
+
+              <div className="pt-4 border-t">
+                <p className="text-sm text-slate-600 mb-4">
+                  <strong>Note:</strong> Full template editor with models, specifications, and technical data will be available soon. For now, you can set basic hero information.
+                </p>
+                <button
+                  onClick={() => setMessage('Template save functionality coming soon - backend API needed')}
+                  className="rounded bg-slate-900 text-white px-4 py-2"
+                >
+                  Save Template (Coming Soon)
+                </button>
               </div>
             </div>
           </div>

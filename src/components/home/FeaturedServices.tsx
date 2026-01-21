@@ -1,18 +1,11 @@
 "use client"
 
-import { Shield, Leaf, TrendingUp, CheckCircle2 } from "lucide-react"
+import { Trophy, Target, Users, Award } from "lucide-react"
 import { useState, useEffect } from "react"
 import featureImg1 from '@/assets/Features/unified (1).jpg';
 import featureImg2 from '@/assets/Features/unified (2).jpg';
 import featureImg3 from '@/assets/Features/unified (3).jpg';
 import featureImg4 from '@/assets/Features/unified (4).jpg';
-
-const features = [
-  { icon: Shield, text: "Global Quality Standards", gradient: "from-emerald-500 to-teal-500" },
-  { icon: Leaf, text: "Eco-Friendly Materials", gradient: "from-green-500 to-emerald-500" },
-  { icon: TrendingUp, text: "State-of-the-Art Tech", gradient: "from-blue-500 to-cyan-500" },
-  { icon: CheckCircle2, text: "Proven Excellence", gradient: "from-orange-500 to-red-500" },
-]
 
 const featureImages = [
   { src: featureImg1, alt: 'Premium Sports Infrastructure' },
@@ -21,30 +14,130 @@ const featureImages = [
   { src: featureImg4, alt: 'Modern Sports Infrastructure' },
 ]
 
+const stats = [
+  { value: "50+", label: "Cities" },
+  { value: "10+", label: "Countries" },
+  { value: "500+", label: "Projects" },
+]
+
+const highlights = [
+  { icon: Trophy, text: "Premium Quality Materials", color: "from-emerald-500 to-teal-500" },
+  { icon: Target, text: "Precision Engineering", color: "from-blue-500 to-cyan-500" },
+  { icon: Users, text: "Expert Team", color: "from-orange-500 to-red-500" },
+  { icon: Award, text: "Proven Track Record", color: "from-purple-500 to-pink-500" },
+]
+
 export function FeaturedServices() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentImage, setCurrentImage] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % featureImages.length)
-    }, 4000)
+      setCurrentImage((prev) => (prev + 1) % featureImages.length)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <section className="relative w-full overflow-hidden py-20 md:py-32 bg-gradient-to-b from-white to-slate-50 dark:from-slate-950 dark:to-slate-900">
+    <section className="relative w-full overflow-hidden py-12 md:py-16">
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
-          {/* Left: Visual Content */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8 lg:items-center">
+          
+          {/* Left: About Us Content */}
+          <div className="relative space-y-5">
+            {/* Header */}
+            <div>
+              <p className="font-gotham text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
+                About Us
+              </p>
+              <h2 className="font-montreal text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-tight">
+                Welcome to{" "}
+                <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                  Sabaysis Sports Infra
+                </span>
+              </h2>
+            </div>
+
+            {/* Description */}
+            <div className="space-y-3">
+              <p className="font-gotham text-sm md:text-base leading-relaxed text-slate-700 dark:text-slate-300">
+                A leading sports infrastructure company in India, specializing in cutting-edge artificial turf, 
+                premium football fields, cricket facilities, and comprehensive multi-sport complexes. With over 
+                <span className="font-bold text-emerald-600 dark:text-emerald-400"> 500+ successful projects </span> 
+                across <span className="font-bold text-teal-600 dark:text-teal-400">50+ cities</span> and 
+                <span className="font-bold text-cyan-600 dark:text-cyan-400"> 10+ countries</span>, we're trusted 
+                by schools, academies, clubs, and professional sports organizations worldwide.
+              </p>
+              <p className="font-gotham text-sm md:text-base leading-relaxed text-slate-700 dark:text-slate-300">
+                Our expert team delivers end-to-end sports infrastructure solutions including cricket pitches, 
+                volleyball courts, basketball courts, badminton courts, padel courts, and pickleball facilities—all 
+                engineered for exceptional durability, peak performance, and aesthetic excellence.
+              </p>
+            </div>
+
+            {/* Highlights Grid */}
+            <div className="grid grid-cols-2 gap-3">
+              {highlights.map((highlight, index) => {
+                const Icon = highlight.icon
+                return (
+                  <div
+                    key={index}
+                    className="group relative overflow-hidden rounded-xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-3 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-emerald-300 dark:hover:border-emerald-600"
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${highlight.color} opacity-0 transition-opacity duration-300 group-hover:opacity-10`} />
+                    <div className="relative z-10 flex items-center gap-2">
+                      <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${highlight.color} shadow-lg transition-transform duration-300 group-hover:scale-110`}>
+                        <Icon className="h-4 w-4 text-white" />
+                      </div>
+                      <p className="font-montreal text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                        {highlight.text}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Stats Bar */}
+            <div className="grid grid-cols-3 gap-3 rounded-xl p-4 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800/50 shadow-lg">
+              <div className="text-center">
+                <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  500+
+                </p>
+                <p className="font-gotham text-[10px] md:text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">
+                  Projects Delivered
+                </p>
+              </div>
+              <div className="text-center border-x border-emerald-300 dark:border-emerald-700">
+                <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                  50+
+                </p>
+                <p className="font-gotham text-[10px] md:text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">
+                  Cities Covered
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                  10+
+                </p>
+                <p className="font-gotham text-[10px] md:text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">
+                  Countries Served
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Image with Stats Overlay */}
           <div className="relative">
-            <div className="group relative overflow-hidden transition-all duration-500 hover:scale-[1.02]">
-              <div className="relative w-full aspect-[640/800] max-w-[640px] mx-auto overflow-hidden rounded-3xl flex items-center justify-center border-4 border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
-                {/* Image Carousel */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
+              {/* Image Carousel */}
+              <div className="relative w-full aspect-[4/5] bg-slate-900">
                 {featureImages.map((image, index) => (
                   <div
                     key={index}
-                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out ${index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                      index === currentImage ? "opacity-100 z-10" : "opacity-0 z-0"
+                    }`}
                   >
                     <img
                       src={image.src}
@@ -54,78 +147,47 @@ export function FeaturedServices() {
                   </div>
                 ))}
 
-                {/* Image Indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-                  {featureImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentIndex(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/75"}`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-20" />
+              </div>
+
+              {/* Stats Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 z-30 p-6 md:p-8">
+                <div className="grid grid-cols-3 gap-4">
+                  {stats.map((stat, index) => (
+                    <div 
+                      key={index} 
+                      className="text-center transform transition-all duration-300 hover:scale-110"
+                    >
+                      <p className="font-montreal text-3xl md:text-4xl font-bold text-white mb-1 drop-shadow-lg">
+                        {stat.value}
+                      </p>
+                      <p className="font-gotham text-xs md:text-sm text-white/90 uppercase tracking-wider">
+                        {stat.label}
+                      </p>
+                    </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Right: Features Grid */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="font-montreal mb-3 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                Why Choose{" "}
-                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  Sabaysis
-                </span>
-              </h3>
-              <p className="font-gotham text-base leading-relaxed text-slate-600 md:text-lg dark:text-slate-400">
-                Leading sports infrastructure solutions with unmatched quality and innovation.
-              </p>
-            </div>
-
-            {/* Features Grid */}
-            <div className="grid gap-4 sm:grid-cols-2">
-              {features.map((feature, i) => {
-                const Icon = feature.icon
-                return (
-                  <div
-                    key={i}
-                    className="group relative overflow-hidden rounded-2xl backdrop-blur-sm border border-slate-200 dark:border-slate-800 p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-emerald-300 dark:hover:border-emerald-600"
-                  >
-                    {/* Gradient Background on Hover */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-10`}
-                    />
-
-                    <div className="relative z-10">
-                      <div
-                        className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
-                      >
-                        <Icon className="h-6 w-6 text-white" />
-                      </div>
-                      <p className="font-montreal text-sm font-bold text-slate-900 dark:text-white">{feature.text}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 rounded-2xl p-6 backdrop-blur-sm border border-emerald-200/50 dark:border-emerald-800/30 bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/20 dark:to-teal-950/20">
-              <div className="text-center">
-                <p className="font-montreal text-3xl font-bold text-emerald-600 dark:text-emerald-400">200+</p>
-                <p className="font-gotham text-xs text-slate-600 dark:text-slate-400 mt-1">Projects</p>
-              </div>
-              <div className="text-center">
-                <p className="font-montreal text-3xl font-bold text-teal-600 dark:text-teal-400">98%</p>
-                <p className="font-gotham text-xs text-slate-600 dark:text-slate-400 mt-1">Satisfaction</p>
-              </div>
-              <div className="text-center">
-                <p className="font-montreal text-3xl font-bold text-cyan-600 dark:text-cyan-400">10+</p>
-                <p className="font-gotham text-xs text-slate-600 dark:text-slate-400 mt-1">Years</p>
+              {/* Image Indicators */}
+              <div className="absolute top-4 right-4 z-30 flex gap-2">
+                {featureImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImage(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      index === currentImage 
+                        ? "w-6 bg-white" 
+                        : "w-1.5 bg-white/50 hover:bg-white/75"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
