@@ -6,6 +6,7 @@ import featureImg1 from '@/assets/Features/unified (1).jpg';
 import featureImg2 from '@/assets/Features/unified (2).jpg';
 import featureImg3 from '@/assets/Features/unified (3).jpg';
 import featureImg4 from '@/assets/Features/unified (4).jpg';
+import featureBgImg from '@/assets/Unified S/synthetic-lawn-2048px-802551536-2x1-1.webp';
 
 const featureImages = [
   { src: featureImg1, alt: 'Premium Sports Infrastructure' },
@@ -39,13 +40,20 @@ export function FeaturedServices() {
   }, [])
 
   return (
-    <section className="relative w-full overflow-hidden py-12 md:py-16">
-      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section 
+      className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden pt-12 md:pt-16 pb-10 lg:pb-16"
+      style={{
+        backgroundImage: `url(${featureBgImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-white/85 z-0" />
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-8 lg:items-center">
           
-          {/* Left: About Us Content */}
           <div className="relative space-y-5">
-            {/* Header */}
+  
             <div>
               <p className="font-gotham text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
                 About Us
@@ -58,7 +66,6 @@ export function FeaturedServices() {
               </h2>
             </div>
 
-            {/* Description */}
             <div className="space-y-3">
               <p className="font-gotham text-sm md:text-base leading-relaxed text-slate-700 dark:text-slate-300">
                 A leading sports infrastructure company in India, specializing in cutting-edge artificial turf, 
@@ -75,7 +82,6 @@ export function FeaturedServices() {
               </p>
             </div>
 
-            {/* Highlights Grid */}
             <div className="grid grid-cols-2 gap-3">
               {highlights.map((highlight, index) => {
                 const Icon = highlight.icon
@@ -98,7 +104,6 @@ export function FeaturedServices() {
               })}
             </div>
 
-            {/* Stats Bar */}
             <div className="grid grid-cols-3 gap-3 rounded-xl p-4 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800/50 shadow-lg">
               <div className="text-center">
                 <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
@@ -127,10 +132,8 @@ export function FeaturedServices() {
             </div>
           </div>
 
-          {/* Right: Image with Stats Overlay */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
-              {/* Image Carousel */}
               <div className="relative w-full aspect-[4/5] bg-slate-900">
                 {featureImages.map((image, index) => (
                   <div
@@ -147,11 +150,9 @@ export function FeaturedServices() {
                   </div>
                 ))}
 
-                {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-20" />
               </div>
 
-              {/* Stats Overlay */}
               <div className="absolute bottom-0 left-0 right-0 z-30 p-6 md:p-8">
                 <div className="grid grid-cols-3 gap-4">
                   {stats.map((stat, index) => (
@@ -170,7 +171,6 @@ export function FeaturedServices() {
                 </div>
               </div>
 
-              {/* Image Indicators */}
               <div className="absolute top-4 right-4 z-30 flex gap-2">
                 {featureImages.map((_, index) => (
                   <button
