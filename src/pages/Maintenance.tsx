@@ -7,7 +7,6 @@ export function Maintenance() {
   usePageTitle('Maintenance');
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900">
-      {/* Hero */}
       <section className="relative w-full overflow-hidden bg-slate-900 h-[85vh] min-h-[600px]">
         <div className="absolute inset-0 h-full w-full">
           <img 
@@ -72,7 +71,6 @@ export function Maintenance() {
       </section>
 
       <main className="w-full">
-        {/* Service Section 1 - Image Left */}
         <section className="bg-slate-50 py-12 md:py-16">
           <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
@@ -116,8 +114,6 @@ export function Maintenance() {
             </div>
           </div>
         </section>
-
-        {/* Service Section 2 - Image Right */}
         <section className="bg-white py-12 md:py-16">
           <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-16">
@@ -162,7 +158,6 @@ export function Maintenance() {
           </div>
         </section>
 
-        {/* Features Section - 3 Columns */}
         <section className="bg-slate-900 py-16 md:py-20 ">
           <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row gap-0 overflow-hidden rounded-xl shadow-2xl">
@@ -204,7 +199,6 @@ export function Maintenance() {
           </div>
         </section>
 
-        {/* Timeline Section - Turf Installation Process */}
         <section className="bg-white py-12 md:py-16">
           <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">

@@ -7,7 +7,7 @@ import featureImg2 from '@/assets/Features/unified (2).jpg';
 import featureImg3 from '@/assets/Features/unified (3).jpg';
 import featureImg4 from '@/assets/Features/unified (4).jpg';
 import featureBgImg from '@/assets/Unified S/synthetic-lawn-2048px-802551536-2x1-1.webp';
-
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 const featureImages = [
   { src: featureImg1, alt: 'Premium Sports Infrastructure' },
   { src: featureImg2, alt: 'Professional Turf Solutions' },
@@ -155,15 +155,17 @@ export function FeaturedServices() {
 
               <div className="absolute bottom-0 left-0 right-0 z-30 p-6 md:p-8">
                 <div className="grid grid-cols-3 gap-4">
-                  {stats.map((stat, index) => (
-                    <div 
-                      key={index} 
-                      className="text-center transform transition-all duration-300 hover:scale-110"
-                    >
+                                    {stats.map((stat, index) => (
+                    <div key={index} className="text-center">
                       <p className="font-montreal text-3xl md:text-4xl font-bold text-white mb-1 drop-shadow-lg">
-                        {stat.value}
+                        {(() => {
+                          const match = (stat.value || '').toString().match(/^(\d+)(\+)?$/);
+                          const end = match ? parseInt(match[1], 10) : 0;
+                          const suffix = match && match[2] ? '+' : '';
+                          return <AnimatedCounter end={end} suffix={suffix} duration={900} />;
+                        })()}
                       </p>
-                      <p className="font-gotham text-xs md:text-sm text-white/90 uppercase tracking-wider">
+                      <p className="font-montreal text-sm md:text-base font-medium text-white/90 uppercase tracking-wider">
                         {stat.label}
                       </p>
                     </div>
