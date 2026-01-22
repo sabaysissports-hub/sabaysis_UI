@@ -8,7 +8,6 @@ import directorImg from '@/assets/About/director.jpeg';
 import unified1 from '@/assets/Features/unified (1).jpg';
 import unified2 from '@/assets/Features/unified (2).jpg';
 import unified3 from '@/assets/Features/unified (3).jpg';
-import { cn } from '@/lib/utils';
 import TurfTimeline from '@/components/TurfTimeline';
 
 export function About() {
