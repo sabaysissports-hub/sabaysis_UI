@@ -132,7 +132,7 @@ export function FeaturedServices() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative mx-auto w-full max-w-lg">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
               <div className="relative w-full aspect-[4/5] bg-slate-900">
                 {featureImages.map((image, index) => (

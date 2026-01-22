@@ -1,7 +1,7 @@
 import { CheckCircle2, ArrowRight, Wrench, Lightbulb, Hammer } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import featureOne from '@/assets/Unified S/Untitled-design-2023-12-23T101940.389.webp';
-import whyUsBg from '@/assets/HomeImages/whyusbg.avif';
+import { BackgroundRippleEffect } from '@/components/ui/background-ripple-effect';
 
 export function UnifiedSportsTurf() {
   const services = [
@@ -13,16 +13,13 @@ export function UnifiedSportsTurf() {
 
   return (
     <section 
-      className="w-full py-10 lg:py-24 relative bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${whyUsBg})`,
-      }}
+      className="w-full pt-10 pb-8 lg:pt-24  relative overflow-hidden bg-transparent"
     >
-      <div className="absolute inset-0 bg-slate-900/5"></div>
+      <BackgroundRippleEffect rows={32} cols={52} cellSize={36} />
+      <div className="absolute inset-0 bg-slate-900/30" />
       <div className="w-full px-4 mx-auto max-w-screen-xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 place-content-stretch">
           
-          {/* LEFT CARD - WHY US */}
           <div className="w-full bg-[#235c4c] p-5 lg:p-10 h-full rounded-lg flex flex-col justify-between">
             <div>
               <h2 className="font-normal text-sm text-white mb-4 uppercase tracking-widest">WHY US</h2>
@@ -35,7 +32,7 @@ export function UnifiedSportsTurf() {
             </div>
             <div>
               <Link
-                to="/about-us"
+                to="/about"
                 className="rounded-link border-2 border-white text-white mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full hover:bg-white hover:text-[#235c4c] transition-all"
               >
                 Know More
@@ -46,7 +43,6 @@ export function UnifiedSportsTurf() {
 
           <div className="w-full grid grid-cols-1 gap-4 place-content-stretch">
             
-            {/* CTA CARD */}
             <div
               className="bg-white w-full p-4 lg:p-10 rounded-lg flex flex-row justify-between relative min-h-[280px] overflow-hidden"
               style={{
@@ -70,7 +66,6 @@ export function UnifiedSportsTurf() {
                   </Link>
                 </div>
               </div>
-              {/* IMAGE */}
               <div className="absolute right-0 top-0 bottom-0 w-5/12 lg:w-6/12 rounded-r-lg overflow-hidden">
                 <img
                   src={featureOne}
@@ -80,7 +75,6 @@ export function UnifiedSportsTurf() {
               </div>
             </div>
 
-            {/* SERVICES GRID */}
             <div className="rounded-s relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch justify-stretch">
               {services.map((service, index) => {
                 const IconComponent = service.icon;

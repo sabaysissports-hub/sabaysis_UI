@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react"
 import ajarLogo from "../../assets/ajarlogo.png"
 import { API_ENDPOINTS } from "@/config/api"
 import { GoogleTranslateSelector } from "@/components/google-translate-selector"
+import { MobileNav } from "./MobileNav"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +14,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 
 type NavSubItem = {
   title: string
@@ -162,19 +162,19 @@ export function NavBar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-emerald-200/40 bg-white/95 backdrop-blur-xl shadow-sm font-[var(--font-gotham)] dark:border-emerald-900/40 dark:bg-slate-950/95 transition-all duration-300">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 sm:h-20 max-w-full items-center justify-between px-3 sm:px-4 md:px-6 lg:px-8">
         <Link to="/" className="flex items-center shrink-0 group transition-all duration-300">
           <img
             src={ajarLogo || "/placeholder.svg"}
             alt="Sabaysis Sports & Infrastructure"
-            className="h-14 w-40 object-contain sm:h-14 sm:w-40 md:h-14 md:w-32 lg:h-14 lg:w-40 transition-all duration-300 group-hover:scale-105"
+            className="h-12 w-32 sm:h-14 sm:w-40 object-contain transition-all duration-300 group-hover:scale-105"
             style={{
               filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.08))",
             }}
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 flex-1 justify-center px-6">
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 flex-1 justify-center px-3 md:px-6">
           {navItems.map((item) =>
             "items" in item ? (
               <DropdownMenu
@@ -186,7 +186,7 @@ export function NavBar() {
                 <div onMouseEnter={() => handleMouseEnter(item.label)} onMouseLeave={handleMouseLeave}>
                   <DropdownMenuTrigger asChild>
                     <button
-                      className={`group inline-flex items-center gap-1.5 px-3.5 py-2.5 font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 transition-all duration-200 relative
+                      className={`group inline-flex items-center gap-1 px-2 md:px-3.5 py-2 md:py-2.5 font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 transition-all duration-200 relative
                         ${isDropdownActive(item)
                           ? "bg-gradient-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-gradient-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
                           : "text-slate-700 hover:bg-gradient-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-gradient-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
@@ -261,7 +261,7 @@ export function NavBar() {
           )}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3 shrink-0">
+        <div className="hidden lg:flex items-center gap-2 md:gap-3 shrink-0">
           <GoogleTranslateSelector />
           <Link
             to="/contact-us"
@@ -281,63 +281,6 @@ export function NavBar() {
         </button>
       </div>
 
-      {isMobileOpen && (
-        <div className="border-t border-emerald-200/40 bg-gradient-to-b from-white to-emerald-50/30 lg:hidden dark:border-emerald-900/40 dark:bg-gradient-to-b dark:from-slate-950 dark:to-slate-900/95 font-[var(--font-gotham)]">
-          <nav className="p-5 space-y-2">
-            <Accordion type="multiple" className="space-y-1">
-              {navItems.map((item) =>
-                "items" in item ? (
-                  <AccordionItem key={item.label} value={item.label} className="border-0">
-                    <AccordionTrigger className="rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-emerald-600/10 hover:text-emerald-700 hover:no-underline dark:text-slate-300 dark:hover:bg-emerald-600/20 dark:hover:text-emerald-300 transition-colors duration-200">
-                      {item.label}
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-2">
-                      <div className="space-y-1 rounded-lg bg-slate-50/60 dark:bg-slate-800/40 p-2 mt-2">
-                        {item.items.map((sub) => (
-                          <Link
-                            key={sub.slug}
-                            to={
-                              item.label === "Products"
-                                ? `${item.basePath}?category=${encodeURIComponent(sub.category || sub.title)}`
-                                : sub.slug === "padel-courts"
-                                  ? "/padel-courts"
-                                  : `${item.basePath}/${sub.slug}`
-                            }
-                            onClick={() => setIsMobileOpen(false)}
-                            className="flex rounded-lg px-4 py-3 text-xs font-semibold text-slate-700 hover:bg-emerald-600/10 hover:text-emerald-700 min-h-10 items-center dark:text-slate-300 dark:hover:bg-emerald-600/20 dark:hover:text-emerald-300 transition-colors duration-200"
-                          >
-                            {sub.title}
-                          </Link>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ) : (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    onClick={() => setIsMobileOpen(false)}
-                    className="flex rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-emerald-600/10 hover:text-emerald-700 min-h-10 items-center dark:text-slate-300 dark:hover:bg-emerald-600/20 dark:hover:text-emerald-300 transition-colors duration-200"
-                  >
-                    {item.label}
-                  </Link>
-                ),
-              )}
-            </Accordion>
-            <div className="mt-6 flex items-center justify-between gap-3 pt-4 border-t border-slate-200/60 dark:border-slate-800/60">
-              <GoogleTranslateSelector />
-              <Link
-                to="/contact-us"
-                onClick={() => setIsMobileOpen(false)}
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-emerald-600 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md min-h-10 hover:bg-emerald-700 transition-colors duration-200 font-[var(--font-montreal)]"
-              >
-                <Send className="h-4 w-4" />
-                Get In Touch
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
-    </header>
+      <MobileNav isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} navItems={navItems} />    </header>
   )
 }
