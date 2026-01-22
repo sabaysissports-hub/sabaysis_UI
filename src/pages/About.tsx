@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { Sparkles, Target, Building2, Globe2, Quote, Award, GraduationCap, ArrowRight, ShieldCheck, Heart, Leaf, Users } from 'lucide-react';
+import { BackgroundRippleEffect } from '@/components/ui/background-ripple-effect';
+import { BackgroundBeams } from '@/components/ui/background-beams';
 import aboutbg from '@/assets/About/aboutbg.jpg';
+import directorImg from '@/assets/About/director.jpeg';
 import unified1 from '@/assets/Features/unified (1).jpg';
 import unified2 from '@/assets/Features/unified (2).jpg';
 import unified3 from '@/assets/Features/unified (3).jpg';
+import { cn } from '@/lib/utils';
 
 export function About() {
   usePageTitle('About');
@@ -19,7 +23,6 @@ export function About() {
           />
         </div>
         <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/60 to-slate-900/30" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.15),transparent_50%)]" />
         
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-28 md:py-36 lg:py-48">
           <div className="flex flex-col items-center text-center">
@@ -55,7 +58,7 @@ export function About() {
                   <Building2 className="h-6 w-6 text-teal-400 group-hover:scale-110 transition-transform" />
                   <span className="text-3xl md:text-4xl font-montreal font-bold text-white">50+</span>
                 </div>
-                <p className="text-xs font-montreal font-bold uppercase tracking-widest text-teal-400/80">Cities Across India</p>
+                <p className="text-xs font-montreal font-bold uppercase tracking-widest text-teal-400/80">Cities</p>
               </div>
                <div className="text-center group">
                 <div className="flex items-center justify-center gap-3 mb-2">
@@ -78,16 +81,16 @@ export function About() {
       </section>
 
       <main className="w-full">
-        {/* Section 1: The Founder (Image Left, Text Right) */}
-        <section className="grid lg:grid-cols-2 min-h-[600px] bg-white overflow-hidden">
-          <div className="relative order-2 lg:order-1 flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-50 to-white">
+        <section className="relative grid lg:grid-cols-2 min-h-[600px] bg-gradient-to-b from-slate-50 to-white text-slate-900 overflow-hidden">
+          <BackgroundBeams className="pointer-events-none opacity-80 mix-blend-screen" />
+          <div className="relative order-2 lg:order-1 flex items-center justify-center p-8 md:p-12 lg:p-16 z-10">
             <img 
-              src={unified1} 
+              src={directorImg} 
               alt="Mohd Zaid - Founder" 
               className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
-          <div className="flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32 order-1 lg:order-2 bg-white">
+          <div className="relative flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32 order-1 lg:order-2 bg-white z-10">
             <div className="max-w-xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700 mb-8">
                 <Quote className="h-4 w-4" /> Founder's Story
@@ -128,7 +131,6 @@ export function About() {
           </div>
         </section>
 
-        {/* Section 2: Manufacturing Excellence (Text Left, Image Right) */}
         <section className="grid lg:grid-cols-2 min-h-[600px] bg-slate-50 overflow-hidden">
           <div className="flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32 bg-slate-50">
             <div className="max-w-xl ml-auto">
@@ -162,7 +164,7 @@ export function About() {
               </div>
             </div>
           </div>
-          <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-100 to-slate-50">
+          <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16">
             <img 
               src={unified1} 
               alt="Engineering Excellence" 
@@ -171,9 +173,8 @@ export function About() {
           </div>
         </section>
 
-        {/* Section 3: Vision & Mission (Image Left, Text Right) */}
         <section className="grid lg:grid-cols-2 min-h-[600px] bg-white overflow-hidden">
-          <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-50 to-white">
+          <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 ">
             <img 
               src={unified2} 
               alt="Our Vision" 
@@ -212,7 +213,80 @@ export function About() {
           </div>
         </section>
 
-        {/* Centered Breakpoint: Social Responsibility */}
+        <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-slate-50 to-white text-slate-900">
+          <BackgroundBeams className="pointer-events-none opacity-80 mix-blend-screen" />
+          <div className="relative z-10 max-w-5xl mx-auto px-4 lg:px-8">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="h-10 w-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-inner">
+                <Quote className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs font-montreal font-bold uppercase tracking-[0.3em] text-emerald-700">Journey in Motion</p>
+                <h3 className="text-2xl md:text-3xl font-montreal font-bold text-slate-900">Timeline of craft & impact</h3>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-slate-200" aria-hidden="true" />
+              <div className="space-y-10">
+                {[
+                  {
+                    year: '2015',
+                    title: 'Foundations laid',
+                    copy: 'Started with boutique sports builds—learning materials, climate demands, and athlete comfort firsthand.',
+                    accent: 'emerald',
+                  },
+                  {
+                    year: '2019',
+                    title: 'Precision manufacturing',
+                    copy: 'Scaled our production line, pairing global machinery standards with rigorous QA for consistent performance.',
+                    accent: 'blue',
+                  },
+                  {
+                    year: '2023',
+                    title: 'Community-first delivery',
+                    copy: 'Expanded across cities and countries, designing safer, more sustainable courts for every community we serve.',
+                    accent: 'teal',
+                  },
+                  {
+                    year: '2025',
+                    title: 'Global benchmarks',
+                    copy: 'Setting FIP-aligned surfaces as a baseline—bringing world-class playability to local grounds at scale.',
+                    accent: 'cyan',
+                  },
+                ].map((item, idx) => {
+                  const isLeft = idx % 2 === 0;
+                  return (
+                    <div key={idx} className="relative flex md:items-center py-2">
+                      <span
+                        className={cn(
+                          'absolute left-6 md:left-1/2 top-4 h-4 w-4 rounded-full border-2 border-white shadow ring-4 ring-white translate-x-0 md:-translate-x-1/2',
+                          item.accent === 'emerald' && 'bg-emerald-500 ring-emerald-100',
+                          item.accent === 'blue' && 'bg-blue-500 ring-blue-100',
+                          item.accent === 'teal' && 'bg-teal-500 ring-teal-100',
+                          item.accent === 'cyan' && 'bg-cyan-500 ring-cyan-100',
+                        )}
+                        aria-hidden="true"
+                      />
+                      <div
+                        className={cn(
+                          'ml-12 md:ml-0 md:w-1/2',
+                          isLeft ? 'md:pr-14 md:mr-auto md:text-right' : 'md:pl-14 md:ml-auto',
+                        )}
+                      >
+                        <div className="rounded-2xl border border-slate-200 bg-white/80 backdrop-blur shadow-sm p-4 md:p-6 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+                          <h4 className="text-lg md:text-xl font-montreal font-bold text-slate-900 mb-2">{item.title}</h4>
+                          <p className="text-sm md:text-base text-slate-700 font-gotham leading-relaxed">{item.copy}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-24 md:py-32 bg-slate-900 text-white text-center relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <img src={unified3} className="w-full h-full object-cover grayscale" alt="Background Texture" />
@@ -243,9 +317,11 @@ export function About() {
           </div>
         </section>
 
-        {/* Final CTA Section */}
-        <section className="py-24 md:py-40 bg-white text-center">
-          <div className="max-w-2xl mx-auto px-4">
+        <section className="relative overflow-hidden py-24 md:py-40 text-center">
+          <div className="absolute inset-0 opacity-60">
+            <BackgroundRippleEffect rows={22} cols={38} cellSize={32} interactive={false} />
+          </div>
+          <div className="relative max-w-2xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-montreal font-bold text-slate-900 mb-8">
               Ready to build something great together?
             </h2>
