@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { Sparkles, Target, Building2, Globe2, Quote, Award, GraduationCap, ArrowRight, ShieldCheck, Heart, Leaf, Users } from 'lucide-react';
 import aboutbg from '@/assets/About/aboutbg.jpg';
-import directorImg from '@/assets/About/ab1.jpg';
 import unified1 from '@/assets/Features/unified (1).jpg';
 import unified2 from '@/assets/Features/unified (2).jpg';
 import unified3 from '@/assets/Features/unified (3).jpg';
@@ -47,16 +46,23 @@ export function About() {
               <div className="text-center group">
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <Target className="h-6 w-6 text-emerald-400 group-hover:scale-110 transition-transform" />
-                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">250+</span>
+                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">500+</span>
                 </div>
                 <p className="text-xs font-montreal font-bold uppercase tracking-widest text-emerald-400/80">Projects Completed</p>
               </div>
               <div className="text-center group">
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <Building2 className="h-6 w-6 text-teal-400 group-hover:scale-110 transition-transform" />
-                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">35+</span>
+                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">50+</span>
                 </div>
                 <p className="text-xs font-montreal font-bold uppercase tracking-widest text-teal-400/80">Cities Across India</p>
+              </div>
+               <div className="text-center group">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <Building2 className="h-6 w-6 text-teal-400 group-hover:scale-110 transition-transform" />
+                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">10+</span>
+                </div>
+                <p className="text-xs font-montreal font-bold uppercase tracking-widest text-teal-400/80">Countries</p>
               </div>
               <div className="text-center group">
                 <div className="flex items-center justify-center gap-3 mb-2">
@@ -74,11 +80,11 @@ export function About() {
       <main className="w-full">
         {/* Section 1: The Founder (Image Left, Text Right) */}
         <section className="grid lg:grid-cols-2 min-h-[600px] bg-white overflow-hidden">
-          <div className="relative order-2 lg:order-1">
+          <div className="relative order-2 lg:order-1 flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-50 to-white">
             <img 
-              src={directorImg} 
+              src={unified1} 
               alt="Mohd Zaid - Founder" 
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
           <div className="flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32 order-1 lg:order-2 bg-white">
@@ -156,22 +162,22 @@ export function About() {
               </div>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-100 to-slate-50">
             <img 
               src={unified1} 
               alt="Engineering Excellence" 
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
         </section>
 
         {/* Section 3: Vision & Mission (Image Left, Text Right) */}
         <section className="grid lg:grid-cols-2 min-h-[600px] bg-white overflow-hidden">
-          <div className="relative">
+          <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-50 to-white">
             <img 
               src={unified2} 
               alt="Our Vision" 
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
           <div className="flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32 bg-white">
