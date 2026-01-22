@@ -82,7 +82,6 @@ export function About() {
 
       <main className="w-full">
         <section className="relative grid lg:grid-cols-2 min-h-[600px] bg-gradient-to-b from-slate-100 to-slate-50 overflow-hidden">
-          <BackgroundBeams className="pointer-events-none opacity-50 will-change-transform transform-gpu" />
           <div className="relative order-2 lg:order-1 flex items-center justify-center p-8 md:p-12 lg:p-16 z-10">
             <img 
               src={directorImg} 
