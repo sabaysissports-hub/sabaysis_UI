@@ -81,12 +81,13 @@ export function About() {
       </section>
 
       <main className="w-full">
-        <section className="relative grid lg:grid-cols-2 min-h-[600px] bg-gradient-to-b from-slate-50 to-white text-slate-900 overflow-hidden">
-          <BackgroundBeams className="pointer-events-none opacity-80 mix-blend-screen" />
+        <section className="relative grid lg:grid-cols-2 min-h-[600px] bg-gradient-to-b from-slate-100 to-slate-50 overflow-hidden">
+          <BackgroundBeams className="pointer-events-none opacity-50 will-change-transform transform-gpu" />
           <div className="relative order-2 lg:order-1 flex items-center justify-center p-8 md:p-12 lg:p-16 z-10">
             <img 
               src={directorImg} 
               alt="Mohd Zaid - Founder" 
+              loading="lazy"
               className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
@@ -168,6 +169,7 @@ export function About() {
             <img 
               src={unified1} 
               alt="Engineering Excellence" 
+              loading="lazy"
               className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
@@ -178,6 +180,7 @@ export function About() {
             <img 
               src={unified2} 
               alt="Our Vision" 
+              loading="lazy"
               className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
             />
           </div>
@@ -213,8 +216,8 @@ export function About() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-slate-50 to-white text-slate-900">
-          <BackgroundBeams className="pointer-events-none opacity-80 mix-blend-screen" />
+        <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-slate-100 to-slate-50">
+          <BackgroundBeams className="pointer-events-none opacity-50 will-change-transform transform-gpu" />
           <div className="relative z-10 max-w-5xl mx-auto px-4 lg:px-8">
             <div className="flex items-center gap-3 mb-10">
               <div className="h-10 w-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-inner">
@@ -289,7 +292,7 @@ export function About() {
 
         <section className="py-24 md:py-32 bg-slate-900 text-white text-center relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <img src={unified3} className="w-full h-full object-cover grayscale" alt="Background Texture" />
+            <img src={unified3} loading="lazy" className="w-full h-full object-cover grayscale" alt="Background Texture" />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto px-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-white mb-8">
@@ -318,7 +321,7 @@ export function About() {
         </section>
 
         <section className="relative overflow-hidden py-24 md:py-40 text-center">
-          <div className="absolute inset-0 opacity-60">
+          <div className="absolute inset-0 opacity-60 will-change-transform transform-gpu">
             <BackgroundRippleEffect rows={22} cols={38} cellSize={32} interactive={false} />
           </div>
           <div className="relative max-w-2xl mx-auto px-4">
