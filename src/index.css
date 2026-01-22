@@ -475,3 +475,38 @@ body {
 .goog-te-gadget-simple {
   display: none !important;
 }
+
+/* Hide Google's default translate widget */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-combo {
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+/* Hide Google Translate attribution */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  color: blue !important;
+}
+
+/* Optional: Style translated text */
+.translated-ltr {
+  margin-top: 0 !important;
+}
