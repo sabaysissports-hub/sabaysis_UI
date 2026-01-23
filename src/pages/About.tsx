@@ -79,38 +79,47 @@ export function About() {
       </section>
 
       <main className="w-full">
-        <section className="relative grid lg:grid-cols-2 min-h-[600px] bg-gradient-to-b from-slate-100 to-slate-50 overflow-hidden">
-          <div className="relative order-2 lg:order-1 flex items-center justify-center p-8 md:p-12 lg:p-16 z-10">
+        <section className="relative grid lg:grid-cols-2 bg-gradient-to-b from-slate-100 to-slate-50 overflow-hidden">
+          <div className="relative order-2 lg:order-1 flex items-center justify-center p-6 md:p-8 lg:p-12 z-10">
             <img 
               src={directorImg} 
               alt="Mohd Zaid - Founder" 
               loading="lazy"
-              className="w-full h-auto max-w-sm lg:max-w-md rounded-2xl shadow-2xl object-cover"
+              className="w-full h-auto max-w-lg lg:max-w-2xl rounded-2xl shadow-2xl object-cover"
             />
           </div>
-          <div className="relative flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32 order-1 lg:order-2 bg-white z-10">
+          <div className="relative flex flex-col justify-center p-6 md:p-12 lg:p-16 xl:p-20 order-1 lg:order-2 bg-white z-10">
             <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700 mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700 mb-4">
                 <Quote className="h-4 w-4" /> Founder's Story
               </div>
-              <h2 className="text-4xl md:text-5xl font-montreal font-bold text-slate-900 leading-tight mb-8">
+              <h2 className="text-3xl md:text-4xl font-montreal font-bold text-slate-900 leading-tight mb-4">
                 Building with Strategy, <br />
                 <span className="text-emerald-600">Driven by Discovery.</span>
               </h2>
-              <div className="space-y-6 text-lg text-slate-600 font-gotham leading-relaxed">
+              <div className="space-y-4 text-base text-slate-600 font-gotham leading-relaxed">
                 <p>
-                  I am <span className="font-bold text-slate-900 font-montreal">Mohd Zaid</span>, the Founder of Sabaysis. My journey as an entrepreneur stems from a deep curiosity about systems, processes, and innovation.
+                  I am <span className="font-bold text-slate-900 font-montreal">Mohd Zaid</span>, the Founder of Sabaysis, driven by a vision to build solutions that simplify business challenges and enable sustainable growth. I hold a Master's degree in Business Administration (MBA) from Amity University, where I gained in-depth knowledge of business strategy, marketing, operations, and leadership.
                 </p>
                 <p>
-                  With an MBA from Amity University, I believe that strong businesses are built at the intersection of strategy, technology, and execution. Sabaysis was born from this belief—a commitment to simplifying business challenges and enabling sustainable growth.
+                  My journey as an entrepreneur stems from a deep curiosity about systems, processes, and innovation. I believe that strong businesses are built at the intersection of strategy, technology, and execution—and Sabaysis was born from this belief.
                 </p>
-                <div className="flex flex-wrap gap-8 pt-4">
+                <p>
+                  With a hands-on approach and a problem-solving mindset, I focus on creating value-driven solutions that are practical, scalable, and impactful. I am passionate about continuous learning, adapting to change, and building brands that stand the test of time.
+                </p>
+                <div className="bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded-r-xl mt-4">
+                  <p className="text-slate-900 font-gotham leading-relaxed text-sm">
+                    <span className="font-montreal font-bold text-emerald-700 block mb-1.5">The Vision Behind Sabaysis</span>
+                    To become a trusted growth partner for businesses across industries—helping them evolve, adapt, and succeed in an ever-changing market. We aim to build a brand that is known for integrity, innovation, and impact.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-6 pt-3">
                   <div className="flex gap-3">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
                       <GraduationCap className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="font-montreal font-bold text-emerald-600 text-sm uppercase tracking-widest mb-0.5">Education</p>
+                      <p className="font-montreal font-bold text-emerald-600 text-xs uppercase tracking-widest mb-0.5">Education</p>
                       <p className="text-sm font-bold text-slate-900">MBA, Amity University</p>
                     </div>
                   </div>
@@ -119,7 +128,7 @@ export function About() {
                       <Award className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="font-montreal font-bold text-blue-600 text-sm uppercase tracking-widest mb-0.5">Expertise</p>
+                      <p className="font-montreal font-bold text-blue-600 text-xs uppercase tracking-widest mb-0.5">Expertise</p>
                       <p className="text-sm font-bold text-slate-900">Strategy & Operations</p>
                     </div>
                   </div>
