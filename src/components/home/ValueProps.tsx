@@ -7,9 +7,10 @@ import swimmingPoolImg from '@/assets/HomeImages/swiming.png';
 import multisportTrackImg from '@/assets/HomeImages/running.png';
 import sportsNetImg from '@/assets/HomeImages/Sports-Net.jpg';
 import landscapeGrassImg from '@/assets/HomeImages/Untitled-design-25.png';
-import volleyballImg from '@/assets/HomeImages/steptodown.com564629.jpg';
+import volleyballImg from '@/assets/Unified S/vollyball.jpg';
 import tennisImg from '@/assets/HomeImages/steptodown.com175119.jpg';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
+import badmintonImg from '@/assets/Unified S/batminton.jpg';
 
 type ServiceItem = {
   title: string;
@@ -55,7 +56,7 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Volleyball Court',
-    imageUrl: swimmingPoolImg,
+    imageUrl: volleyballImg,
     imageAlt: 'Volleyball court',
     link: '/services/volleyball-court',
     bgGradient: 'from-cyan-500 to-blue-600',
@@ -79,7 +80,7 @@ const services: ServiceItem[] = [
   },
   {
     title: 'Badminton Court',
-    imageUrl: volleyballImg,
+    imageUrl: badmintonImg,
     imageAlt: 'Badminton court',
     link: '/services/badminton-court',
     bgGradient: 'from-pink-500 to-rose-600',
@@ -110,15 +111,19 @@ export function ValueProps() {
 
   useEffect(() => {
     const handleResize = () => {
+      let newItemsPerView = 4;
       if (window.innerWidth < 640) {
-        setItemsPerView(1);
+        newItemsPerView = 1;
       } else if (window.innerWidth < 1024) {
-        setItemsPerView(2);
+        newItemsPerView = 2;
       } else if (window.innerWidth < 1536) {
-        setItemsPerView(3);
-      } else {
-        setItemsPerView(4);
+        newItemsPerView = 3;
       }
+      setItemsPerView(newItemsPerView);
+      setCurrentIndex((prev) => {
+        const newMax = Math.max(0, services.length - newItemsPerView);
+        return Math.min(prev, newMax);
+      });
     };
 
     handleResize();
@@ -159,9 +164,10 @@ export function ValueProps() {
 
         <div className="relative group">
           <button
+            type="button"
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-40 p-2 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-40 p-2 rounded-full cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-8 w-8 md:h-10 md:w-10 text-white drop-shadow-lg" />
@@ -169,9 +175,9 @@ export function ValueProps() {
           <div className="overflow-hidden rounded-2xl">
             <div
               ref={carouselRef}
-              className="flex gap-4 transition-transform duration-500 ease-out mb-8 md:mb-0"
+              className="flex -mx-2 transition-transform duration-500 ease-out mb-8 md:mb-0"
               style={{
-                transform: `translateX(-${currentIndex * (100 / itemsPerView + 1.6)}%)`,
+                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
               }}
             >
               {services.map((service) => (
@@ -179,7 +185,7 @@ export function ValueProps() {
                   key={service.title}
                   to={service.link}
                   style={{ width: `${100 / itemsPerView}%` }}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 px-2"
                 >
                   <div className="relative overflow-hidden rounded-l group/card cursor-pointer h-60 sm:h-72 md:h-96 lg:h-[400px] xl:h-[450px] max-h-[60vh]">
                     <img
@@ -201,7 +207,10 @@ export function ValueProps() {
                           {service.title}
                         </h3>
                         
-                        <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/95 hover:bg-white text-slate-900 font-montreal font-semibold rounded-lg transition-all duration-300 opacity-0 group-hover/card:opacity-100 transform translate-y-6 group-hover/card:translate-y-0">
+                        <button 
+                          type="button"
+                          className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/95 hover:bg-white text-slate-900 font-montreal font-semibold rounded-lg cursor-pointer transition-all duration-300 opacity-0 group-hover/card:opacity-100 transform translate-y-6 group-hover/card:translate-y-0"
+                        >
                           <span>KNOW MORE</span>
                           <span className="text-lg">↗</span>
                         </button>
@@ -214,9 +223,10 @@ export function ValueProps() {
           </div>
 
           <button
+            type="button"
             onClick={handleNext}
             disabled={currentIndex >= maxIndex}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-40 p-2 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-40 p-2 rounded-full cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110"
             aria-label="Next slide"
           >
             <ChevronRight className="h-8 w-8 md:h-10 md:w-10 text-white drop-shadow-lg" />
@@ -225,9 +235,10 @@ export function ValueProps() {
           <div className="flex justify-center gap-2 md:gap-3 mt-4 md:mt-8">
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
+                type="button"
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${
                   index === currentIndex
                     ? 'w-8 bg-white'
                     : 'w-2 bg-white/50 hover:bg-white/75'

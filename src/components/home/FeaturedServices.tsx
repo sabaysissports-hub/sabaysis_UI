@@ -103,33 +103,6 @@ export function FeaturedServices() {
                 )
               })}
             </div>
-
-            <div className="grid grid-cols-3 gap-3 rounded-xl p-4 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800/50 shadow-lg">
-              <div className="text-center">
-                <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  500+
-                </p>
-                <p className="font-gotham text-[10px] md:text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">
-                  Projects Delivered
-                </p>
-              </div>
-              <div className="text-center border-x border-emerald-300 dark:border-emerald-700">
-                <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                  50+
-                </p>
-                <p className="font-gotham text-[10px] md:text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">
-                  Cities Covered
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="font-montreal text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  10+
-                </p>
-                <p className="font-gotham text-[10px] md:text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">
-                  Countries Served
-                </p>
-              </div>
-            </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-lg">

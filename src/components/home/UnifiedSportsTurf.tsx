@@ -1,7 +1,7 @@
 import { CheckCircle2, ArrowRight, Wrench, Lightbulb, Hammer } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import featureOne from '@/assets/Unified S/Untitled-design-2023-12-23T101940.389.webp';
-import { BackgroundRippleEffect } from '@/components/ui/background-ripple-effect';
+import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
 
 export function UnifiedSportsTurf() {
   const services = [
@@ -13,11 +13,15 @@ export function UnifiedSportsTurf() {
 
   return (
     <section 
-      className="w-full pt-10 pb-8 lg:pt-24  relative overflow-hidden bg-transparent"
-    >
-      <BackgroundRippleEffect rows={32} cols={52} cellSize={36} />
-      <div className="absolute inset-0 bg-slate-900/30" />
-      <div className="w-full px-4 mx-auto max-w-screen-xl relative z-10">
+      className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-visible py-10 pb-8 lg:py-24"
+      style={{
+        backgroundImage: `url(${servicesBgImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >      <div className="absolute inset-0 bg-black/60 z-0" />
+      <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 place-content-stretch">
           
           <div className="w-full bg-[#235c4c] p-5 lg:p-10 h-full rounded-lg flex flex-col justify-between">
