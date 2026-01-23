@@ -1,6 +1,6 @@
 import { CheckCircle2, ArrowRight, Wrench, Lightbulb, Hammer } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import featureOne from '@/assets/Unified S/Untitled-design-2023-12-23T101940.389.webp';
+import featureOne from '@/assets/Unified S/cricket.webp';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
 
 export function UnifiedSportsTurf() {

@@ -1,6 +1,5 @@
 import type { ServiceTemplateData } from '@/types/service';
-import badmintonHero from '@/assets/Hero/hero (1).jpg';
-import badmintonAbout from '@/assets/Features/unified (1).jpg';
+import badmintonHero from '@/assets/Unified S/batminton.jpg';
 import badmintonWood from '@/assets/Features/unified (2).jpg';
 import badmintonPVC from '@/assets/Features/unified (3).jpg';
 
@@ -15,8 +14,8 @@ export const badmintonData: ServiceTemplateData = {
   },
   about: {
     title: 'World-Class Badminton Infrastructure',
-    description: 'Sabaysis specializes in constructing premium badminton courts that meet the rigorous standards of the Badminton World Federation (BWF). Our courts are designed to provide optimal grip, consistent shuttle bounce, and superior shock absorption for both recreational and professional play.',
-    image: badmintonAbout,
+    description: 'Sabaysis specializes in constructing premium badminton courts that meet the rigorous standards of the Badminton World Federation (BWF). Our courts are designed to provide optimal playability, consistent shuttle bounce, and superior shock absorption for both recreational and professional play.',
+    image: badmintonHero,
     imageAlt: 'Badminton court installation',
     features: [
       'BWF Grade 1 & 2 compliant surfacing',
