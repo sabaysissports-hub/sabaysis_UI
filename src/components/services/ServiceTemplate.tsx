@@ -1,4 +1,5 @@
-import { Sparkles, CheckCircle2, MapPin, Maximize2, Shield } from 'lucide-react';
+import { useState } from 'react';
+import { Sparkles, CheckCircle2, MapPin, Maximize2, Shield, Plus, Minus, XCircle, Check } from 'lucide-react';
 import type { ServiceTemplateData } from '@/types/service';
 
 interface ServiceTemplateProps {
@@ -6,11 +7,13 @@ interface ServiceTemplateProps {
 }
 
 export function ServiceTemplate({ data }: ServiceTemplateProps) {
+  const [openItem, setOpenItem] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <section className="relative w-full overflow-hidden bg-slate-900 -mt-16 lg:-mt-20">
         <div className="absolute inset-0">
-          <img 
+          <img  
             src={data.hero.image} 
             alt={data.hero.title}
             className="h-full w-full object-cover opacity-60"
@@ -167,6 +170,15 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                   key={index}
                   className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] p-8 md:p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 text-center flex flex-col items-center"
                 >
+                  {feature.image && (
+                    <div className="w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-slate-100 dark:border-slate-800">
+                      <img 
+                        src={feature.image} 
+                        alt={feature.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                    </div>
+                  )}
                   <div className="h-1.5 w-16 bg-emerald-500 rounded-full mb-8 group-hover:w-24 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.3)]" />
                   <h3 className="text-2xl font-montreal font-bold text-slate-900 dark:text-white mb-4 italic">
                     {feature.title}
@@ -194,7 +206,6 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
             </div>
 
             <div className="relative">
-              {/* Vertical line for desktop */}
               <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 -translate-x-1/2" />
               
               <div className="space-y-12 lg:space-y-32">
@@ -217,7 +228,6 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                         </div>
                       </div>
 
-                      {/* Content Section */}
                       <div className={`w-full lg:w-1/2 space-y-4 ${
                         index % 2 === 0 ? 'lg:text-left' : 'lg:text-right'
                       }`}>
@@ -297,6 +307,42 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                       </div>
                     )}
 
+                    {model.pricingTable && model.pricingTable.length > 0 && (
+                      <div className="mt-6 p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                        {model.pricingTable.map((price, i) => (
+                          <div key={i}>
+                            <div className="grid grid-cols-2 gap-4 py-3">
+                              <div className="space-y-1">
+                                <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                  Pool Size
+                                </span>
+                                <p className="text-sm font-bold text-slate-900 dark:text-white">
+                                  {price.label}
+                                </p>
+                              </div>
+                              <div className="space-y-1">
+                                <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                  Approximate Cost
+                                </span>
+                                <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                                  {price.value}
+                                </p>
+                              </div>
+                            </div>
+                            {i < model.pricingTable!.length - 1 && (
+                              <div className="h-px bg-slate-100 dark:bg-slate-700" />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {model.footerText && (
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-light leading-relaxed italic">
+                        {model.footerText}
+                      </p>
+                    )}
+
                     {model.applications && model.applications.length > 0 && (
                       <div className="pt-4">
                         <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
@@ -317,12 +363,196 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                   </div>
 
                   <div className={`relative ${index % 2 === 0 ? '' : 'lg:col-start-1 lg:row-start-1'}`}>
-                    <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700">
+                    <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700 relative">
                       <img 
                         src={model.image} 
                         alt={model.imageAlt}
                         className="h-full w-full object-cover hover:scale-105 transition-transform duration-500"
                       />
+                      <div className="absolute top-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-4 rounded-bl-2xl border-l border-b border-slate-200 dark:border-slate-700">
+                        <h4 className="text-sm font-montreal font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                          {model.name}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data.accordion && (
+        <section className="py-16 md:py-24 bg-white dark:bg-slate-950">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="text-center mb-12">
+              {data.accordion.subtitle && (
+                <span className="text-emerald-500 font-montreal font-bold uppercase tracking-[0.3em] text-xs block mb-4">
+                  {data.accordion.subtitle}
+                </span>
+              )}
+              <h2 className="text-3xl md:text-5xl font-montreal font-bold text-slate-900 dark:text-white">
+                {data.accordion.title}
+              </h2>
+            </div>
+
+            <div className="max-w-7xl mx-auto space-y-4">
+              {data.accordion.items.map((item, index) => (
+                <div 
+                  key={index}
+                  className="rounded-2xl border-2 border-slate-100 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 shadow-sm"
+                >
+                  <button 
+                    onClick={() => setOpenItem(openItem === index ? null : index)}
+                    className="w-full px-6 py-5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left"
+                  >
+                    <span className="text-lg font-montreal font-bold text-slate-900 dark:text-white">
+                      {item.title}
+                    </span>
+                    <div className="flex-none p-2 rounded-full bg-slate-100 dark:bg-slate-800">
+                      {openItem === index ? (
+                        <Minus className="h-5 w-5 text-emerald-500" />
+                      ) : (
+                        <Plus className="h-5 w-5 text-slate-500" />
+                      )}
+                    </div>
+                  </button>
+
+                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openItem === index ? 'max-h-[2000px] border-t border-slate-100 dark:border-slate-800' : 'max-h-0'
+                  }`}>
+                    <div className="p-6 space-y-6">
+                      <div className="grid gap-6">
+                        {item.images && item.images.map((img, imgIdx) => (
+                          <div key={imgIdx} className="flex flex-col md:flex-row gap-6 items-start">
+                            <div className="w-full md:w-64 flex-none aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                              <img 
+                                src={img} 
+                                alt={`${item.title} image ${imgIdx + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            {imgIdx === 0 && (
+                              <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                                {item.description}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                        {(!item.images || item.images.length === 0) && (
+                          <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                            {item.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data.whyChooseUs && (
+        <section className="relative py-20 overflow-hidden">
+          {data.whyChooseUs.image && (
+            <div className="absolute inset-0 z-0">
+               <img src={data.whyChooseUs.image} className="w-full h-full object-cover opacity-20" alt="" />
+               <div className="absolute inset-0 bg-linear-to-br from-slate-900 via-slate-900/40 to-slate-900 shadow-inner" />
+            </div>
+          )}
+          <div className="relative z-10 mx-auto max-w-7xl px-4">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              <div className="w-full lg:w-7/12 space-y-8">
+                <div className="space-y-4">
+                  <span className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 font-montreal font-bold text-xs uppercase tracking-widest border border-emerald-500/20">
+                    Why Us
+                  </span>
+                  <h2 className="text-4xl md:text-5xl font-montreal font-bold text-white uppercase leading-tight">
+                    {data.whyChooseUs.title}
+                  </h2>
+                </div>
+                <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line">
+                  {data.whyChooseUs.description}
+                </p>
+              </div>
+              <div className="w-full lg:w-5/12 grid grid-cols-2 gap-6">
+                {data.whyChooseUs.features.map((feature, idx) => (
+                  <div key={idx} className="p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-500/50 transition-all duration-300 flex flex-col items-center text-center group">
+                    {feature.icon && (
+                      <img src={feature.icon} className="size-16 mb-4 group-hover:scale-110 transition-transform duration-300" alt={feature.title} />
+                    )}
+                    <p className="text-white text-sm font-semibold leading-tight capitalize">
+                      {feature.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data.subBase && (
+        <section className="py-20 bg-slate-50 dark:bg-slate-900/50">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="text-center mb-16">
+              {data.subBase.subtitle && (
+                <span className="text-emerald-500 font-montreal font-bold uppercase tracking-[0.3em] text-xs block mb-4">
+                  {data.subBase.subtitle}
+                </span>
+              )}
+              <h2 className="text-3xl md:text-5xl font-montreal font-bold text-slate-900 dark:text-white uppercase">
+                {data.subBase.title}
+              </h2>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-8">
+              {data.subBase.items.map((item, idx) => (
+                <div key={idx} className="bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                  <div className="p-8 md:p-10 flex-1">
+                    <div className="flex flex-col md:flex-row gap-8 mb-8">
+                       <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 flex-none shadow-lg">
+                          <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
+                       </div>
+                       <div className="space-y-4">
+                          <h3 className="text-3xl font-montreal font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                            {item.title}
+                          </h3>
+                          <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                            {item.description}
+                          </p>
+                       </div>
+                    </div>
+                    <div className="h-px bg-slate-100 dark:bg-slate-800 mb-10" />
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 text-emerald-500 font-bold uppercase text-xs tracking-widest">
+                          <CheckCircle2 className="size-4" /> Advantages
+                        </div>
+                        <ul className="space-y-3">
+                          {item.pros.map((pro, pidx) => (
+                            <li key={pidx} className="flex items-start gap-3 group">
+                              <Check className="size-5 text-emerald-500 flex-none mt-1 group-hover:scale-110 transition-transform" />
+                              <span className="text-slate-600 dark:text-slate-400 text-sm leading-snug">{pro}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 text-rose-500 font-bold uppercase text-xs tracking-widest">
+                          <XCircle className="size-4" /> Disadvantages
+                        </div>
+                        <ul className="space-y-3">
+                          {item.cons.map((con, cidx) => (
+                            <li key={cidx} className="flex items-start gap-3 group">
+                              <XCircle className="size-5 text-rose-500 flex-none mt-1 group-hover:scale-110 transition-transform" />
+                              <span className="text-slate-600 dark:text-slate-400 text-sm leading-snug">{con}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>

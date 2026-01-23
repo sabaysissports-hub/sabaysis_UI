@@ -27,6 +27,11 @@ export interface ServiceModel {
     label: string;
     value: string;
   }[];
+  pricingTable?: {
+    label: string;
+    value: string;
+  }[];
+  footerText?: string;
   applications?: string[];
 }
 
@@ -68,6 +73,7 @@ export interface ServiceTemplateData {
   features?: {
     title: string;
     description: string;
+    image?: string;
   }[];
   timeline?: {
     title: string;
@@ -78,10 +84,38 @@ export interface ServiceTemplateData {
       image: string;
     }[];
   };
+  accordion?: {
+    title: string;
+    subtitle?: string;
+    items: {
+      title: string;
+      description: string;
+      images?: string[];
+    }[];
+  };
+  whyChooseUs?: {
+    title: string;
+    description: string;
+    image?: string;
+    features: {
+      title: string;
+      icon?: string;
+    }[];
+  };
+  subBase?: {
+    title: string;
+    subtitle?: string;
+    items: {
+      title: string;
+      description: string;
+      image: string;
+      pros: string[];
+      cons: string[];
+    }[];
+  };
   cta: ServiceCTA;
 }
 
-// Legacy service detail type (for backward compatibility)
 export interface ServiceDetailLegacy {
   slug: string;
   bannerTitle: string;
