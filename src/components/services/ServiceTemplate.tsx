@@ -97,7 +97,7 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
             </div>
 
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/10">
+              <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/10">
                 <img 
                   src={data.about.image} 
                   alt={data.about.imageAlt}
@@ -114,7 +114,7 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
           <div className="mx-auto max-w-7xl px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="relative order-2 lg:order-1">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/20">
+                <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/20">
                   <img 
                     src={data.whatIsIt.image} 
                     alt={data.whatIsIt.imageAlt}
@@ -158,6 +158,92 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
           </div>
         </section>
       )}
+      {data.features && data.features.length > 0 && (
+        <section className="py-16 md:py-20 bg-slate-50/50 dark:bg-slate-900/20">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+              {data.features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] p-8 md:p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 text-center flex flex-col items-center"
+                >
+                  <div className="h-1.5 w-16 bg-emerald-500 rounded-full mb-8 group-hover:w-24 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.3)]" />
+                  <h3 className="text-2xl font-montreal font-bold text-slate-900 dark:text-white mb-4 italic">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed max-w-[280px]">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data.timeline && (
+        <section className="py-16 md:py-24 bg-white dark:bg-slate-950 overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="text-center mb-16 md:mb-24">
+              <h2 className="text-3xl md:text-5xl font-montreal font-bold text-slate-900 dark:text-white mb-6">
+                {data.timeline.title}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
+                {data.timeline.description}
+              </p>
+            </div>
+
+            <div className="relative">
+              {/* Vertical line for desktop */}
+              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 -translate-x-1/2" />
+              
+              <div className="space-y-12 lg:space-y-32">
+                {data.timeline.steps.map((step, index) => (
+                  <div key={index} className="relative group">
+                    <div className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-24 ${
+                      index % 2 === 0 ? '' : 'lg:flex-row-reverse'
+                    }`}>
+                      {/* Image Card */}
+                      <div className="w-full lg:w-1/2">
+                        <div className="relative aspect-video rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                          <img 
+                            src={step.image} 
+                            alt={step.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                             <span className="text-white font-montreal font-bold text-xl">{step.title}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content Section */}
+                      <div className={`w-full lg:w-1/2 space-y-4 ${
+                        index % 2 === 0 ? 'lg:text-left' : 'lg:text-right'
+                      }`}>
+                         <div className={`hidden lg:flex absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white dark:border-slate-950 z-20 ${
+                           index % 2 === 0 ? 'left-1/2 -translate-x-1/2' : 'right-1/2 translate-x-1/2'
+                         }`} />
+                         
+                         <span className="text-emerald-500 font-montreal font-bold text-6xl opacity-20 block">
+                           0{index + 1}
+                         </span>
+                         <h3 className="text-2xl md:text-3xl font-montreal font-bold text-slate-900 dark:text-white">
+                           {step.title}
+                         </h3>
+                         <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-lg lg:ml-0 lg:mr-0 inline-block">
+                           {step.description}
+                         </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {data.models && data.models.length > 0 && (
         <section className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900/50">
           <div className="mx-auto max-w-7xl px-4">
@@ -231,7 +317,7 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                   </div>
 
                   <div className={`relative ${index % 2 === 0 ? '' : 'lg:col-start-1 lg:row-start-1'}`}>
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700">
+                    <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700">
                       <img 
                         src={model.image} 
                         alt={model.imageAlt}
@@ -264,7 +350,17 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto space-y-8">
+              {data.technicalData.image && (
+                <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg p-4">
+                  <img 
+                    src={data.technicalData.image} 
+                    alt={data.technicalData.imageAlt || 'Technical Diagram'}
+                    className="w-full h-auto rounded-xl"
+                  />
+                </div>
+              )}
+              
               <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full">

@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { Sparkles, Target, Building2, Globe2, Quote, Award, GraduationCap, ArrowRight, ShieldCheck, Heart, Leaf, Users } from 'lucide-react';
-import { BackgroundRippleEffect } from '@/components/ui/background-ripple-effect';
-import { BackgroundBeams } from '@/components/ui/background-beams';
 import aboutbg from '@/assets/About/aboutbg.jpg';
 import directorImg from '@/assets/About/director.jpeg';
 import unified1 from '@/assets/Features/unified (1).jpg';
@@ -216,7 +214,6 @@ export function About() {
         </section>
 
         <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
-          <BackgroundBeams className="pointer-events-none opacity-50 will-change-transform transform-gpu" />
           <TurfTimeline />
         </section>
         <section className="py-24 md:py-32 bg-slate-900 text-white text-center relative overflow-hidden">
@@ -251,7 +248,6 @@ export function About() {
 
         <section className="relative overflow-hidden py-24 md:py-40 text-center">
           <div className="absolute inset-0 opacity-60 will-change-transform transform-gpu">
-            <BackgroundRippleEffect rows={22} cols={38} cellSize={32} interactive={false} />
           </div>
           <div className="relative max-w-2xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-montreal font-bold text-slate-900 mb-8">

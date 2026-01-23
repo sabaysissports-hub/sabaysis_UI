@@ -33,6 +33,8 @@ export interface ServiceModel {
 export interface ServiceTechnicalData {
   title: string;
   description: string;
+  image?: string;
+  imageAlt?: string;
   headers: {
     [key: string]: string;
   };
@@ -67,6 +69,15 @@ export interface ServiceTemplateData {
     title: string;
     description: string;
   }[];
+  timeline?: {
+    title: string;
+    description: string;
+    steps: {
+      title: string;
+      description: string;
+      image: string;
+    }[];
+  };
   cta: ServiceCTA;
 }
 

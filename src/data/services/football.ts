@@ -1,121 +1,163 @@
 import type { ServiceTemplateData } from '@/types/service';
 import footballHero from '@/assets/Hero/hero (2).jpg';
-import footballAbout from '@/assets/Features/unified (1).jpg';
-import footballClassic from '@/assets/Features/unified (2).jpg';
-import footballPremium from '@/assets/Features/unified (3).jpg';
+import footballAbout from '@/assets/services/football/Infrastructure.jpg';
+import dimensions from '@/assets/services/football/DIMENSIONS.jpg';
+import base from '@/assets/services/football/Base.webp';
+import comercial from '@/assets/services/football/Commercial.jpg';
+import elite from '@/assets/services/football/Elite.jpg';
+import high from '@/assets/services/football/High.jpg';
+import installation from '@/assets/services/football/Installation.webp'; 
+import conditioning from '@/assets/services/football/Conditioning.png';
 
 export const footballCourtData: ServiceTemplateData = {
   slug: 'football-court',
   hero: {
     title: 'Sabaysis Football',
     subtitle: 'FIFA-Standard Turf & Courts',
-    description: 'Professional football turf and court construction meeting international FIFA standards',
+    description: 'Professional football turf and court construction meeting international FIFA standards. Exclusively launching MARS 60-B1 Football Turf by CCGrass.',
     image: footballHero,
-    badge: 'FIFA-Standard Quality'
+    badge: 'FIFA Preferred Provider'
   },
   about: {
     title: 'Premium Football Infrastructure',
-    description: 'Sabaysis specializes in constructing world-class football courts and artificial turf fields that meet FIFA quality standards. Our expertise spans from small-sided courts to full-size professional pitches, delivering exceptional playing surfaces for schools, clubs, academies, and professional venues across India and internationally.',
+    description: "Sabaysis specializes in constructing world-class football courts and artificial turf fields that meet FIFA quality standards. As a preferred partner for CCGrass, the world's largest turf manufacturer, we provide the highest quality surfaces tested for up to 5,00,000 Lisport cycles.",
     image: footballAbout,
     imageAlt: 'Football turf installation',
     features: [
-      'FIFA Quality certified turf',
-      'Professional drainage systems',
-      'UV-resistant materials',
-      'All-weather playability',
-      'Expert installation team',
-      'Comprehensive maintenance support'
+      'FIFA Quality & Quality Pro certifications',
+      'Exclusive CCGrass MARS 60-B1 Launch',
+      'Tested for 5,00,000 Lisport XL cycles',
+      'All-weather playability & UV resistance',
+      'Professional base & FIFA-recommended infill',
+      '15-year warranty assurance'
     ]
   },
-  whatIsIt: {
-    title: 'Modern Football Infrastructure',
-    description: 'Our football courts feature premium artificial turf designed for optimal ball roll, player safety, and durability. Each installation includes proper base preparation, drainage systems, and shock-absorbing underlays to ensure professional-grade performance and player comfort.',
-    image: footballClassic,
-    imageAlt: 'Football court construction',
-    relatedSports: ['Football', 'Soccer', 'Futsal']
+  features: [
+    {
+      title: 'FIFA & UEFA Standards',
+      description: 'Our turf complies with the highest standards set by FIFA and UEFA, ensuring professional-grade quality and player performance with FIFA Quality Pro certifications.'
+    },
+    {
+      title: 'Mars 60-B1 Technology',
+      description: "Tested with Lisport XL for up to 5,00,000 cycles—the highest in the world—making it ideal for extreme heavy-use commercial grounds."
+    },
+    {
+      title: 'Warranty & Durability',
+      description: "Backed by CCGrass and installed by Sabaysis experts with professional base work to ensure a lifespan of 15+ years under intensive use."
+    }
+  ],
+  timeline: {
+    title: 'Football Turf Construction Process',
+    description: 'A systematic approach to building international-standard football facilities.',
+    steps: [
+      {
+        title: 'Land Conditioning',
+        description: 'Professional site evaluation and preparation to ensure a perfectly level playing area.',
+        image: conditioning
+      },
+      {
+        title: 'Base Work',
+        description: 'Engineering a solid foundation with professional drainage systems and stability layers.',
+        image: base
+      },
+      {
+        title: 'Installation of Grass',
+        description: 'Precision laying of artificial turf with FIFA-recommended infill for maximum performance.',
+        image: installation
+      }
+    ]
   },
+  modelsTitle: 'Top Professional Products',
+  modelsDescription: 'Our range of high-performance artificial grass systems for professional football.',
   models: [
     {
-      id: 'classic-5-a-side',
-      name: '5-A-Side Classic',
-      title: 'Classic 5-A-Side Football Court',
-      description: 'Perfect for recreational play and small-sided games, our 5-a-side courts feature FIFA-quality turf with excellent ball control and player comfort.',
-      image: footballClassic,
-      imageAlt: '5-a-side football court',
+      id: 'mars-60-b1',
+      name: 'MARS 60-B1',
+      title: 'Elite FIFA Quality Pro Turf',
+      description: "Exclusively launched by CCGrass with Sabaysis. Tested for up to 500,000 Lisport cycles—the world's highest durability rating.",
+      image: elite,
+      imageAlt: 'MARS 60-B1 Football Turf',
       specifications: [
-        { label: 'Court Size', value: '40m × 20m' },
-        { label: 'Turf Type', value: 'FIFA Quality monofilament' },
-        { label: 'Pile Height', value: '40-50mm' },
-        { label: 'Infill', value: 'Sand + rubber granules' }
+        { label: 'Pile Height', value: '50mm' },
+        { label: 'Dtex', value: '18000' },
+        { label: 'Lisport Cycles', value: '5,00,000+' },
+        { label: 'Warranty', value: '15 Years' },
+        { label: 'Density', value: '8820' },
+        { label: 'Backing', value: 'Double PP + PU' }
       ],
-      applications: ['Sports Clubs', 'Schools', 'Community Centers', 'Residential Complexes']
+      applications: ['Stadiums', 'Professional Clubs', 'Elite Academies']
     },
     {
-      id: 'premium-7-a-side',
-      name: '7-A-Side Premium',
-      title: 'Premium 7-A-Side Football Court',
-      description: 'Designed for competitive play with enhanced durability and performance characteristics. Ideal for academies and training facilities.',
-      image: footballPremium,
-      imageAlt: '7-a-side football court',
+      id: 'dream-turf',
+      name: 'DREAM',
+      title: 'High-Performance Pro Turf',
+      description: 'Superior resilience and comfort for high-intensity training centers and competitive academies.',
+      image: high,
+      imageAlt: 'Dream Football Turf',
       specifications: [
-        { label: 'Court Size', value: '60m × 40m' },
-        { label: 'Turf Type', value: 'FIFA Quality Pro' },
-        { label: 'Pile Height', value: '50-60mm' },
-        { label: 'Shock Pad', value: '10mm EPDM underlay' }
+        { label: 'Pile Height', value: '50mm' },
+        { label: 'Dtex', value: '17000' },
+        { label: 'Lisport Cycles', value: '3,50,000+' },
+        { label: 'Warranty', value: '10 Years' },
+        { label: 'Resilience', value: '90' },
+        { label: 'Backing', value: 'Double PP + Green SBR Latex' }
       ],
-      applications: ['Football Academies', 'Sports Complexes', 'Professional Training', 'Tournaments']
+      applications: ['Football Academies', 'Schools', 'Private Clubs']
     },
     {
-      id: 'professional-11-a-side',
-      name: '11-A-Side Professional',
-      title: 'Professional Full-Size Football Pitch',
-      description: 'Tournament-grade full-size football pitch with FIFA Quality Pro certification, designed for professional matches and high-level competitions.',
-      image: footballHero,
-      imageAlt: 'Professional football pitch',
+      id: 'europea-hd',
+      name: 'EUROPEA HD',
+      title: 'Commercial Heavy Duty',
+      description: 'Maximum resilience (100) designed for commercial pay-and-play facilities with back-to-back bookings.',
+      image: comercial,
+      imageAlt: 'Europea HD Football Turf',
       specifications: [
-        { label: 'Pitch Size', value: '105m × 68m' },
-        { label: 'Turf Type', value: 'FIFA Quality Pro certified' },
-        { label: 'Pile Height', value: '60mm' },
-        { label: 'Drainage', value: 'Advanced percolation system' }
+        { label: 'Pile Height', value: '50mm' },
+        { label: 'Dtex', value: '16000' },
+        { label: 'Lisport Cycles', value: '3,00,000+' },
+        { label: 'Warranty', value: '8 Years' },
+        { label: 'Resilience', value: '100' },
+        { label: 'Density', value: '11550' }
       ],
-      applications: ['Professional Clubs', 'Stadiums', 'International Venues', 'Elite Training Centers']
+      applications: ['Commercial Hubs', 'Community Parks', 'Schools']
     }
   ],
   technicalData: {
-    title: 'FIFA Quality Standards',
-    description: 'Our football turf meets rigorous FIFA quality standards for ball roll, vertical ball rebound, shock absorption, and rotational resistance.',
+    title: 'DIMENSIONS OF FOOTBALL TURF BY FIFA',
+    description: 'FIFA recommendations for pitch dimensions to ensure professional-grade playing standards.',
+    image: dimensions,
+    imageAlt: 'Dimensions of Football Turf by FIFA',
     headers: {
-      parameter: 'Parameter',
-      standard: 'FIFA Standard',
-      sabaysis: 'Sabaysis Performance'
+      category: 'Category',
+      length: 'Length (m)',
+      width: 'Width (m)',
+      details: 'Requirement'
     },
     rows: [
       {
-        parameter: 'Ball Roll',
-        standard: '4-10m',
-        sabaysis: '6-8m'
+        category: 'Professional 11-a-side',
+        length: '90m - 120m',
+        width: '45m - 90m',
+        details: 'Standard Rectangular Field'
       },
       {
-        parameter: 'Vertical Rebound',
-        standard: '30-50%',
-        sabaysis: '40-45%'
+        category: 'Penalty Area',
+        length: '16.45m',
+        width: '-',
+        details: 'Distance from Goal Line'
       },
       {
-        parameter: 'Shock Absorption',
-        standard: '55-70%',
-        sabaysis: '60-65%'
-      },
-      {
-        parameter: 'Rotational Resistance',
-        standard: '25-45 Nm',
-        sabaysis: '30-40 Nm'
+        category: 'Penalty Spot',
+        length: '10.9m',
+        width: '-',
+        details: 'Distance from Goal'
       }
     ]
   },
   cta: {
-    title: 'Ready to Build Your Football Court?',
-    description: 'Get in touch with our team for a custom quote and site consultation',
-    buttonText: 'Get a Quote',
+    title: 'Build Your FIFA-Standard Field',
+    description: 'Expert consultation for your professional football infrastructure project.',
+    buttonText: 'Request Quote',
     buttonLink: '/contact-us?product=Football Court'
   }
 };

@@ -1,7 +1,11 @@
 import type { ServiceTemplateData } from '@/types/service';
 import pickleballHero from '@/assets/Hero/Pickleball.jpg';
-import pickleballAbout from '@/assets/Features/unified (1).jpg';
-import pickleballModel1 from '@/assets/Features/unified (2).jpg';
+import pickleballAbout from '@/assets/services/pickleball-court/about.jpg';
+import dimensions from '@/assets/services/pickleball-court/pickleballModel1.webp';
+import Acrylic from '@/assets/services/pickleball-court/Acrylic.jpg';
+import Cushion from '@/assets/services/pickleball-court/Cushioned.jpg';
+import Why from '@/assets/services/pickleball-court/Why.jpg';
+
 
 export const pickleballData: ServiceTemplateData = {
   slug: 'pickleball-court',
@@ -29,7 +33,7 @@ export const pickleballData: ServiceTemplateData = {
   whatIsIt: {
     title: 'Why Pickleball?',
     description: 'Pickleball is the fastest-growing sport globally, combining elements of tennis, badminton, and table tennis. It requires less space than a traditional tennis court, making it perfect for residential communities and hotels.',
-    image: pickleballModel1,
+    image: Why,
     imageAlt: 'Pickleball gameplay',
     relatedSports: ['Tennis', 'Badminton', 'Table Tennis']
   },
@@ -39,7 +43,7 @@ export const pickleballData: ServiceTemplateData = {
       name: 'Standard Hard Court',
       title: 'Professional Acrylic Hard Court',
       description: 'The standard choice for clubs and competition, providing a consistent ball bounce and excellent traction.',
-      image: pickleballModel1,
+      image: Acrylic,
       imageAlt: 'Standard pickleball court',
       specifications: [
         { label: 'Dimensions', value: '20ft × 44ft' },
@@ -54,7 +58,7 @@ export const pickleballData: ServiceTemplateData = {
       name: 'Pro Cushion Plus',
       title: 'Premium Cushioned Court',
       description: 'Features an additional rubberized layer to absorb impact, reducing player fatigue and preventing injuries.',
-      image: pickleballHero,
+      image: Cushion,
       imageAlt: 'Cushioned pickleball court',
       specifications: [
         { label: 'Layers', value: '7-9 Layer system' },
@@ -68,6 +72,8 @@ export const pickleballData: ServiceTemplateData = {
   technicalData: {
     title: 'Surface Performance',
     description: 'Our acrylic surfaces are engineered for durability and consistent athletic performance.',
+    image: dimensions,
+    imageAlt: 'Pickleball Court Dimensions',
     headers: {
       property: 'Property',
       specification: 'Specification',
@@ -96,6 +102,8 @@ export const pickleballData: ServiceTemplateData = {
       }
     ]
   },
+
+  
   cta: {
     title: 'Install Your Pickleball Court Today',
     description: 'Join the pickleball trend with a professional court from Sabaysis',
