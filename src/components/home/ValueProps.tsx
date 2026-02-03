@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import footballTurfImg from '@/assets/HomeImages/football.jpg';
-import batImg from '@/assets/HomeImages/batminton.jpg';
+import batImg from '@/assets/HomeImages/tennis.jpg';
 import cricketTurfImg from '@/assets/Hero/herocric.jpg';
 import swimmingPoolImg from '@/assets/HomeImages/swiming.png';
 import multisportTrackImg from '@/assets/HomeImages/running.png';
@@ -11,7 +11,7 @@ import landscapeGrassImg from '@/assets/pedel/padelHero.jpg';
 import volleyballImg from '@/assets/HomeImages/vollyball.avif';
 import tennisImg from '@/assets/HomeImages/basketball.jpg';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
-import badmintonImg from '@/assets/Unified S/batminton.jpg';
+import badmintonImg from '@/assets/HomeImages/batminton.jpg';
 
 type ServiceItem = {
   title: string;
