@@ -1,4 +1,4 @@
-import { CheckCircle2, ArrowRight, Wrench, Lightbulb, Hammer, Calendar, Palette } from 'lucide-react';
+import { ArrowRight, Wrench, Lightbulb, Hammer, Calendar, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import featureOne from '@/assets/Unified S/cricket.webp';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
