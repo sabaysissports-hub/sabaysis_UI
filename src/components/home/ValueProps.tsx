@@ -12,6 +12,8 @@ import volleyballImg from '@/assets/HomeImages/vollyball.avif';
 import tennisImg from '@/assets/HomeImages/basketball.jpg';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
 import badmintonImg from '@/assets/HomeImages/batminton.jpg';
+import golfImg from '@/assets/HomeImages/golf.jpg';
+import gymnasticsImg from '@/assets/HomeImages/gymanastic.jpg';
 
 type ServiceItem = {
   title: string;
@@ -101,6 +103,22 @@ const services: ServiceItem[] = [
     imageAlt: 'Multisport running tracks',
     link: '/services/multisport-running-tracks',
     bgGradient: 'from-purple-500 to-purple-600',
+    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
+  },
+  {
+    title: 'Golf Facility',
+    imageUrl: golfImg,
+    imageAlt: 'Golf facility',
+    link: '/services/golf',
+    bgGradient: 'from-emerald-500 to-teal-600',
+    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
+  },
+  {
+    title: 'Gymnastics',
+    imageUrl: gymnasticsImg,
+    imageAlt: 'Gymnastics facility',
+    link: '/services/gymnastics',
+    bgGradient: 'from-slate-500 to-slate-700',
     cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
   },
 ];

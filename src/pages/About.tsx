@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '@/hooks/usePageTitle';
-import { Sparkles, Target, Building2, Globe2, Quote, Award, GraduationCap, ArrowRight, ShieldCheck, Heart, Leaf, Users } from 'lucide-react';
+import { Sparkles, Target, Building2, Globe2, Quote, Award, GraduationCap, ArrowRight, ShieldCheck, Heart, Leaf, Users, Video } from 'lucide-react';
 import aboutbg from '@/assets/About/aboutbg.jpg';
 import directorImg from '@/assets/About/director.jpeg';
 import unified1 from '@/assets/Features/unified (1).jpg';
@@ -133,6 +133,62 @@ export function About() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid lg:grid-cols-2 h-screen bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+          <div className="flex flex-col justify-center p-4 md:p-6 lg:p-10 xl:p-14 bg-white order-1 overflow-y-auto">
+            <div className="max-w-xl">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-xs font-montreal font-bold uppercase tracking-[0.25em] text-emerald-700 mb-6">
+                <Video className="h-4 w-4" /> From the Founder
+              </div>
+              <h2 className="text-3xl md:text-4xl font-montreal font-bold text-slate-900 leading-tight mb-6">
+                Vision in Action. <br />
+                <span className="text-emerald-600">Words from Leadership.</span>
+              </h2>
+              <div className="space-y-4">
+                <div className="bg-slate-50 border-l-4 border-slate-600 p-4 rounded-r-xl">
+                  <Quote className="h-6 w-6 text-slate-400 mb-2" />
+                  <p className="text-slate-700 font-gotham leading-relaxed text-sm mb-3 italic">
+                    "Every surface we create is a canvas for dreams. We don't just build sports infrastructure—we build communities, inspire athletes, and create spaces where excellence thrives."
+                  </p>
+                  <p className="font-montreal font-bold text-slate-900 text-xs">— Mohd Zaid, Founder & CEO</p>
+                </div>
+                
+                <div className="bg-slate-50 border-l-4 border-slate-600 p-4 rounded-r-xl">
+                  <Quote className="h-6 w-6 text-slate-400 mb-2" />
+                  <p className="text-slate-700 font-gotham leading-relaxed text-sm mb-3 italic">
+                    "Our commitment goes beyond quality materials and precision engineering. It's about creating lasting impact—transforming spaces that bring joy, health, and unity to people across the globe."
+                  </p>
+                  <p className="font-montreal font-bold text-slate-900 text-xs">— Our Promise</p>
+                </div>
+
+                <div className="bg-slate-50 border-l-4 border-slate-600 p-4 rounded-r-xl">
+                  <Quote className="h-6 w-6 text-slate-400 mb-2" />
+                  <p className="text-slate-700 font-gotham leading-relaxed text-sm mb-3 italic">
+                    "From humble beginnings to building a trusted brand in sports infrastructure—discover what drives our commitment to excellence, innovation, and making every project a testament to our dedication."
+                  </p>
+                  <p className="font-montreal font-bold text-slate-900 text-xs">— The Journey</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative flex items-center justify-center p-4 md:p-6 lg:p-8 bg-slate-50 order-2">
+            <div className="w-full max-w-xs md:max-w-sm">
+              <div className="relative w-full aspect-[9/16]">
+                <video 
+                  controls
+                  className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-2xl bg-black"
+                  poster="https://res.cloudinary.com/dprtzxadd/video/upload/v1770142657/Sabaysis_intro_video_2_w72pft.jpg"
+                >
+                  <source 
+                    src="https://res.cloudinary.com/dprtzxadd/video/upload/v1770142657/Sabaysis_intro_video_2_w72pft.mp4" 
+                    type="video/mp4" 
+                  />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
           </div>
