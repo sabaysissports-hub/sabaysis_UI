@@ -1,6 +1,7 @@
 import type { ServiceTemplateData } from '@/types/service';
 import cricketHero from '@/assets/HomeImages/cricket.jpg';
 import cricketIndoor from '@/assets/services/box-cricket/indoor.jpg';
+import boxabout from '@/assets/HomeImages/cricket.jpg';
 import rectangle from '@/assets/services/box-cricket/Rectangle.jpg';
 import square from '@/assets/services/box-cricket/square.jpg';
 import oval from '@/assets/services/box-cricket/oval.jpg';
@@ -23,7 +24,7 @@ export const cricketData: ServiceTemplateData = {
   about: {
     title: 'Professional Box Cricket Arenas',
     description: 'Sabaysis is a leader in designing and constructing world-class box cricket facilities. We specialize in custom configurations—whether you need an Oval, Square, or Rectangle arena. We follow World Indoor Cricket Federation (WICF) standards to deliver 360-degree playing experiences with maximum player safety and durability.',
-    image: cricketHero,
+    image: boxabout,
     imageAlt: 'Box cricket arena installation',
     features: [
       'Custom Shapes: Oval, Square & Rectangle',

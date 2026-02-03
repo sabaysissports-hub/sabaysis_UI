@@ -39,7 +39,7 @@ export default function TurfTimeline() {
       <div className="container px-4 mx-auto max-w-screen-xl dynamic-content-placeholder">
         <div className="text-center max-w-3xl mx-auto mb-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 uppercase">
-            How We Build Your Sports Turf
+            How We Build Your Sports Turf & Surface
           </h2>
           <p className="text-lg text-gray-600">
             We follow simple steps to make sure your field lasts long and is always ready to use.
@@ -102,7 +102,7 @@ export default function TurfTimeline() {
           <div className="p-6 rounded-2xl bg-white shadow-md">
             <blockquote>
               <p className="text-xl m-0 italic font-semibold text-gray-900">
-                “Your turf is ready for play, rain or shine, season after season.”
+                “Your surface is ready for play, rain or shine, season after season.”
               </p>
             </blockquote>
           </div>

@@ -47,22 +47,32 @@ export const footballCourtData: ServiceTemplateData = {
     }
   ],
   timeline: {
-    title: 'Football Turf Construction Process',
-    description: 'A systematic approach to building international-standard football facilities.',
+    title: 'How We Build Your Football Turf & Surface',
+    description: 'We follow systematic steps to ensure your football field meets FIFA standards and lasts long.',
     steps: [
       {
-        title: 'Land Conditioning',
-        description: 'Professional site evaluation and preparation to ensure a perfectly level playing area.',
+        title: 'Check & Prepare the Ground',
+        description: 'We evaluate the site and prepare the ground to be perfectly level for optimal football play.',
         image: conditioning
       },
       {
-        title: 'Base Work',
-        description: 'Engineering a solid foundation with professional drainage systems and stability layers.',
+        title: 'Build a Strong Base',
+        description: 'We create a solid foundation with proper drainage and stability layers to support intensive football use.',
         image: base
       },
       {
-        title: 'Installation of Grass',
-        description: 'Precision laying of artificial turf with FIFA-recommended infill for maximum performance.',
+        title: 'Lay Out the Turf',
+        description: 'We precisely install the FIFA-certified artificial turf, ensuring seamless joins for professional play.',
+        image: installation
+      },
+      {
+        title: 'Add Soft Padding & Fill',
+        description: 'We apply shock-absorbing layers and FIFA-recommended infill for player safety and ball performance.',
+        image: installation
+      },
+      {
+        title: 'Brush & Mark the Field',
+        description: 'We finish by brushing the turf fibers and painting professional FIFA-standard field markings.',
         image: installation
       }
     ]
