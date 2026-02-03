@@ -1,4 +1,4 @@
-import { CheckCircle2, ArrowRight, Wrench, Lightbulb, Hammer } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Wrench, Lightbulb, Hammer, Calendar, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import featureOne from '@/assets/Unified S/cricket.webp';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
@@ -6,8 +6,9 @@ import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
 export function UnifiedSportsTurf() {
   const services = [
     { icon: Lightbulb, title: 'Consultation' },
+    { icon: Calendar, title: 'Planning' },
+    { icon: Palette, title: 'Designing' },
     { icon: Hammer, title: 'Construction' },
-    { icon: CheckCircle2, title: 'Installation' },
     { icon: Wrench, title: 'Maintenance' },
   ];
 
@@ -79,7 +80,7 @@ export function UnifiedSportsTurf() {
               </div>
             </div>
 
-            <div className="rounded-s relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch justify-stretch">
+            <div className="rounded-s relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-stretch justify-stretch">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
@@ -90,7 +91,7 @@ export function UnifiedSportsTurf() {
                     <span className="flex items-center justify-center">
                       <IconComponent className="w-8 h-8 text-slate-700" strokeWidth={1.5} />
                     </span>
-                    <span className="font-bold text-sm italic text-green-800 uppercase">
+                    <span className="font-bold text-xs italic text-green-800 uppercase">
                       {service.title}
                     </span>
                   </div>

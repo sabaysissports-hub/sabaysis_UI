@@ -1,14 +1,15 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
-import footballTurfImg from '@/assets/HomeImages/steptodown.com652452.jpg';
-import cricketTurfImg from '@/assets/HomeImages/cricket.jpg';
+import footballTurfImg from '@/assets/HomeImages/football.jpg';
+import batImg from '@/assets/HomeImages/batminton.jpg';
+import cricketTurfImg from '@/assets/Hero/herocric.jpg';
 import swimmingPoolImg from '@/assets/HomeImages/swiming.png';
 import multisportTrackImg from '@/assets/HomeImages/running.png';
-import sportsNetImg from '@/assets/HomeImages/Sports-Net.jpg';
-import landscapeGrassImg from '@/assets/HomeImages/Untitled-design-25.png';
-import volleyballImg from '@/assets/Unified S/vollyball.jpg';
-import tennisImg from '@/assets/HomeImages/steptodown.com175119.jpg';
+import sportsNetImg from '@/assets/Hero/Pickleball.jpg';
+import landscapeGrassImg from '@/assets/pedel/padelHero.jpg';
+import volleyballImg from '@/assets/HomeImages/vollyball.avif';
+import tennisImg from '@/assets/HomeImages/basketball.jpg';
 import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
 import badmintonImg from '@/assets/Unified S/batminton.jpg';
 
@@ -47,6 +48,30 @@ const services: ServiceItem[] = [
     cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
   },
   {
+    title: 'Badminton Court',
+    imageUrl: badmintonImg,
+    imageAlt: 'Badminton court',
+    link: '/services/badminton-court',
+    bgGradient: 'from-pink-500 to-rose-600',
+    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
+  },
+  {
+    title: 'Basketball Court',
+    imageUrl: tennisImg,
+    imageAlt: 'Basketball court',
+    link: '/services/basketball-court',
+    bgGradient: 'from-red-500 to-red-600',
+    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
+  },
+  {
+    title: 'Tennis Court',
+    imageUrl: batImg,
+    imageAlt: 'Tennis court',
+    link: '/services/tennis-court',
+    bgGradient: 'from-indigo-500 to-indigo-600',
+    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
+  },
+  {
     title: 'Football Court',
     imageUrl: footballTurfImg,
     imageAlt: 'Football court',
@@ -76,30 +101,6 @@ const services: ServiceItem[] = [
     imageAlt: 'Multisport running tracks',
     link: '/services/multisport-running-tracks',
     bgGradient: 'from-purple-500 to-purple-600',
-    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
-  },
-  {
-    title: 'Badminton Court',
-    imageUrl: badmintonImg,
-    imageAlt: 'Badminton court',
-    link: '/services/badminton-court',
-    bgGradient: 'from-pink-500 to-rose-600',
-    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
-  },
-  {
-    title: 'Basketball Court',
-    imageUrl: tennisImg,
-    imageAlt: 'Basketball court',
-    link: '/services/basketball-court',
-    bgGradient: 'from-red-500 to-red-600',
-    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
-  },
-  {
-    title: 'Tennis Court',
-    imageUrl: footballTurfImg,
-    imageAlt: 'Tennis court',
-    link: '/services/tennis-court',
-    bgGradient: 'from-indigo-500 to-indigo-600',
     cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
   },
 ];

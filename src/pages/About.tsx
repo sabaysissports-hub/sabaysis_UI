@@ -54,7 +54,7 @@ export function About() {
               <div className="text-center group">
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <Building2 className="h-6 w-6 text-teal-400 group-hover:scale-110 transition-transform" />
-                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">50+</span>
+                  <span className="text-3xl md:text-4xl font-montreal font-bold text-white">100+</span>
                 </div>
                 <p className="text-xs font-montreal font-bold uppercase tracking-widest text-teal-400/80">Cities</p>
               </div>

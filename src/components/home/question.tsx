@@ -59,6 +59,28 @@ export function Questions() {
           </p>
         </AccordionContent>
       </AccordionItem>
+      <AccordionItem value="item-6">
+        <AccordionTrigger>Do you install running tracks?</AccordionTrigger>
+        <AccordionContent className="flex flex-col gap-3 text-balance">
+          <p>
+            Yes, we specialize in installing professional running tracks for schools, colleges, and sports complexes. Our running tracks are made with high-quality synthetic materials that provide excellent grip, durability, and performance.
+          </p>
+          <p>
+            We offer various track configurations including standard 400m tracks, multi-lane designs, and custom layouts to meet your specific requirements.
+          </p>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-7">
+        <AccordionTrigger>Do you provide Padel court construction?</AccordionTrigger>
+        <AccordionContent className="flex flex-col gap-3 text-balance">
+          <p>
+            Absolutely! We offer complete Padel court construction services, including design, installation, and setup. Our Padel courts are built to international standards with premium materials for optimal playability and durability.
+          </p>
+          <p>
+            Whether you need a single court or multiple courts for a complex, we ensure professional installation with proper lighting, fencing, and surface preparation.
+          </p>
+        </AccordionContent>
+      </AccordionItem>
     </Accordion>
   )
 }

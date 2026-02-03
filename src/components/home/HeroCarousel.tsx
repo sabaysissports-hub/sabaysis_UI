@@ -4,13 +4,33 @@ import { Link } from 'react-router-dom';
 
 import heroMain from '@/assets/Hero/hero.jpg';
 import hero1 from '@/assets/Hero/hero (1).jpg';
-import hero3 from '@/assets/Hero/hero (3).jpg';
+import hero3 from '@/assets/Hero/herofootball.jpg';
 import hero4 from '@/assets/Hero/hero (4).jpg';
-import cricketImg from '@/assets/HomeImages/cricket.jpg';
+import cricketImg from '@/assets/Hero/herocric.jpg';
 import padelImg from '@/assets/pedel/padelHero.jpg';
-import pickleballImg from '@/assets/Hero/Pickleball.jpg';
+import pickleballImg from '@/assets/Hero/heropickle.jpg';
 
 const slides = [
+  {
+    id: 3,
+    title: 'World-Class Padel Court Construction',
+    image: padelImg,
+    cta: 'Explore Padel Courts',
+    link: '/padel-courts',
+    typingTexts: [
+      'World-Class Padel Court Construction'
+    ],
+  },
+  {
+    id: 7,
+    title: 'Complete Sports & Infrastructure Solutions',
+    image: hero4,
+    cta: 'Contact Us',
+    link: '/contact-us',
+    typingTexts: [
+      'Complete Sports & Infrastructure Solutions'
+    ],
+  },
   {
     id: 1,
     title: 'Professional Cricket Box & Turf Solutions',
@@ -29,16 +49,6 @@ const slides = [
     link: '/products',
     typingTexts: [
       'Premium Pickleball Courts & Facilities'
-    ],
-  },
-  {
-    id: 3,
-    title: 'World-Class Padel Court Construction',
-    image: padelImg,
-    cta: 'Explore Padel Courts',
-    link: '/padel-courts',
-    typingTexts: [
-      'World-Class Padel Court Construction'
     ],
   },
   {
@@ -71,16 +81,6 @@ const slides = [
       'FIFA-Standard Football Turf & Courts'
     ],
   },
-  {
-    id: 7,
-    title: 'Complete Sports & Infrastructure Solutions',
-    image: hero4,
-    cta: 'Contact Us',
-    link: '/contact-us',
-    typingTexts: [
-      'Complete Sports & Infrastructure Solutions'
-    ],
-  },
 ];
 
 export function HeroCarousel() {
@@ -101,28 +101,30 @@ export function HeroCarousel() {
 
   useEffect(() => {
     let startTime = Date.now();
-    const duration = 7000; //7 seconds per slide
+    const duration = 4000; //4 seconds per slide
 
     setProgress(0);
     setShowCTA(false);
     startTime = Date.now();
 
-    // Show CTA after ~1s so it feels natural
     const ctaTimeout = setTimeout(() => {
       setShowCTA(true);
-    }, 1000);
+    }, 700);
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const newProgress = Math.min((elapsed / duration) * 100, 100);
       setProgress(newProgress);
 
-      // Show thumbnails only in first 2s and last 2s of the 15s cycle
-      const previewWindow = 1500;
+      if (newProgress >= 100) {
+        handleNext();
+      }
+
+      const previewWindow = 1000;
       const shouldShow =
         elapsed < previewWindow || elapsed > duration - previewWindow;
       setShowThumbnails(shouldShow);
-    }, 100); // smooth enough, less CPU
+    }, 100);
 
     return () => {
       clearInterval(interval);
@@ -134,14 +136,12 @@ export function HeroCarousel() {
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] pt-16 lg:pt-20">
-      {/* Background Slides - Clean images, no color gradients */}
       {slides.map((slide, index) => (
         <div
           key={slide.id}
           className={`absolute inset-0 h-full w-full transition-opacity duration-[2000ms] ease-in-out ${index === activeIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
             }`}
         >
-          {/* Background Image */}
           <div className="absolute inset-0">
             <img
               src={slide.image}
@@ -154,21 +154,17 @@ export function HeroCarousel() {
             />
           </div>
 
-          {/* Additional Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-transparent" />
 
-          {/* Soft Glow Orbs (no pulse to reduce GPU work) */}
           <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-emerald-500/15 blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-teal-500/15 blur-3xl" />
         </div>
       ))}
 
-      {/* Content - Minimal Text, Maximum Visual Impact */}
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Main Title - Bold and Prominent with  Font */}
             <h1 className="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
               <span className="block bg-gradient-to-r from-white via-emerald-50 to-teal-50 bg-clip-text text-transparent">
                 {currentSlide.title.split('&').map((part, index, array) => (
@@ -184,7 +180,6 @@ export function HeroCarousel() {
               </span>
             </h1>
 
-            {/* CTA Button - Prominent with Text Reveal */}
             <div className={`flex justify-center gap-4 mt-8 md:mt-10 transition-all duration-1000 ease-out ${showCTA
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -223,12 +218,10 @@ export function HeroCarousel() {
         </div>
       </div>
 
-      {/* Thumbnails - Right Side - Only Current & Next Image */}
       <div
         className={`absolute bottom-24 right-8 z-20 hidden items-end gap-4 transition-opacity duration-500 lg:flex ${showThumbnails ? 'opacity-100' : 'opacity-0'}`}
       >
         {(() => {
-          // Show only current slide and next slide
           const currentSlideIndex = activeIndex;
           const nextSlideIndex = (activeIndex + 1) % slides.length;
           const visibleSlides = [
@@ -275,9 +268,7 @@ export function HeroCarousel() {
         })()}
       </div>
 
-      {/* Navigation Controls - Bottom Right - Enhanced */}
       <div className="absolute bottom-8 right-8 z-20 flex items-center gap-6 md:right-16">
-        {/* Progress Bar - More Visual */}
         <div className="hidden items-center gap-4 md:flex">
           <div className="relative h-2 w-40 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm border border-white/20">
             <div
@@ -287,7 +278,6 @@ export function HeroCarousel() {
           </div>
         </div>
 
-        {/* Navigation Buttons - Enhanced */}
         <div className="flex gap-3">
           <button
             onClick={handlePrev}
@@ -306,7 +296,6 @@ export function HeroCarousel() {
         </div>
       </div>
 
-      {/* Slide Indicators - Bottom Center - Enhanced */}
       <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-3">
         {slides.map((_, index) => (
           <button
