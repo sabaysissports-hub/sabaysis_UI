@@ -203,8 +203,13 @@ export function NavBar() {
                   sideOffset={12}
                   onMouseEnter={() => handleMouseEnter(item.label)}
                   onMouseLeave={handleMouseLeave}
-                  className="w-[700px] max-h-[65vh] overflow-y-auto rounded-2xl border border-emerald-200/50 bg-white p-6 shadow-2xl animate-in fade-in zoom-in-95 dark:border-emerald-900/50 dark:bg-slate-900 font-[var(--font-gotham)] scrollbar-thin scrollbar-thumb-emerald-300 scrollbar-track-transparent"
+                  className="w-[700px] max-h-[500px] overflow-y-auto rounded-2xl border border-emerald-200/50 bg-white shadow-2xl animate-in fade-in zoom-in-95 dark:border-emerald-900/50 dark:bg-slate-900 font-[var(--font-gotham)]"
+                  style={{
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#10b981 transparent'
+                  }}
                 >
+                  <div className="p-6">
                   <div className="mb-5 flex items-center justify-between border-b border-emerald-200/40 dark:border-emerald-900/40 pb-4">
                     <DropdownMenuLabel className="font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                       {item.label}
@@ -236,6 +241,7 @@ export function NavBar() {
                         </Link>
                       </DropdownMenuItem>
                     ))}
+                  </div>
                   </div>
                 </DropdownMenuContent>
               </DropdownMenu>
