@@ -628,6 +628,40 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
           </div>
         </section>
       )}
+
+      {/* Bottom CTA Section */}
+      <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16 md:py-24 bg-linear-to-r from-emerald-600 via-teal-600 to-cyan-600">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 h-80 w-80 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 h-80 w-80 bg-white/10 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-5xl font-montreal font-bold text-white mb-6">
+              Ready to Get Started?
+            </h2>
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8">
+              Transform your {data.hero.title.toLowerCase()} with our expert solutions. Contact us today for a consultation.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href={data.cta.buttonLink}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-emerald-600 font-montreal font-bold uppercase tracking-wider text-sm shadow-lg hover:bg-slate-50 hover:scale-[1.05] active:scale-95 transition-all duration-200"
+              >
+                {data.cta.buttonText}
+              </a>
+              <a 
+                href="/contact-us"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-transparent border-2 border-white text-white font-montreal font-bold uppercase tracking-wider text-sm hover:bg-white/10 hover:scale-[1.05] active:scale-95 transition-all duration-200"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

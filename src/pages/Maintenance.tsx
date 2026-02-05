@@ -489,7 +489,7 @@ export function Maintenance() {
                       <div className="text-xs text-slate-600 font-gotham">Years</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-montreal font-bold text-emerald-600">100+</div>
+                      <div className="text-2xl font-montreal font-bold text-emerald-600">150+</div>
                       <div className="text-xs text-slate-600 font-gotham">Countries</div>
                     </div>
                   </div>

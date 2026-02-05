@@ -12,15 +12,23 @@ export function useSmoothScroll() {
   useEffect(() => {
     if (isAdmin) return;
 
+    // Set GSAP defaults for better performance
+    gsap.config({
+      force3D: true,
+      nullTargetWarn: false
+    });
+
     import('gsap/ScrollSmoother')
       .then((module) => {
         const ScrollSmoother = module.ScrollSmoother;
         gsap.registerPlugin(ScrollSmoother);
 
         const smoother = ScrollSmoother.create({
-          smooth: 2,
-          effects: true,
-          normalizeScroll: true,
+          smooth: 1.5,              // Smoother value (lower is faster)
+          effects: true,            // Enable parallax effects
+          normalizeScroll: true,    // Better cross-browser behavior
+          ignoreMobileResize: true, // Prevent resize issues
+          smoothTouch: 0.1,         // Mobile smooth scrolling
           wrapper: '#smooth-wrapper',
           content: '#smooth-content',
         });
@@ -45,6 +53,6 @@ export function useSmoothScroll() {
       }
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [isAdmin]);
 }
 

@@ -16,7 +16,7 @@ const featureImages = [
 ]
 
 const stats = [
-  { value: "100+", label: "Cities" },
+  { value: "150+", label: "Cities" },
   { value: "10+", label: "Countries" },
   { value: "500+", label: "Projects" },
 ]
@@ -71,7 +71,7 @@ export function FeaturedServices() {
                 A leading sports infrastructure company in India, specializing in cutting-edge artificial turf, 
                 premium football fields, cricket facilities, and comprehensive multi-sport complexes. With over 
                 <span className="font-bold text-emerald-600 dark:text-emerald-400"> 500+ successful projects </span> 
-                across <span className="font-bold text-teal-600 dark:text-teal-400">100+ cities</span> and 
+                across <span className="font-bold text-teal-600 dark:text-teal-400">150+ cities</span> and 
                 <span className="font-bold text-cyan-600 dark:text-cyan-400"> 10+ countries</span>, we're trusted 
                 by schools, academies, clubs, and professional sports organizations worldwide.
               </p>

@@ -1,41 +1,83 @@
 .collection-products {
-  width: 100%;
-  padding: 40px 0;
-  overflow: hidden;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .thecollectioncontent {
   position: relative;
-  border-radius: 20px;
-  padding: 40px;
+  border-radius: 0;
+  padding: 15px 10px;
   color: white;
   width: 100%;
-  max-width: 1400px; /* Adjust as needed */
+  min-height: 100vh;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 40px;
+  background: linear-gradient(135deg, #059669 0%, #10b981 90%);
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+@media (min-width: 640px) {
+  .thecollectioncontent {
+    padding: 50px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .thecollectioncontent {
+    padding: 50px 40px;
+    height: 100vh;
+    justify-content: center;
+  }
 }
 
 .diagonal-stripes {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.02) 10px,
     transparent 10px,
     transparent 20px
   );
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
+  will-change: auto;
+  transform: translateZ(0);
 }
 
 .collection-title {
   position: relative;
   z-index: 2;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 640px) {
+  .collection-title {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-title {
+    margin-bottom: 30px;
+  }
 }
 
 .collection-title .pagesubtitle {
@@ -49,34 +91,46 @@
 }
 
 .collection-title h2 {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
   margin: 0;
   color: white;
 }
 
+@media (min-width: 640px) {
+  .collection-title h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-title h2 {
+    font-size: 2.5rem;
+  }
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
+  gap: 12px;
   position: relative;
   z-index: 2;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 @media (min-width: 640px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
   }
 }
 
 @media (min-width: 1024px) {
   .products-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  /* For 5 items, maybe adjust or just let it wrap */
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
   }
 }
 
@@ -85,14 +139,18 @@
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   display: flex;
   flex-direction: column;
+  contain: layout style paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .product-card-wrapper:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) translateZ(0);
+  will-change: transform;
 }
 
 .card__inner {
@@ -114,15 +172,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .product-card-wrapper:hover .card__media img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .card__content {
-  padding: 15px;
+  padding: 10px;
   color: #333;
   flex-grow: 1;
   display: flex;
@@ -130,11 +189,37 @@
   justify-content: space-between;
 }
 
+@media (min-width: 640px) {
+  .card__content {
+    padding: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card__content {
+    padding: 15px;
+  }
+}
+
 .card__heading {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 8px;
-  line-height: 1.4;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .card__heading {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card__heading {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
 }
 
 .card__heading a {
@@ -143,16 +228,28 @@
 }
 
 .card__heading a:hover {
-  color: #ef5248;
+  color: #10b981;
 }
 
 .price {
   font-weight: bold;
-  font-size: 1.1rem;
-  color: #ef5248;
+  font-size: 0.9rem;
+  color: #10b981;
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .price {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .price {
+    font-size: 1.1rem;
+  }
 }
 
 .card__badge {
@@ -180,13 +277,25 @@
   justify-content: flex-end;
   position: relative;
   z-index: 2;
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+@media (min-width: 640px) {
+  .btnrow {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btnrow {
+    margin-top: 20px;
+  }
 }
 
 .skew-button {
   background: white;
-  color: #ef5248;
-  padding: 12px 30px;
+  color: #10b981;
+  padding: 10px 20px;
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
@@ -194,6 +303,21 @@
   transition: all 0.3s ease;
   display: inline-block;
   transform: skew(-10deg);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .skew-button {
+    padding: 11px 25px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .skew-button {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
 }
 
 .skew-button .tt {

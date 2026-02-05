@@ -53,10 +53,10 @@ const products: Product[] = [
 
 export const CollectionSection: React.FC = () => {
   return (
-    <section className="py-12 bg-slate-50">
+    <section className="py-0 bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="collection-products">
-          <div className="thecollectioncontent" style={{ backgroundColor: '#ef5248' }}>
+          <div className="thecollectioncontent" style={{ backgroundColor: '#10b981' }}>
             <div className="diagonal-stripes"></div>
 
             <div className="collection-title">
@@ -81,7 +81,6 @@ export const CollectionSection: React.FC = () => {
                     </div>
                     {product.soldOut && (
                       <div className="card__badge">
-                        <span className="badge color-inverse">Sold out</span>
                       </div>
                     )}
                   </div>

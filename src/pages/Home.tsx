@@ -19,15 +19,14 @@ export function Home() {
             <FeaturedServices />
           </div>
         </section>
-
-        {/* Collection Section */}
-        <CollectionSection />
         {/* Value Props / Services */}
         <section className="relative bg-slate-50">
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <ValueProps />
           </div>
         </section>
+        <CollectionSection />
+
 
         {/* Unified Sports Turf */}
         <UnifiedSportsTurf />
