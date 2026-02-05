@@ -11,6 +11,8 @@ import landscapeTurfImg from '@/assets/Catalog/Landscape-Turf.jpg';
 import outdoorGymImg from '@/assets/Catalog/Outdoor-Gym.jpg';
 import pitchEquipmentImg from '@/assets/Catalog/Pitch-Equipment.jpg';
 
+import { puProducts } from '@/data/pu-products';
+
 interface Product {
   _id: string;
   slug: string;
@@ -78,9 +80,7 @@ export function ProductCatalog() {
       };
 
   useEffect(() => {
-import { puProducts } from '@/data/pu-products';
-
-// ... existing imports
+    // ... existing imports
 
     const fetchProducts = async () => {
       try {
