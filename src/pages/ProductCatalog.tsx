@@ -56,6 +56,11 @@ const CATEGORY_CONTENT: Record<string, { title: string; description: string; ima
     description: 'Professional gear for practice sessions, competitive games, and ground maintenance.',
     image: pitchEquipmentImg,
   },
+  'Polyurethane (PU)': {
+    title: 'High Performance PU Systems',
+    description: 'Premium Polyurethane binders, sealers, and topcoats for durable sports surfaces.',
+    image: '//www.sportsinfra.store/cdn/shop/collections/PU_300x.jpg?v=1747037639', 
+  },
 };
 
 export function ProductCatalog() {
@@ -181,12 +186,26 @@ import { puProducts } from '@/data/pu-products';
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition group-hover:opacity-100" />
+                  
+                  {/* Badge for sold out or price */}
+                  {(product as any).soldOut && (
+                     <div className="absolute top-3 left-3 bg-black text-white text-[10px] uppercase font-bold px-2 py-1 rounded">
+                       Sold Out
+                     </div>
+                  )}
                 </div>
                 
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="mb-2 text-xl font-montreal font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
                     {product.title}
                   </h3>
+                   
+                  {(product as any).price && (
+                      <p className="mb-2 text-emerald-600 font-bold font-gotham">
+                        {(product as any).price}
+                      </p>
+                  )}
+
                   <p className="mb-6 flex-1 text-sm font-gotham leading-relaxed text-slate-600 line-clamp-3">
                     {product.body}
                   </p>
