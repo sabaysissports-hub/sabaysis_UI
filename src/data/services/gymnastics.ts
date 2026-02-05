@@ -1,5 +1,5 @@
 import type { ServiceTemplateData } from '@/types/service';
-import gymHero from '@/assets/HomeImages/gymanastic.jpg';
+import gymHero from '@/assets/services/gym/gymhero.jpeg';
 import gymAbout from '@/assets/services/gym/about.jpg';
 import gymIndoor from '@/assets/services/gym/indoor.jpg';
 import gymOutdoor from '@/assets/services/gym/outdoor.jpg';

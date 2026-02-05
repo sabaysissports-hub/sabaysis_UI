@@ -1,5 +1,5 @@
 import type { ServiceTemplateData } from '@/types/service';
-import badmintonHero from '@/assets/Unified S/batminton.jpg';
+import badmintonHero from '@/assets/services/badminton-court/batmintonhero.jpeg';
 import badmintonWood from '@/assets/services/badminton-court/wooden_flooring.webp';
 import badmintonPVC from '@/assets/services/badminton-court/pvc_flooring.webp';
 import badmintonVinyl from '@/assets/services/badminton-court/vinyl_floor.webp';
