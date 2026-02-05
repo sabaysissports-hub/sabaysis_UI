@@ -73,18 +73,52 @@ export function ProductCatalog() {
       };
 
   useEffect(() => {
+import { puProducts } from '@/data/pu-products';
+
+// ... existing imports
+
     const fetchProducts = async () => {
       try {
         const url = categoryFilter 
           ? `${API_ENDPOINTS.PRODUCTS}?category=${encodeURIComponent(categoryFilter)}`
           : API_ENDPOINTS.PRODUCTS;
+        
+        // Start with local products filtered if necessary
+        let allProducts = [...puProducts];
+        if (categoryFilter) {
+           allProducts = allProducts.filter(p => p.category === categoryFilter);
+        }
+
         const res = await fetch(url);
         if (res.ok) {
-          const data = await res.json();
-          setProducts(data);
+          const apiData = await res.json();
+          // Merge API data with local data
+          // Avoid duplicates if any
+          const localIds = new Set(allProducts.map(p => p._id));
+          const newApiProducts = apiData.filter((p: Product) => !localIds.has(p._id));
+          
+          if (!categoryFilter) {
+             // If no filter, we just append api products
+              allProducts = [...allProducts, ...newApiProducts];
+          } else {
+             // If filtering, the API should have returned filtered results (if supported)
+             // or we filter client side if the API ignores params (depends on implementation)
+             // Assuming API handles filter, we just use the result
+             allProducts = [...allProducts, ...apiData];
+          }
+           setProducts(allProducts);
+        } else {
+          // If API fails, at least show local products
+          setProducts(allProducts);
         }
       } catch (error) {
         console.error('Failed to fetch products', error);
+        // Fallback to local products
+        let local = [...puProducts];
+         if (categoryFilter) {
+           local = local.filter(p => p.category === categoryFilter);
+        }
+        setProducts(local);
       } finally {
         setLoading(false);
       }

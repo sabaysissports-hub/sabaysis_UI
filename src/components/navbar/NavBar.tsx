@@ -96,6 +96,17 @@ export function NavBar() {
             slug: category.toLowerCase().replace(/\s+/g, "-"),
             category: category,
           }))
+
+          // Manually add Polyurethane if not present
+          if (!categories.includes('Polyurethane (PU)')) {
+             categoryNavItems.push({
+                title: 'Polyurethane (PU)',
+                body: 'Explore our PU Binders, Sealers, and Adhesives',
+                slug: '?category=Polyurethane (PU)', // Point directly to the catalog with query
+                category: 'Polyurethane (PU)'
+             });
+          }
+
           setNavItems((prev) =>
             prev.map((item) => {
               if (item.label === "Products" && "items" in item) {

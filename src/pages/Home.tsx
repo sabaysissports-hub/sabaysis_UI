@@ -1,4 +1,5 @@
 import { FeaturedServices } from '@/components/home/FeaturedServices';
+import { CollectionSection } from '@/components/home/CollectionSection';
 import { HeroCarousel } from '@/components/home/HeroCarousel';
 import { PrimaryCTA } from '@/components/home/PrimaryCTA';
 import { UnifiedSportsTurf } from '@/components/home/UnifiedSportsTurf';
@@ -18,6 +19,9 @@ export function Home() {
             <FeaturedServices />
           </div>
         </section>
+
+        {/* Collection Section */}
+        <CollectionSection />
         {/* Value Props / Services */}
         <section className="relative bg-slate-50">
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

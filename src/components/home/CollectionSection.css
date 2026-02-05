@@ -1,0 +1,207 @@
+.collection-products {
+  width: 100%;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.thecollectioncontent {
+  position: relative;
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  width: 100%;
+  max-width: 1400px; /* Adjust as needed */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.diagonal-stripes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.collection-title {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+.collection-title .pagesubtitle {
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.collection-title h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  /* For 5 items, maybe adjust or just let it wrap */
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* Card Styling */
+.product-card-wrapper {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.card__inner {
+  position: relative;
+  padding-bottom: 100%; /* Square aspect ratio */
+  background-color: #f3f3f3;
+  overflow: hidden;
+}
+
+.card__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card-wrapper:hover .card__media img {
+  transform: scale(1.05);
+}
+
+.card__content {
+  padding: 15px;
+  color: #333;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__heading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.card__heading a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card__heading a:hover {
+  color: #ef5248;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ef5248;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card__badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.badge {
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge.color-inverse {
+  background: black;
+}
+
+.btnrow {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.skew-button {
+  background: white;
+  color: #ef5248;
+  padding: 12px 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  transform: skew(-10deg);
+}
+
+.skew-button .tt {
+  display: block;
+  transform: skew(10deg);
+}
+
+.skew-button:hover {
+  background: #333;
+  color: white;
+}

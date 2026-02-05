@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, ImageIcon, Sparkles, CheckCircle2, PhoneCall, ArrowRight, Shield, Award, Zap } from 'lucide-react'
 import { API_ENDPOINTS } from '@/config/api'
 import { usePageTitle } from '@/hooks/usePageTitle'
+import { puProducts } from '@/data/pu-products'
 
 type ProductItem = {
   _id: string
@@ -21,6 +22,14 @@ export function ProductDetail() {
 
   useEffect(() => {
     async function fetchProduct() {
+      // First check local data
+      const localProduct = puProducts.find(p => p.slug === slug);
+      if (localProduct) {
+        setProduct(localProduct);
+        setLoading(false);
+        return;
+      }
+
       try {
         const res = await fetch(`${API_ENDPOINTS.PRODUCTS}/${slug}`)
         if (res.ok) {
