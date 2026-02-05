@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import heroMain from '@/assets/Hero/hero.jpg';
@@ -92,11 +92,6 @@ export function HeroCarousel() {
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % slides.length);
-    setProgress(0);
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
     setProgress(0);
   };
 
