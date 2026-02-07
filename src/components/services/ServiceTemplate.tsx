@@ -216,11 +216,11 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                     }`}>
                       {/* Image Card */}
                       <div className="w-full lg:w-1/2">
-                        <div className="relative aspect-video rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                        <div className="relative aspect-video rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl group-hover:scale-[1.02] transition-transform duration-500 bg-slate-50 dark:bg-slate-900/50">
                           <img 
                             src={step.image} 
                             alt={step.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                           />
                           <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                              <span className="text-white font-montreal font-bold text-xl">{step.title}</span>
@@ -426,11 +426,11 @@ export function ServiceTemplate({ data }: ServiceTemplateProps) {
                       <div className="grid gap-6">
                         {item.images && item.images.map((img, imgIdx) => (
                           <div key={imgIdx} className="flex flex-col md:flex-row gap-6 items-start">
-                            <div className="w-full md:w-64 flex-none aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                            <div className="w-full md:w-64 flex-none aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
                               <img 
                                 src={img} 
                                 alt={`${item.title} image ${imgIdx + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain"
                               />
                             </div>
                             {imgIdx === 0 && (

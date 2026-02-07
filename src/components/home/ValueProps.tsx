@@ -210,7 +210,7 @@ export function ValueProps() {
                     <img
                       src={service.imageUrl}
                       alt={service.imageAlt}
-                      className="w-full h-full object-cover transition-all duration-500 group-hover/card:scale-105 group-hover/card:blur-sm"
+                      className="w-full h-full object-cover transition-all duration-500 group-hover/card:scale-110"
                     />
 
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10 transition-all duration-500 group-hover/card:from-black/40 group-hover/card:via-black/60 group-hover/card:to-black/90" />

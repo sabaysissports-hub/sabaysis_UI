@@ -62,15 +62,19 @@ export function NavBar() {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = "hidden"
+    const lockScroll = isMobileOpen || activeMenu;
+    if (lockScroll) {
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
     } else {
-      document.body.style.overflow = ""
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
     return () => {
-      document.body.style.overflow = ""
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
-  }, [isMobileOpen])
+  }, [isMobileOpen, activeMenu])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -161,7 +165,7 @@ export function NavBar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-emerald-200/40 bg-white/95 backdrop-blur-xl shadow-sm font-[var(--font-gotham)] dark:border-emerald-900/40 dark:bg-slate-950/95 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-emerald-200/40 bg-white/95 backdrop-blur-xl shadow-sm font-(--font-gotham) dark:border-emerald-900/40 dark:bg-slate-950/95 transition-all duration-300">
       <div className="mx-auto flex h-16 sm:h-20 max-w-full items-center justify-between px-3 sm:px-4 md:px-6 lg:px-8">
         <Link to="/" className="flex items-center shrink-0 group transition-all duration-300">
           <img
@@ -186,10 +190,10 @@ export function NavBar() {
                 <div onMouseEnter={() => handleMouseEnter(item.label)} onMouseLeave={handleMouseLeave}>
                   <DropdownMenuTrigger asChild>
                     <button
-                      className={`group inline-flex items-center gap-1 px-2 md:px-3.5 py-2 md:py-2.5 font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 transition-all duration-200 relative
+                      className={`group inline-flex items-center gap-1 px-2 md:px-3.5 py-2 md:py-2.5 font-(--font-montreal) text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 transition-all duration-200 relative
                         ${isDropdownActive(item)
-                          ? "bg-gradient-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-gradient-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
-                          : "text-slate-700 hover:bg-gradient-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-gradient-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
+                          ? "bg-linear-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-linear-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
+                          : "text-slate-700 hover:bg-linear-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-linear-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
                         }`}
                     >
                       {item.label}
@@ -203,18 +207,19 @@ export function NavBar() {
                   sideOffset={12}
                   onMouseEnter={() => handleMouseEnter(item.label)}
                   onMouseLeave={handleMouseLeave}
-                  className="w-[700px] max-h-[500px] overflow-y-auto rounded-2xl border border-emerald-200/50 bg-white shadow-2xl animate-in fade-in zoom-in-95 dark:border-emerald-900/50 dark:bg-slate-900 font-[var(--font-gotham)]"
+                  onWheel={(e) => e.stopPropagation()}
+                  className="w-[calc(100vw-40px)] max-w-2xl max-h-[80vh] overflow-y-auto overscroll-contain rounded-2xl border border-emerald-200/50 bg-white shadow-2xl animate-in fade-in zoom-in-95 dark:border-emerald-900/50 dark:bg-slate-900 font-(--font-gotham) pointer-events-auto"
                   style={{
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: '#10b981 transparent'
+                    scrollbarWidth: 'auto',
+                    scrollbarColor: '#10b981 #f1f5f9'
                   }}
                 >
-                  <div className="p-6">
-                  <div className="mb-5 flex items-center justify-between border-b border-emerald-200/40 dark:border-emerald-900/40 pb-4">
-                    <DropdownMenuLabel className="font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                  <div className="p-4 sm:p-5 md:p-6 flex flex-col">
+                  <div className="sticky top-0 z-10 bg-white dark:bg-slate-900 mb-5 flex items-center justify-between border-b border-emerald-200/40 dark:border-emerald-900/40 pb-4">
+                    <DropdownMenuLabel className="font-(--font-montreal) text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                       {item.label}
                     </DropdownMenuLabel>
-                    <span className="text-xs font-montreal font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-600/30 dark:to-teal-600/30 px-3 py-1.5 rounded-full">
+                    <span className="text-xs font-montreal font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-linear-to-r from-emerald-100 to-teal-100 dark:from-emerald-600/30 dark:to-teal-600/30 px-3 py-1.5 rounded-full">
                       {item.description}
                     </span>
                   </div>
@@ -230,9 +235,9 @@ export function NavBar() {
                                 ? "/padel-courts"
                                 : `${item.basePath}/${subItem.slug}`
                           }
-                          className="group rounded-xl border border-emerald-200/40 bg-gradient-to-br from-white to-emerald-50/20 p-4 transition-all duration-200 hover:border-emerald-400/60 hover:bg-gradient-to-br hover:from-emerald-50 hover:to-teal-50/30 hover:shadow-lg min-h-[85px] flex flex-col justify-start dark:border-emerald-900/40 dark:bg-gradient-to-br dark:from-slate-800/40 dark:to-emerald-950/20 dark:hover:border-emerald-600/60 dark:hover:bg-gradient-to-br dark:hover:from-emerald-950/40 dark:hover:to-emerald-900/30 cursor-pointer"
+                          className="group rounded-xl border border-emerald-200/40 bg-linear-to-br from-white to-emerald-50/20 p-4 transition-all duration-200 hover:border-emerald-400/60 hover:bg-linear-to-br hover:from-emerald-50 hover:to-teal-50/30 hover:shadow-lg min-h-[85px] flex flex-col justify-start dark:border-emerald-900/40 dark:bg-linear-to-br dark:from-slate-800/40 dark:to-emerald-950/20 dark:hover:border-emerald-600/60 dark:hover:bg-linear-to-br dark:hover:from-emerald-950/40 dark:hover:to-emerald-900/30 cursor-pointer"
                         >
-                          <p className="font-[var(--font-montreal)] text-xs font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300 mb-2 transition-colors duration-200">
+                          <p className="font-(--font-montreal) text-xs font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300 mb-2 transition-colors duration-200">
                             {subItem.title}
                           </p>
                           <p className="text-xs font-gotham text-slate-600 line-clamp-2 leading-relaxed dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-200">
@@ -249,9 +254,9 @@ export function NavBar() {
               <Link
                 key={item.label}
                 to={item.href}
-                className={`px-3.5 py-2.5 font-[var(--font-montreal)] text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 inline-flex items-center transition-all duration-200 ${isLinkActive(item.href)
-                  ? "bg-gradient-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-gradient-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
-                  : "text-slate-700 hover:bg-gradient-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-gradient-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
+                className={`px-3.5 py-2.5 font-(--font-montreal) text-xs font-bold uppercase tracking-wider rounded-lg min-h-10 inline-flex items-center transition-all duration-200 ${isLinkActive(item.href)
+                  ? "bg-linear-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-linear-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50"
+                  : "text-slate-700 hover:bg-linear-to-r hover:from-emerald-600/10 hover:to-teal-600/10 hover:text-emerald-700 hover:border hover:border-emerald-200/30 dark:text-slate-300 dark:hover:bg-linear-to-r dark:hover:from-emerald-600/15 dark:hover:to-teal-600/15 dark:hover:text-emerald-300 dark:hover:border-emerald-900/50"
                   }`}
               >
                 {item.label}
@@ -264,7 +269,7 @@ export function NavBar() {
           <GoogleTranslateSelector />
           <Link
             to="/contact-us"
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg shadow-md min-h-10 whitespace-nowrap dark:bg-gradient-to-r dark:from-emerald-600 dark:to-teal-600 dark:hover:from-emerald-700 dark:hover:to-teal-700 font-[var(--font-montreal)]"
+            className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-emerald-600 to-teal-600 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg shadow-md min-h-10 whitespace-nowrap dark:bg-linear-to-r dark:from-emerald-600 dark:to-teal-600 dark:hover:from-emerald-700 dark:hover:to-teal-700 font-(--font-montreal)"
           >
             <Send className="h-4 w-4" />
             Get In Touch
