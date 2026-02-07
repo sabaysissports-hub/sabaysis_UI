@@ -1,5 +1,6 @@
 import React from 'react';
 import './CollectionSection.css';
+import productBgImg from '@/assets/HomeImages/product.jpg';
 
 interface Product {
   id: string;
@@ -56,8 +57,16 @@ export const CollectionSection: React.FC = () => {
     <section className="py-0 bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="collection-products">
-          <div className="thecollectioncontent" style={{ backgroundColor: '#10b981' }}>
-            <div className="diagonal-stripes"></div>
+          <div 
+            className="thecollectioncontent"
+            style={{
+              backgroundImage: `url(${productBgImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundAttachment: 'fixed',
+            }}
+          >
+            <div className="collection-overlay"></div>
 
             <div className="collection-title">
               <small className="pagesubtitle">Explore</small>
