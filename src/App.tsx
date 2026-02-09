@@ -29,7 +29,7 @@ function App() {
 
   return (
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-        <div id="smooth-wrapper" className="min-h-screen bg-white font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-50">
+        <div className="min-h-screen bg-white font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-50">
           <ScrollToTop />
           <FloatingSocialLinks />
           <Routes>
@@ -38,7 +38,7 @@ function App() {
               element={
                 <>
                   <NavBar />
-                  <div id="smooth-content" className="pt-16 lg:pt-20">
+                  <div className="pt-16 lg:pt-20">
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/about" element={<About />} />

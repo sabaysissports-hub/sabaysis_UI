@@ -27,8 +27,12 @@
 @layer base {
   :root {
     --font-orbitron: "Orbitron", sans-serif;
-    --font-montreal: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
-    --font-gotham: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+    --font-montreal:
+      "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto",
+      sans-serif;
+    --font-gotham:
+      "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto",
+      sans-serif;
     --font-anton: "Anton", sans-serif;
 
     --font-heading: var(--font-montreal);
@@ -37,13 +41,34 @@
     font-family: var(--font-body);
   }
 
-  /* Smooth Scrolling */
+  /* Global Scroll Smoothing (Lenis) */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
     scroll-padding-top: 80px;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
   }
 
   /* Better momentum scrolling for iOS */
@@ -67,10 +92,19 @@
   h6 {
     font-family: var(--font-heading);
   }
-  
+
   /* Ensure body and text elements support Hindi and other Indic scripts */
-  body, p, span, div, a, li, td, th {
-    font-family: var(--font-body), "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  body,
+  p,
+  span,
+  div,
+  a,
+  li,
+  td,
+  th {
+    font-family:
+      var(--font-body), "Noto Sans Devanagari", "Hind", "Mukta", "Roboto",
+      sans-serif;
   }
 
   body {
@@ -83,7 +117,7 @@
   }
 
   /* Performance optimization for animations */
-  img, 
+  img,
   video,
   iframe {
     will-change: auto;
@@ -103,8 +137,8 @@
 
   /* Hide scrollbar for IE, Edge and Firefox */
   * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   #root {
@@ -149,10 +183,16 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
-  --font-heading: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
-  --font-montreal: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
-  --font-gotham: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  --font-sans:
+    "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  --font-heading:
+    "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto",
+    sans-serif;
+  --font-montreal:
+    "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto",
+    sans-serif;
+  --font-gotham:
+    "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 
   --animate-scroll: scroll var(--animation-duration, 40s)
     var(--animation-direction, forwards) linear infinite;
@@ -312,7 +352,7 @@
     transition-duration: 100ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   button,
   a,
   [role="button"] {
@@ -500,12 +540,15 @@
 
 /* Montreal Font Utility Classes */
 .font-montreal {
-  font-family: "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  font-family:
+    "Neue Montreal", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto",
+    sans-serif;
 }
 
 /* Gotham Book Font Utility Classes */
 .font-gotham {
-  font-family: "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
+  font-family:
+    "Gotham Book", "Noto Sans Devanagari", "Hind", "Mukta", "Roboto", sans-serif;
 }
 
 /* Google Translate Styling */
@@ -578,4 +621,10 @@ body {
 /* Optional: Style translated text */
 .translated-ltr {
   margin-top: 0 !important;
+}
+
+/* Active Class for Scroll Link - Added as per user request */
+.active {
+  @apply bg-linear-to-r from-emerald-600/15 to-teal-600/15 text-emerald-700 border border-emerald-200/50 dark:bg-linear-to-r dark:from-emerald-600/20 dark:to-teal-600/20 dark:text-emerald-300 dark:border-emerald-900/50;
+  font-weight: 700;
 }
