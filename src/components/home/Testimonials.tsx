@@ -124,17 +124,6 @@ export function Testimonials() {
               pauseOnHover={true}
             />
           </div>
-
-          {/* Row 3 - Moving Left */}
-          <div className="relative group">
-            <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-r from-blue-50/40 to-transparent dark:from-blue-950/20 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <InfiniteMovingCards 
-              items={rows[2]} 
-              direction="left" 
-              speed="slow"
-              pauseOnHover={true}
-            />
-          </div>
         </div>
 
       </div>
