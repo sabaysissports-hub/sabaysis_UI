@@ -3,7 +3,7 @@ import trackHero from '@/assets/Hero/hero.jpg';
 import trackAbout from '@/assets/NewImages/atletics.jpg';
 import trackFullPour from '@/assets/NewImages/elite.webp';
 import trackSandwich from '@/assets/NewImages/sandwitch.webp';
-import trackPrefab from '@/assets/NewImages/rubber.webp';
+import trackPrefab from '@/assets/NewImages/Rubber.webp';
 import trackMaintenance from '@/assets/services/multisport-running-tracks/trackm.jpg';
 
 
