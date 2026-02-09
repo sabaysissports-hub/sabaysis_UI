@@ -93,44 +93,34 @@ export function HeroCarousel() {
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % slides.length);
     setProgress(0);
+    setShowCTA(false);
+    setShowThumbnails(true);
   };
 
   useEffect(() => {
-    const startTime = Date.now();
-    const duration = 4000; //4 seconds per slide
-    let animationFrameId: number;
+    const duration = 4000;
+    
+    // Fade in CTA after delay
+    const ctaTimer = setTimeout(() => setShowCTA(true), 700);
 
-    const ctaTimeout = setTimeout(() => {
-      setShowCTA(true);
-    }, 700);
+    // Hide thumbnails in the middle of the transition to reduce visual clutter
+    const thumbHideTimer = setTimeout(() => setShowThumbnails(false), 1000);
+    const thumbShowTimer = setTimeout(() => setShowThumbnails(true), duration - 1000);
 
-    // Use requestAnimationFrame for smoother animations
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const newProgress = Math.min((elapsed / duration) * 100, 100);
-      
-      // Update progress only if it changed significantly to avoid extra renders
-      setProgress(newProgress);
+    // Start progress bar animation (CSS will handle the smooth transition)
+    const progressTimer = setTimeout(() => setProgress(100), 50);
 
-      if (newProgress >= 100) {
-        handleNext();
-      } else {
-        const previewWindow = 1000;
-        const shouldShow =
-          elapsed < previewWindow || elapsed > duration - previewWindow;
-        setShowThumbnails(shouldShow);
-        
-        animationFrameId = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
+    // Transition to next slide
+    const nextSlideTimer = setTimeout(() => {
+      handleNext();
+    }, duration);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      clearTimeout(ctaTimeout);
-      setProgress(0);
-      setShowCTA(false);
+      clearTimeout(ctaTimer);
+      clearTimeout(thumbHideTimer);
+      clearTimeout(thumbShowTimer);
+      clearTimeout(progressTimer);
+      clearTimeout(nextSlideTimer);
     };
   }, [activeIndex]);
 
@@ -275,7 +265,7 @@ export function HeroCarousel() {
                 <div className="absolute bottom-3 left-3 right-3">
                   <div className="h-1.5 w-full rounded-full bg-white/40 overflow-hidden backdrop-blur-sm">
                     <div
-                      className="h-full bg-white transition-transform duration-75 ease-linear rounded-full origin-left"
+                      className={`h-full bg-white rounded-full origin-left ${progress === 100 ? 'transition-transform duration-3900 ease-linear' : 'transition-none'}`}
                       style={{ 
                         transform: `scaleX(${progress / 100}) translateZ(0)`,
                         backfaceVisibility: 'hidden'
