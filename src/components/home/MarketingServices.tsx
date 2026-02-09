@@ -69,8 +69,8 @@ export function MarketingServices() {
             <span className="text-xs font-montreal font-black uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">Marketing & Brand Excellence</span>
           </motion.div>
           
-          <h2 className="max-w-4xl font-montreal text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95]">
-            Marketing & <span className="bg-linear-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent italic px-2">Brand Launch.</span>
+          <h2 className="max-w-6xl font-montreal text-3xl md:text-6xl lg:text-8xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.2] py-4">
+            Marketing & <span className="inline-block bg-linear-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent italic px-4 py-2">Brand Launch.</span>
           </h2>
           
           <p className="max-w-2xl font-gotham text-lg md:text-xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
