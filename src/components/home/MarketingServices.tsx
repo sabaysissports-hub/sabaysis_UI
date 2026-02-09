@@ -152,14 +152,14 @@ const SpotlightCard = ({ icon, title, description, features, index }: SpotlightC
         <div className="mt-auto pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col gap-6">
           <div className="flex flex-wrap gap-2">
             {features.map((feature, fIdx) => (
-              <span key={fIdx} className="text-[10px] font-montreal font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3 py-1.5 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-lg group-hover:bg-emerald-500/5 group-hover:text-emerald-600 group-hover:border-emerald-500/20 transition-all duration-500">
+              <span key={fIdx} className="text-[10px] font-montreal font-bold uppercase tracking-wider text-emerald-500 dark:text-slate-500 px-3 py-1.5 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-lg group-hover:bg-emerald-500/5 group-hover:text-emerald-600 group-hover:border-emerald-500/20 transition-all duration-500">
                 {feature}
               </span>
             ))}
           </div>
           
           <div className="flex items-center justify-between group/link">
-            <span className="text-[10px] font-montreal font-black uppercase tracking-[0.2em] text-slate-300 dark:text-slate-700 group-hover:text-emerald-500 transition-colors duration-500">
+            <span className="text-[10px] font-montreal font-black uppercase tracking-[0.2em] text-emerald-300 dark:text-slate-700 group-hover:text-emerald-500 transition-colors duration-500">
               Technical Pipeline
             </span>
             <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500 group-hover:bg-emerald-500 group-hover:text-white">
