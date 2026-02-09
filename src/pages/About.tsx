@@ -214,6 +214,7 @@ export function About() {
                 <ul className="grid grid-cols-1 gap-4 pt-4">
                   {[
                     'International FIP Regulations',
+                    'BCCI & ICC Cricket Standards',
                     'Precision Manufacturing Machinery',
                     'Rigorous Material Selection',
                     'WPT Compliance Standards'

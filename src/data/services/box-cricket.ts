@@ -22,16 +22,16 @@ export const cricketData: ServiceTemplateData = {
     badge: 'Premium Arena Solutions'
   },
   about: {
-    title: 'Professional Box Cricket Arenas',
-    description: 'Sabaysis is a leader in designing and constructing world-class box cricket facilities. We specialize in custom configurations—whether you need an Oval, Square, or Rectangle arena. We follow World Indoor Cricket Federation (WICF) standards to deliver 360-degree playing experiences with maximum player safety and durability.',
+    title: 'Professional Box & Stadium Cricket Arenas',
+    description: 'Sabaysis is a leader in designing and constructing world-class cricket facilities. From professional stadiums to high-intensity box cricket arenas, we adhere strictly to BCCI (Board of Control for Cricket in India) and ICC (International Cricket Council) regulations. We specialize in custom configurations—whether you need an Oval, Square, or Rectangle arena—ensuring international-standard playability and safety.',
     image: boxabout,
     imageAlt: 'Box cricket arena installation',
     features: [
+      'BCCI & ICC Standard Compliance',
+      'Professional Stadium & Box Construction',
       'Custom Shapes: Oval, Square & Rectangle',
       '360-Degree Professional Enclosures',
-      'WICF-certified pitch dimensions',
       'German-imported multisport cricket turf',
-      'No. 36/45 UV-stabilized HDPE netting',
       'Galvanized steel structural enclosures'
     ]
   },
