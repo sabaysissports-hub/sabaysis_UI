@@ -17,6 +17,7 @@ import { tennisData } from '@/data/services/tennis-court';
 import { volleyballData } from '@/data/services/volleyball-court';
 import { golfData } from '@/data/services/golf';
 import { gymnasticsData } from '@/data/services/gymnastics';
+import { marketingData } from '@/data/services/marketing-brand-launch';
 
 const staticServiceData: Record<string, ServiceTemplateData> = {
   'football-court': footballCourtData,
@@ -32,6 +33,7 @@ const staticServiceData: Record<string, ServiceTemplateData> = {
   golf: golfData,
   gymnastics: gymnasticsData,
   gymanstic: gymnasticsData,
+  'marketing-brand-launch': marketingData,
 };
 
 export function ServiceDetail() {

@@ -44,6 +44,7 @@ const initialNavItems: NavItem[] = [
     basePath: "/services",
     items: serviceNavItems,
   },
+  { label: "Marketing", href: "/services/marketing-brand-launch" },
   {
     label: "Products",
     description: "Turf • Nets • Equipment",
@@ -124,6 +125,16 @@ export function NavBar() {
             body: s.body,
             slug: s.slug,
           }))
+
+          // Manually add Marketing & Brand Launch if not present
+          if (!srvNavItems.some(s => s.slug === 'marketing-brand-launch')) {
+            srvNavItems.push({
+              title: 'Marketing & Brand Launch',
+              body: 'Start strong and grow smart with our expertise',
+              slug: 'marketing-brand-launch'
+            });
+          }
+
           setNavItems((prev) =>
             prev.map((item) => {
               if (item.label === "Services" && "items" in item) {

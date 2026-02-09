@@ -5,7 +5,7 @@ import { PrimaryCTA } from '@/components/home/PrimaryCTA';
 import { UnifiedSportsTurf } from '@/components/home/UnifiedSportsTurf';
 import { Testimonials } from '@/components/home/Testimonials';
 import { ValueProps } from '@/components/home/ValueProps';
-import { MarketingServices } from '@/components/home/MarketingServices';
+import { MarketingSection } from '@/components/home/MarketingSection';
 import { MaintenanceSection } from '@/components/home/MaintenanceSection';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { Questions } from '@/components/home/question';
@@ -22,13 +22,9 @@ export function Home() {
           </div>
         </section>
         {/* Value Props / Services */}
-        <section id="about" className="relative bg-slate-50">
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <ValueProps />
-          </div>
-        </section>
-
-        <MarketingServices />
+        <ValueProps />
+        <MarketingSection />
+        
         <section id="products">
           <CollectionSection />
         </section>

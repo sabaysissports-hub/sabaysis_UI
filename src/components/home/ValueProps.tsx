@@ -14,6 +14,7 @@ import servicesBgImg from '@/assets/HomeImages/homeservicesbg.jpg';
 import badmintonImg from '@/assets/HomeImages/batminton.jpg';
 import golfImg from '@/assets/HomeImages/golf.jpg';
 import gymnasticsImg from '@/assets/HomeImages/gymanastic.jpg';
+import marketingImg from '@/assets/HomeImages/Marketing.jpg';
 
 type ServiceItem = {
   title: string;
@@ -119,6 +120,14 @@ const services: ServiceItem[] = [
     imageAlt: 'Gymnastics facility',
     link: '/services/gymnastics',
     bgGradient: 'from-slate-500 to-slate-700',
+    cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
+  },
+  {
+    title: 'Marketing & Brand Launch',
+    imageUrl: marketingImg,
+    imageAlt: 'Marketing and brand launch',
+    link: '/services/marketing-brand-launch',
+    bgGradient: 'from-emerald-500 to-teal-600',
     cornerShadow: 'shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.5)]',
   },
 ];
