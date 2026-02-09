@@ -96,13 +96,9 @@ export function HeroCarousel() {
   };
 
   useEffect(() => {
-    let startTime = Date.now();
+    const startTime = Date.now();
     const duration = 4000; //4 seconds per slide
     let animationFrameId: number;
-
-    setProgress(0);
-    setShowCTA(false);
-    startTime = Date.now();
 
     const ctaTimeout = setTimeout(() => {
       setShowCTA(true);
@@ -112,6 +108,8 @@ export function HeroCarousel() {
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const newProgress = Math.min((elapsed / duration) * 100, 100);
+      
+      // Update progress only if it changed significantly to avoid extra renders
       setProgress(newProgress);
 
       if (newProgress >= 100) {
@@ -131,17 +129,19 @@ export function HeroCarousel() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       clearTimeout(ctaTimeout);
+      setProgress(0);
+      setShowCTA(false);
     };
   }, [activeIndex]);
 
   const currentSlide = slides[activeIndex];
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] pt-16 lg:pt-20" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', perspective: '1000px' }}>
+    <section className="relative w-full overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)]" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', perspective: '1000px' }}>
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 h-full w-full transition-opacity duration-[2000ms] ease-in-out ${index === activeIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+          className={`absolute inset-0 h-full w-full transition-opacity duration-2000 ease-in-out ${index === activeIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
             }`}
           style={{ 
             transform: 'translateZ(0)',
@@ -153,7 +153,7 @@ export function HeroCarousel() {
             <img
               src={slide.image}
               alt={slide.title}
-              className="h-full w-full object-cover transition-transform duration-[20000ms] ease-out"
+              className="h-full w-full object-cover transition-transform duration-20000 ease-out"
               loading={index === 0 ? 'eager' : 'lazy'}
               style={{
                 transform: index === activeIndex ? 'scale(1.05) translateZ(0)' : 'scale(1.15) translateZ(0)',
@@ -163,8 +163,8 @@ export function HeroCarousel() {
             />
           </div>
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent\" style={{ transform: 'translateZ(0)' }} />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-transparent\" style={{ transform: 'translateZ(0)' }} />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" style={{ transform: 'translateZ(0)' }} />
+          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-transparent to-transparent" style={{ transform: 'translateZ(0)' }} />
         </div>
       ))}
 
@@ -172,12 +172,12 @@ export function HeroCarousel() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center" style={{ willChange: 'auto' }}>
             <h1 className="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-              <span className="block bg-gradient-to-r from-white via-emerald-50 to-teal-50 bg-clip-text text-transparent">
+              <span className="block bg-linear-to-r from-white via-emerald-50 to-teal-50 bg-clip-text text-transparent">
                 {currentSlide.title.split('&').map((part, index, array) => (
                   <span key={index}>
                     {part.trim()}
                     {index < array.length - 1 && (
-                      <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                      <span className="bg-linear-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
                         {' & '}
                       </span>
                     )}
@@ -213,7 +213,7 @@ export function HeroCarousel() {
                   }`} style={{
                     transitionDelay: showCTA ? '400ms' : '0ms'
                   }} />
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-teal-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Link>
 
               <Link
@@ -298,7 +298,7 @@ export function HeroCarousel() {
               setProgress(0);
             }}
             className={`rounded-full transition-all duration-300 backdrop-blur-sm ${activeIndex === index
-              ? 'w-12 h-3 bg-gradient-to-r from-emerald-400 to-teal-400 shadow-lg shadow-emerald-500/50'
+              ? 'w-12 h-3 bg-linear-to-r from-emerald-400 to-teal-400 shadow-lg shadow-emerald-500/50'
               : 'w-3 h-3 bg-white/40 hover:bg-white/60 hover:scale-125'
               }`}
             aria-label={`Go to slide ${index + 1}`}

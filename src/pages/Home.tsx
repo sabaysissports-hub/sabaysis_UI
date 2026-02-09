@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 export function Home() {
   usePageTitle('Home');
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
+    <div className="bg-white font-sans text-slate-900">
       <HeroCarousel />
       <main className="flex flex-col">
         {/* Featured Services */}
