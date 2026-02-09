@@ -5,46 +5,40 @@ import marketingBgImg from '@/assets/HomeImages/Marketing.jpg';
 
 const marketingServices = [
   {
-    title: "Strategic Brand Identity & Market Positioning",
-    phase: "Step 01",
+    title: "Brand Launch & Pre-Launch Strategy",
     icon: <Rocket className="h-6 w-6" />,
-    description: "Architecting your brand's core identity with comprehensive pre-launch strategies and market entry intelligence.",
-    features: ["Visual Identity", "Market Research", "Brand Voice"],
+    description: "Architecting your market debut with audience intelligence and a roadmap for sustainable impact.",
+    features: ["Market & audience research", "Brand positioning & tone of voice", "Launch roadmap & campaign planning"],
   },
   {
-    title: "Multi-Platform Presence & Social Optimization",
-    phase: "Step 02",
+    title: "Social Media Setup & Optimization",
     icon: <Share2 className="h-6 w-6" />,
-    description: "Deploying an optimized digital footprint across all major social ecosystems with professional UI/UX standards.",
-    features: ["UX Optimization", "Ecosystem Launch", "Profile Scaling"],
+    description: "Building a high-performance digital presence across Instagram, Facebook, and professional networks.",
+    features: ["IG/FB/LI/Google Setup", "Bio & Profile Optimization", "Content Visual Identity"],
   },
   {
-    title: "Premium Content Engine & Visual Assets",
-    phase: "Step 03",
+    title: "Content & Creatives",
     icon: <Palette className="h-6 w-6" />,
-    description: "Developing engagement-optimized reels, carousels, and strategic static assets that speak your brand's voice.",
-    features: ["4K Video Reels", "Strategic Carousels", "Brand Visuals"],
+    description: "Engineering visuals that capture attention, including strategic reels, carousels, and static posts.",
+    features: ["Reels & Static Concepts", "Trending Hacks & Hooks", "Caption & Hashtag Strategy"],
   },
   {
-    title: "360° Community Management & Engagement",
-    phase: "Step 04",
+    title: "Social Media Management",
     icon: <Calendar className="h-6 w-6" />,
-    description: "End-to-end management including strategic content calendars, proactive engagement, and sentiment tracking.",
-    features: ["Content Calendars", "Sentiment Tracking", "24/7 Monitoring"],
+    description: "Reliable day-to-day management of your social ecosystems with performance-driven consistency.",
+    features: ["Content Calendars", "Community Management", "Performance Tracking"],
   },
   {
-    title: "High-Impact Influencer & Collaboration Network",
-    phase: "Step 05",
+    title: "Influencer & Collaboration Strategy",
     icon: <Handshake className="h-6 w-6" />,
-    description: "Accelerating growth through curated influencer partnerships and strategic cross-sector visibility collaborations.",
-    features: ["Curated Talent", "Contract Mgmt", "Viral Hooks"],
+    description: "Leveraging high-authority voices and strategic brand partnerships to accelerate your brand's authority.",
+    features: ["Influencer Outreach", "Barter & Brand Collabs", "Visibility-focused Collabs"],
   },
   {
-    title: "Performance Marketing & ROI Scaling",
-    phase: "Step 06",
+    title: "Paid Promotions (Optional)",
     icon: <Megaphone className="h-6 w-6" />,
-    description: "Precision-targeted advertising campaigns and data-driven post amplification to maximize ROI and reach.",
-    features: ["Targeted Ads", "ROI Optimization", "Data Scaling"],
+    description: "Amplifying your reach through precision-targeted ad strategies and high-engagement boosted content.",
+    features: ["Ad Strategy", "Boosted Posts", "Launch ROI Scaling"],
   }
 ];
 
@@ -76,11 +70,11 @@ export function MarketingServices() {
           </motion.div>
           
           <h2 className="max-w-4xl font-montreal text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95]">
-            Architecting <span className="bg-linear-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent italic px-2">Market Dominance.</span>
+            Marketing & <span className="bg-linear-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent italic px-2">Brand Launch.</span>
           </h2>
           
           <p className="max-w-2xl font-gotham text-lg md:text-xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-            We don't just launch; we strategically deploy digital ecosystems designed for sustainable growth and multi-platform visibility.
+            We help you start strong and grow smart. From pre-launch buzz to post-launch growth, we handle everything end-to-end.
           </p>
         </div>
 
@@ -102,12 +96,11 @@ interface SpotlightCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  phase: string;
   features: string[];
   index: number;
 }
 
-const SpotlightCard = ({ icon, title, description, phase, features, index }: SpotlightCardProps) => {
+const SpotlightCard = ({ icon, title, description, features, index }: SpotlightCardProps) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -145,9 +138,6 @@ const SpotlightCard = ({ icon, title, description, phase, features, index }: Spo
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-slate-900 dark:text-white transition-all duration-500 group-hover:bg-emerald-500 group-hover:text-white group-hover:rotate-6 group-hover:scale-110 shadow-xs">
             {icon}
           </div>
-          <span className="font-montreal text-[10px] font-black tracking-widest text-slate-300 dark:text-white/10 group-hover:text-emerald-500/40 transition-colors duration-500">
-            {phase}
-          </span>
         </div>
 
         <div className="space-y-4">
