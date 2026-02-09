@@ -1,6 +1,6 @@
 import type { ServiceTemplateData } from '@/types/service';
 import poolHero from '@/assets/Hero/hero (1).jpg';
-import  about from '@/assets/services/swimming-pool/about.jpg';
+import  about from '@/assets/NewImages/swingabout.jpeg';
 
 const VINYL_POOL_IMG = "https://www.meckavosports.com/wp-content/themes/thememeckavo/assets/images/product_swimming_pool/vinyle_pool.webp";
 const INDOOR_POOL_IMG = "https://www.meckavosports.com/wp-content/themes/thememeckavo/assets/images/product_swimming_pool/indoor_pool.webp";

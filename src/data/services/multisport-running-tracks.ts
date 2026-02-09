@@ -1,9 +1,9 @@
 import type { ServiceTemplateData } from '@/types/service';
 import trackHero from '@/assets/Hero/hero.jpg';
-import trackAbout from '@/assets/services/multisport-running-tracks/about.jpg';
-import trackFullPour from '@/assets/services/multisport-running-tracks/elite.jpg';
-import trackSandwich from '@/assets/services/multisport-running-tracks/sandwich.jpg';
-import trackPrefab from '@/assets/services/multisport-running-tracks/rubber.jpg';
+import trackAbout from '@/assets/NewImages/atletics.jpg';
+import trackFullPour from '@/assets/NewImages/elite.webp';
+import trackSandwich from '@/assets/NewImages/sandwitch.webp';
+import trackPrefab from '@/assets/NewImages/rubber.webp';
 import trackMaintenance from '@/assets/services/multisport-running-tracks/trackm.jpg';
 
 

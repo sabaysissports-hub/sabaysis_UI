@@ -1,13 +1,12 @@
 import type { ServiceTemplateData } from '@/types/service';
 import tennisHero from '@/assets/services/tennis-court/tennis.png';
-import tennisAbout from '@/assets/Unified S/batminton.jpg';
+import tennisAbout from '@/assets/NewImages/tennisabout.jpeg';
 import tennisHard from '@/assets/Features/unified (2).jpg';
 import tennisClay from '@/assets/services/tennis-court/red.jpg';
 // import tennisFinal from '@/assets/services/tennis-court/final-tennis.gif';
-import redClay from '@/assets/services/tennis-court/red.jpg';
-import acrylic from '@/assets/services/tennis-court/acrylic.jpg';
-import total from '@/assets/services/tennis-court/total.jpg';
-
+import redClay from '@/assets/NewImages/Redtennis.webp';
+import acrylic from '@/assets/NewImages/Acrylic.jpg';
+import total from '@/assets/NewImages/Infrastructure.png';
 
 export const tennisData: ServiceTemplateData = {
   slug: 'tennis-court',

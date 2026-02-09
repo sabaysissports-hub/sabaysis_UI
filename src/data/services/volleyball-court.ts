@@ -1,8 +1,8 @@
 import type { ServiceTemplateData } from '@/types/service';
 import volleyballHero from '@/assets/Unified S/bollyballhero.jpg';
 import volleyballAbout from '@/assets/Unified S/vollyball.jpg';
-import volleyballIndoor from '@/assets/services/volleyball-court/Elastic.jpg';
-import volleyballBeach from '@/assets/services/volleyball-court/FIVB.jpg';
+import volleyballIndoor from '@/assets/NewImages/bollysynthetic.avif';
+import volleyballBeach from '@/assets/NewImages/beachbolly.jpeg';
 
 export const volleyballData: ServiceTemplateData = {
   slug: 'volleyball-court',

@@ -1,10 +1,10 @@
 import type { ServiceTemplateData } from '@/types/service';
 import footballHero from '@/assets/Hero/hero (2).jpg';
-import footballAbout from '@/assets/services/football/Infrastructure.jpg';
-import dimensions from '@/assets/services/football/DIMENSIONS.jpg';
+import footballAbout from '@/assets/NewImages/fabout.jpeg';
+import dimensions from '@/assets/NewImages/dimension.webp';
 import base from '@/assets/services/football/Base.webp';
-import comercial from '@/assets/services/football/Commercial.jpg';
-import elite from '@/assets/services/football/Elite.jpg';
+import comercial from '@/assets/NewImages/europa.jpg';
+import elite from '@/assets/NewImages/elite.jpeg';
 import high from '@/assets/services/football/High.jpg';
 import installation from '@/assets/services/football/Installation.webp'; 
 import conditioning from '@/assets/services/football/Conditioning.png';

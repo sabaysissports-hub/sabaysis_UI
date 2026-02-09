@@ -1,12 +1,12 @@
 import type { ServiceTemplateData } from '@/types/service';
 import cricketHero from '@/assets/HomeImages/cricket.jpg';
-import cricketIndoor from '@/assets/services/box-cricket/indoor.jpg';
+import cricketIndoor from '@/assets/NewImages/Precision.jpeg';
 import boxabout from '@/assets/HomeImages/cricket.jpg';
-import rectangle from '@/assets/services/box-cricket/Rectangle.jpg';
-import square from '@/assets/services/box-cricket/square.jpg';
-import oval from '@/assets/services/box-cricket/oval.jpg';
+import rectangle from '@/assets/NewImages/rectangle.jpeg';
+import square from '@/assets/NewImages/indoorcric.jpeg';
+import oval from '@/assets/NewImages/360.jpeg';
 // import outdoor from '@/assets/services/box-cricket/outdoor.jpg';
-import structuralDesign from '@/assets/services/box-cricket/360.jpg';
+import structuralDesign from '@/assets/NewImages/circular.jpeg';
 import final from '@/assets/services/box-cricket/Final.jpg';
 import turf from '@/assets/services/box-cricket/Turf.jpg';
 import planning from '@/assets/services/box-cricket/planning.jpg';
