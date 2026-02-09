@@ -44,7 +44,6 @@ const initialNavItems: NavItem[] = [
     basePath: "/services",
     items: serviceNavItems,
   },
-  { label: "Marketing", href: "/services/marketing-brand-launch" },
   {
     label: "Products",
     description: "Turf • Nets • Equipment",

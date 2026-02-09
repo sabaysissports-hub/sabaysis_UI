@@ -5,7 +5,7 @@ import dimensions from '@/assets/NewImages/dimension.webp';
 import base from '@/assets/services/football/Base.webp';
 import comercial from '@/assets/NewImages/europa.jpg';
 import elite from '@/assets/NewImages/elite.jpeg';
-import high from '@/assets/services/football/High.jpg';
+import high from '@/assets/services/football/high.webp';
 import installation from '@/assets/services/football/Installation.webp'; 
 import conditioning from '@/assets/services/football/Conditioning.png';
 
