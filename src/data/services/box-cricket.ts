@@ -15,7 +15,7 @@ import planning from '@/assets/services/box-cricket/planning.jpg';
 export const cricketData: ServiceTemplateData = {
   slug: 'box-cricket',
   hero: {
-    title: 'Sabaysis Box Cricket',
+    title: 'Sabaysis Cricket Ground and  Courts',
     subtitle: 'WICF-Standard Facilities',
     description: 'High-performance indoor and rooftop box cricket construction with specialized turf and professional netting.',
     image: cricketHero,

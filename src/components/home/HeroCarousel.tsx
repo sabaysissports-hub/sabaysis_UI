@@ -74,12 +74,12 @@ const slides = [
   },
   {
     id: 6,
-    title: 'FIFA-Standard Football Turf & Courts',
+    title: 'FIFA-Standard Football Turf & Grounds',
     image: hero3,
     cta: 'Explore Football Turf',
     link: '/services/football-court',
     typingTexts: [
-      'FIFA-Standard Football Turf & Courts'
+      'FIFA-Standard Football Turf & Grounds'
     ],
   },
 ];

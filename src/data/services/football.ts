@@ -13,7 +13,7 @@ export const footballCourtData: ServiceTemplateData = {
   slug: 'football-court',
   hero: {
     title: 'Sabaysis Football',
-    subtitle: 'FIFA-Standard Turf & Courts',
+    subtitle: 'FIFA-Standard Turf & Grounds',
     description: 'Professional football turf and court construction meeting international FIFA standards. Exclusively launching MARS 60-B1 Football Turf by CCGrass.',
     image: footballHero,
     badge: 'FIFA Preferred Provider'
