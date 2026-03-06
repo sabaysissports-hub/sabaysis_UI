@@ -31,6 +31,8 @@ export function useSmoothScroll() {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
+      syncTouch: true,
+      touchMultiplier: 1,
       wheelMultiplier: 1,
       infinite: false,
     });
@@ -54,8 +56,7 @@ export function useSmoothScroll() {
     
     resizeObserver.observe(document.body);
 
-    // Scroll to top on route change (handled by ScrollToTop component usually, 
-    // but Lenis needs to know it happened)
+    // Initial position sync for first load (route changes are handled in ScrollToTop).
     lenis.scrollTo(0, { immediate: true });
     lenis.resize();
 
@@ -75,10 +76,20 @@ export function useSmoothScroll() {
       // Small delay to allow react to render new route content
       const timer = setTimeout(() => {
         lenisRef.current?.resize();
+
+        // If route has a hash, smoothly scroll to that section.
+        if (location.hash) {
+          const target = document.getElementById(location.hash.slice(1));
+          if (target) {
+            lenisRef.current?.scrollTo(target, {
+              duration: 1,
+            });
+          }
+        }
       }, 150);
       return () => clearTimeout(timer);
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return null;
 }

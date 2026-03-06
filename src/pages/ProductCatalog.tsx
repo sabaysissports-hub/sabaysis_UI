@@ -200,12 +200,6 @@ export function ProductCatalog() {
                     {product.title}
                   </h3>
                    
-                  {(product as any).price && (
-                      <p className="mb-2 text-emerald-600 font-bold font-gotham">
-                        {(product as any).price}
-                      </p>
-                  )}
-
                   <p className="mb-6 flex-1 text-sm font-gotham leading-relaxed text-slate-600 line-clamp-3">
                     {product.body}
                   </p>
